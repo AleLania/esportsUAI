@@ -6,5 +6,7 @@ namespace Entities
 {
     internal class BracketsEntity
     {
+        public int id { get; set; }
+        public int idCompetencia { get; set; }
     }
 }
