@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Scripts/">
+    <File Path="../../../OneDrive/Desktop/generarBase.sql" />
+  </Folder>
   <Project Path="Business/Business.csproj" />
   <Project Path="Data/Data.csproj" />
   <Project Path="Entities/Entities.csproj" />
