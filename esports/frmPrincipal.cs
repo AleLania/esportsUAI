@@ -22,8 +22,8 @@ namespace esports
 
         private void btnJugadores_Click(object sender, EventArgs e)
         {
-            //aca ventana a form de jugadores
-            ShowDialog();
+            frmJugadores ventana = new frmJugadores();
+            ventana.ShowDialog();
         }
 
         private void btnEquipos_Click(object sender, EventArgs e)
