@@ -6,13 +6,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace esports
+namespace esports.Equipo
 {
-    public partial class frmJugadores : Form
+    public partial class Form1 : Form
     {
-        public frmJugadores()
+        public Form1()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
