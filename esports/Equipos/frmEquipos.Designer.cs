@@ -30,6 +30,8 @@
         {
             btnAddEquipo = new Button();
             btnUpdateEquipo = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnAddEquipo
@@ -50,15 +52,26 @@
             btnUpdateEquipo.Text = "Modificar Equipo";
             btnUpdateEquipo.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(373, 23);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(415, 415);
+            dataGridView1.TabIndex = 2;
+            // 
             // frmEquipos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dataGridView1);
             Controls.Add(btnUpdateEquipo);
             Controls.Add(btnAddEquipo);
             Name = "frmEquipos";
             Text = "frmEquipos";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -66,5 +79,6 @@
 
         private Button btnAddEquipo;
         private Button btnUpdateEquipo;
+        private DataGridView dataGridView1;
     }
 }
