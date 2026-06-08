@@ -28,7 +28,7 @@ namespace esports
 
         private void btnEquipos_Click(object sender, EventArgs e)
         {
-            //aca ventana a equipos
+            frmEquipos ventana = new frmEquipos();
             ShowDialog();
         }
 
