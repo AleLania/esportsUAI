@@ -29,7 +29,7 @@ namespace esports
         private void btnEquipos_Click(object sender, EventArgs e)
         {
             frmEquipos ventana = new frmEquipos();
-            ShowDialog();
+            ventana.ShowDialog();
         }
 
         private void btnPartidos_Click(object sender, EventArgs e)
