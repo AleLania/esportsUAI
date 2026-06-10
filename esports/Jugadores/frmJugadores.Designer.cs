@@ -31,24 +31,25 @@
             lblJugadores = new Label();
             btnAgregarJugador = new Button();
             btnModificarJugador = new Button();
+            dgvJugadores = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             SuspendLayout();
             // 
             // lblJugadores
             // 
             lblJugadores.AutoSize = true;
             lblJugadores.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblJugadores.Location = new Point(25, 39);
+            lblJugadores.Location = new Point(22, 29);
             lblJugadores.Name = "lblJugadores";
-            lblJugadores.Size = new Size(143, 23);
+            lblJugadores.Size = new Size(114, 18);
             lblJugadores.TabIndex = 0;
             lblJugadores.Text = "ABM Jugadores";
             // 
             // btnAgregarJugador
             // 
-            btnAgregarJugador.Location = new Point(25, 93);
-            btnAgregarJugador.Margin = new Padding(3, 4, 3, 4);
+            btnAgregarJugador.Location = new Point(40, 279);
             btnAgregarJugador.Name = "btnAgregarJugador";
-            btnAgregarJugador.Size = new Size(86, 31);
+            btnAgregarJugador.Size = new Size(75, 23);
             btnAgregarJugador.TabIndex = 1;
             btnAgregarJugador.Text = "Agregar";
             btnAgregarJugador.UseVisualStyleBackColor = true;
@@ -56,25 +57,34 @@
             // 
             // btnModificarJugador
             // 
-            btnModificarJugador.Location = new Point(25, 144);
-            btnModificarJugador.Margin = new Padding(3, 4, 3, 4);
+            btnModificarJugador.Location = new Point(147, 279);
             btnModificarJugador.Name = "btnModificarJugador";
-            btnModificarJugador.Size = new Size(86, 31);
+            btnModificarJugador.Size = new Size(75, 23);
             btnModificarJugador.TabIndex = 2;
             btnModificarJugador.Text = "Modificar";
             btnModificarJugador.UseVisualStyleBackColor = true;
             // 
+            // dgvJugadores
+            // 
+            dgvJugadores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJugadores.Location = new Point(22, 50);
+            dgvJugadores.Name = "dgvJugadores";
+            dgvJugadores.Size = new Size(766, 150);
+            dgvJugadores.TabIndex = 3;
+            // 
             // frmJugadores
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
+            Controls.Add(dgvJugadores);
             Controls.Add(btnModificarJugador);
             Controls.Add(btnAgregarJugador);
             Controls.Add(lblJugadores);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmJugadores";
             Text = "frmJugadores";
+            Load += frmJugadores_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvJugadores).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -84,5 +94,6 @@
         private Label lblJugadores;
         private Button btnAgregarJugador;
         private Button btnModificarJugador;
+        private DataGridView dgvJugadores;
     }
 }

@@ -4,13 +4,12 @@ using System.Text;
 
 namespace Entities
 {
-    internal class JugadoresEntity
+    public class JugadoresEntity
     {
-        public int id {  get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string nacionalidad { get; set; }
-        public int equipo { get; set; }
+        public int IdJugador {  get; set; }
+        public string NombreApellido { get; set; }
+        public string Nick { get; set; }
+        public int IdEquipo { get; set; }
 
     }
 }
