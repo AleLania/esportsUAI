@@ -13,7 +13,6 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
-<<<<<<< HEAD
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -29,6 +28,4 @@
     </None>
   </ItemGroup>
 
-=======
->>>>>>> main
 </Project>
