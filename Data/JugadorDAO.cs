@@ -59,5 +59,32 @@ namespace Data
 
             return jugadores;
         }
+
+        public void CargarJugador(JugadoresEntity jugadores)
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+
+                using (conexion)
+                {
+                    string sql = "INSERT INTO Jugadores (NOMBRE_APELLIDO, NICK, ID_EQUIPO) VALUES (@NombreApellido, @Nick, @IdEquipo)";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("NombreApellido", jugadores.NombreApellido);
+                        sqlCommand.Parameters.AddWithValue("Nick", jugadores.Nick);
+                        sqlCommand.Parameters.AddWithValue("IdEquipo", jugadores.IdEquipo);
+
+                        conexion.Open();
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

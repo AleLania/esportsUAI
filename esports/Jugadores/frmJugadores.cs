@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Business;
+using Entities;
+using esports.Equipos;
+using esports.Jugadores;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Business;
-using Entities;
 
 
 namespace esports
@@ -22,8 +24,8 @@ namespace esports
         private void btnAgregarJugador_Click(object sender, EventArgs e)
         {
 
-            string nombre = Interaction.InputBox("Ingrese el nombre del jugador");
-            string tag = Interaction.InputBox("Ingrese el tag del jugador");
+            frmCargarJugador ventana = new frmCargarJugador();
+            ventana.ShowDialog();
         }
 
         private void cargarJugadores()
