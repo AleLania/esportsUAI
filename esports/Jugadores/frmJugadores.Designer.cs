@@ -33,6 +33,7 @@
             btnModificarJugador = new Button();
             dgvJugadores = new DataGridView();
             btnVolver = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             SuspendLayout();
             // 
@@ -83,11 +84,21 @@
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(147, 334);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 5;
+            button1.Text = "Modificar";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // frmJugadores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(btnVolver);
             Controls.Add(dgvJugadores);
             Controls.Add(btnModificarJugador);
@@ -108,5 +119,6 @@
         private Button btnModificarJugador;
         private DataGridView dgvJugadores;
         private Button btnVolver;
+        private Button button1;
     }
 }

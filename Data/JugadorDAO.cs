@@ -86,5 +86,32 @@ namespace Data
                 throw;
             }
         }
+
+        //posible transaction para no borrar un jugador que tiene un equipo asignado? uso transaction? habra que armar un DesasignarEquipo?
+        public void BorrarJugador(int idJugador)
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+
+                using (conexion)
+                {
+                    string sql = "DELETE FROM Jugadores WHERE ID_JUGADOR = @IdJugador";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@IdJugador", idJugador);
+
+                        conexion.Open();
+                        sqlCommand.ExecuteNonQuery();
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

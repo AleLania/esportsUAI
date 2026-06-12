@@ -29,5 +29,12 @@ namespace Business
 
             jugadorDAO.CargarJugador(jugador);
         }
+
+        public void BorrarJugador(int idJugador)
+        {
+            JugadorDAO jugadorDAO = new JugadorDAO();
+
+            jugadorDAO.BorrarJugador(idJugador);
+        }
     }
 }
