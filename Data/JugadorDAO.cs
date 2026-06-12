@@ -20,7 +20,16 @@ namespace Data
                 {
                     conexion.Open();
 
-                    string sql = "SELECT * FROM Jugadores";
+                    //arme un join para poder mostrar el equipo en el dgv y no solo el id_equipo
+                    string sql = "SELECT " +
+                        "Jugadores.ID_JUGADOR, " +
+                        "Jugadores.NOMBRE_APELLIDO, " +
+                        "Jugadores.NICK, " +
+                        "Jugadores.ID_EQUIPO, " +
+                        "Equipos.NOMBRE AS NOMBRE_EQUIPO " +
+                        "FROM Jugadores " +
+                        "INNER JOIN Equipos " +
+                        "ON Jugadores.ID_EQUIPO = Equipos.ID_EQUIPO";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
@@ -34,6 +43,8 @@ namespace Data
                                 jugador.NombreApellido = reader["NOMBRE_APELLIDO"].ToString();
                                 jugador.Nick = reader["NICK"].ToString();
                                 jugador.IdEquipo = Convert.ToInt32(reader["ID_EQUIPO"]);
+                                // mapeo nombre equipo
+                                jugador.NombreEquipo = reader["NOMBRE_EQUIPO"].ToString();
 
                                 jugadores.Add(jugador);
                             }
