@@ -11,5 +11,23 @@ namespace Business
 
             return jugadorDAO.ObtenerJugadores();
         }
+
+        public void ValidarJugador(JugadoresEntity jugador)
+        {
+            if (string.IsNullOrWhiteSpace(jugador.NombreApellido))
+                throw new Exception("El nombre no puede estar vacío.");
+
+            if (string.IsNullOrWhiteSpace(jugador.Nick))
+                throw new Exception("El nick no puede estar vacío.");
+        }
+
+        public void CargarJugador(JugadoresEntity jugador)
+        {
+            ValidarJugador(jugador);
+
+            JugadorDAO jugadorDAO = new JugadorDAO();
+
+            jugadorDAO.CargarJugador(jugador);
+        }
     }
 }
