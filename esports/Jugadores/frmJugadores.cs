@@ -32,11 +32,11 @@ namespace esports
         {
             JugadorBusiness jugador = new JugadorBusiness();
 
-            dgvJugadores.DataSource = jugador.ObtenerJugadores();
+            dgvJugadores.DataSource = jugador.obtenerJugadores();
 
             //oculto columnas de id que quedan feo
             dgvJugadores.Columns["IdJugador"].Visible = false;
-            dgvJugadores.Columns["IdEquipo"].Visible =false;   
+            dgvJugadores.Columns["IdEquipo"].Visible = false;
         }
         private void frmJugadores_Load(object sender, EventArgs e)
         {
@@ -46,6 +46,11 @@ namespace esports
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnModificarJugador_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

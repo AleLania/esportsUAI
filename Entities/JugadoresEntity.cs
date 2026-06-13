@@ -15,4 +15,5 @@ namespace Entities
         public string NombreEquipo { get; set;  }
 
     }
+
 }
