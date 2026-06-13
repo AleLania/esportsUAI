@@ -117,7 +117,7 @@ namespace Data
         }
 
         //tiene que ser un alta por baja porque no voy a borrarjugadores
-        public void actualizarJugador(int idJugador, string nombreApellido, string nick, int idEquipo)
+        public void actualizarJugador(JugadoresEntity jugador)
         {
             try
             {
@@ -131,10 +131,10 @@ namespace Data
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
-                        sqlCommand.Parameters.AddWithValue("@IdJugador", idJugador);
-                        sqlCommand.Parameters.AddWithValue("@NombreApellido", nombreApellido);
-                        sqlCommand.Parameters.AddWithValue("@Nick", nick);
-                        sqlCommand.Parameters.AddWithValue("@IdEquipo", idEquipo);
+                        sqlCommand.Parameters.AddWithValue("@IdJugador", jugador.IdJugador);
+                        sqlCommand.Parameters.AddWithValue("@NombreApellido", jugador.NombreApellido);
+                        sqlCommand.Parameters.AddWithValue("@Nick", jugador.Nick);
+                        sqlCommand.Parameters.AddWithValue("@IdEquipo", jugador.IdEquipo);
 
                         conexion.Open();
                         sqlCommand.ExecuteNonQuery();
