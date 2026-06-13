@@ -26,6 +26,8 @@ namespace esports
 
             frmCargarJugador ventana = new frmCargarJugador();
             ventana.ShowDialog();
+
+            cargarJugadores();
         }
 
         private void cargarJugadores()
@@ -50,7 +52,9 @@ namespace esports
 
         private void btnModificarJugador_Click(object sender, EventArgs e)
         {
-
+            frmModificarJugador ventana = new frmModificarJugador();
+            ventana.ShowDialog();
+            cargarJugadores();
         }
     }
 }

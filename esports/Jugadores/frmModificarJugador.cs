@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,73 @@ namespace esports.Jugadores
         public frmModificarJugador()
         {
             InitializeComponent();
+        }
+
+        private void frmModificarJugador_Load(object sender, EventArgs e)
+        {
+            JugadorBusiness jugadorBusiness = new JugadorBusiness();
+
+            cmbJugador.DataSource = jugadorBusiness.obtenerJugadores();
+
+            cmbJugador.DisplayMember = "NombreApellido";
+            cmbJugador.ValueMember = "IdJugador";
+
+            EquipoBusiness equipoBusiness = new EquipoBusiness();
+
+            cmbEquipos.DataSource = equipoBusiness.getEquipos();
+            cmbEquipos.DisplayMember = "nombre";
+            cmbEquipos.ValueMember = "id";
+        }
+
+        private void cmbJugador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbJugador.SelectedValue == null)
+                return;
+
+            if (cmbJugador.SelectedValue is not int)
+                return;
+
+            int idJugador = (int)cmbJugador.SelectedValue;
+
+            JugadorBusiness jugadorBusiness = new JugadorBusiness();
+
+            JugadoresEntity? jugador =
+                jugadorBusiness.obtenerJugadorPorId(idJugador);
+
+            if (jugador != null)
+            {
+                txtNuevoNombre.Text = jugador.NombreApellido;
+                txtNick.Text = jugador.Nick;
+                cmbEquipos.SelectedValue = jugador.IdEquipo;
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                JugadoresEntity jugador = new JugadoresEntity();
+
+                jugador.IdJugador = Convert.ToInt32(cmbJugador.SelectedValue);
+                jugador.NombreApellido = txtNuevoNombre.Text;
+                jugador.Nick = txtNick.Text;
+                jugador.IdEquipo = Convert.ToInt32(cmbEquipos.SelectedValue);
+
+                JugadorBusiness jugadorBusiness = new JugadorBusiness();
+
+                jugadorBusiness.actualizarJugador(jugador);
+
+                MessageBox.Show("Jugador modificado correctamente");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

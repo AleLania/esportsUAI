@@ -45,11 +45,11 @@ namespace Business
             return jugadorDAO.obtenerJugadorPorId(idJugador);
         }
 
-        public void actualizarJugador(int idJugador, string nombreApellido, string nick, int idEquipo)
+        public void actualizarJugador(JugadoresEntity jugador)
         {
             JugadorDAO jugadorDAO = new JugadorDAO();
 
-            jugadorDAO.actualizarJugador(idJugador, nombreApellido, nick, idEquipo);
+            jugadorDAO.actualizarJugador(jugador);
         }
     }
 }

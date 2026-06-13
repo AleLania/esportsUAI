@@ -94,7 +94,7 @@
             cmbEquipos.FormattingEnabled = true;
             cmbEquipos.Location = new Point(161, 158);
             cmbEquipos.Name = "cmbEquipos";
-            cmbEquipos.Size = new Size(98, 23);
+            cmbEquipos.Size = new Size(104, 23);
             cmbEquipos.TabIndex = 6;
             cmbEquipos.SelectedIndexChanged += cmbEquipos_SelectedIndexChanged;
             // 
