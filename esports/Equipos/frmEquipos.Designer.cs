@@ -59,7 +59,7 @@
             // 
             dgvEquipos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEquipos.Location = new Point(342, 10);
-            dgvEquipos.Margin = new Padding(2, 2, 2, 2);
+            dgvEquipos.Margin = new Padding(2);
             dgvEquipos.Name = "dgvEquipos";
             dgvEquipos.RowHeadersWidth = 62;
             dgvEquipos.Size = new Size(448, 430);
@@ -73,6 +73,7 @@
             btnVolverMenu.TabIndex = 3;
             btnVolverMenu.Text = "Volver";
             btnVolverMenu.UseVisualStyleBackColor = true;
+            btnVolverMenu.Click += btnVolverMenu_Click;
             // 
             // frmEquipos
             // 
