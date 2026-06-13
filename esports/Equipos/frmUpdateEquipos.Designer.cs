@@ -34,59 +34,73 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(98, 435);
+            btnSave.Location = new Point(77, 275);
+            btnSave.Margin = new Padding(2);
+            btnSave.Size = new Size(174, 58);
             btnSave.Click += btnSave_Click;
             // 
             // txtNombreEquipo
             // 
-            txtNombreEquipo.Location = new Point(113, 239);
+            txtNombreEquipo.Location = new Point(90, 191);
+            txtNombreEquipo.Margin = new Padding(2);
+            txtNombreEquipo.Size = new Size(140, 27);
             // 
-            // cmbDisciplina
+            // cmbEsport
             // 
-            cmbDisciplina.Location = new Point(113, 339);
+            cmbEsport.Location = new Point(244, 305);
+            cmbEsport.Margin = new Padding(2);
+            cmbEsport.Size = new Size(146, 28);
             // 
             // label1
             // 
-            label1.Location = new Point(113, 192);
+            label1.Location = new Point(90, 154);
+            label1.Margin = new Padding(2, 0, 2, 0);
             // 
             // label2
             // 
-            label2.Location = new Point(113, 297);
+            label2.Location = new Point(244, 272);
+            label2.Margin = new Padding(2, 0, 2, 0);
             // 
             // label3
             // 
-            label3.Size = new Size(148, 25);
+            label3.Location = new Point(10, 17);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Size = new Size(124, 20);
             label3.Text = "Modificar Equipo";
             // 
             // cmbEquipos
             // 
             cmbEquipos.FormattingEnabled = true;
-            cmbEquipos.Location = new Point(113, 135);
+            cmbEquipos.Location = new Point(90, 108);
+            cmbEquipos.Margin = new Padding(2);
             cmbEquipos.Name = "cmbEquipos";
-            cmbEquipos.Size = new Size(182, 33);
+            cmbEquipos.Size = new Size(146, 28);
             cmbEquipos.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(113, 98);
+            label4.Location = new Point(90, 78);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(155, 25);
+            label4.Size = new Size(131, 20);
             label4.TabIndex = 7;
             label4.Text = "Seleccione equipo";
             // 
             // frmUpdateEquipos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(445, 544);
+            ClientSize = new Size(356, 355);
             Controls.Add(label4);
             Controls.Add(cmbEquipos);
+            Margin = new Padding(2);
             Name = "frmUpdateEquipos";
             Text = "Form1";
+            Load += frmUpdateEquipos_Load;
             Controls.SetChildIndex(btnSave, 0);
             Controls.SetChildIndex(txtNombreEquipo, 0);
-            Controls.SetChildIndex(cmbDisciplina, 0);
+            Controls.SetChildIndex(cmbEsport, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);
