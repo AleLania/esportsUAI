@@ -37,10 +37,9 @@
             // 
             // btnAddEquipo
             // 
-            btnAddEquipo.Location = new Point(32, 81);
-            btnAddEquipo.Margin = new Padding(4);
+            btnAddEquipo.Location = new Point(26, 65);
             btnAddEquipo.Name = "btnAddEquipo";
-            btnAddEquipo.Size = new Size(166, 52);
+            btnAddEquipo.Size = new Size(133, 42);
             btnAddEquipo.TabIndex = 0;
             btnAddEquipo.Text = "Agregar Equipo";
             btnAddEquipo.UseVisualStyleBackColor = true;
@@ -48,10 +47,9 @@
             // 
             // btnUpdateEquipo
             // 
-            btnUpdateEquipo.Location = new Point(32, 160);
-            btnUpdateEquipo.Margin = new Padding(4);
+            btnUpdateEquipo.Location = new Point(26, 128);
             btnUpdateEquipo.Name = "btnUpdateEquipo";
-            btnUpdateEquipo.Size = new Size(166, 51);
+            btnUpdateEquipo.Size = new Size(133, 41);
             btnUpdateEquipo.TabIndex = 1;
             btnUpdateEquipo.Text = "Modificar Equipo";
             btnUpdateEquipo.UseVisualStyleBackColor = true;
@@ -60,35 +58,34 @@
             // dgvEquipos
             // 
             dgvEquipos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEquipos.Location = new Point(428, 12);
+            dgvEquipos.Location = new Point(342, 10);
+            dgvEquipos.Margin = new Padding(2, 2, 2, 2);
             dgvEquipos.Name = "dgvEquipos";
             dgvEquipos.RowHeadersWidth = 62;
-            dgvEquipos.Size = new Size(560, 538);
+            dgvEquipos.Size = new Size(448, 430);
             dgvEquipos.TabIndex = 2;
             // 
             // btnVolverMenu
             // 
-            btnVolverMenu.Location = new Point(23, 482);
-            btnVolverMenu.Margin = new Padding(4);
+            btnVolverMenu.Location = new Point(18, 386);
             btnVolverMenu.Name = "btnVolverMenu";
-            btnVolverMenu.Size = new Size(166, 52);
+            btnVolverMenu.Size = new Size(133, 42);
             btnVolverMenu.TabIndex = 3;
             btnVolverMenu.Text = "Volver";
             btnVolverMenu.UseVisualStyleBackColor = true;
-            btnVolverMenu.Click += btnVolverMenu_Click;
             // 
             // frmEquipos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 562);
+            ClientSize = new Size(800, 450);
             Controls.Add(btnVolverMenu);
             Controls.Add(dgvEquipos);
             Controls.Add(btnUpdateEquipo);
             Controls.Add(btnAddEquipo);
-            Margin = new Padding(4);
             Name = "frmEquipos";
             Text = "frmEquipos";
+            Load += frmEquipos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
             ResumeLayout(false);
         }

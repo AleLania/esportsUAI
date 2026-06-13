@@ -1,42 +1,37 @@
-﻿using esports.Equipos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Business;
 
 namespace esports
 {
     public partial class frmEquipos : Form
     {
-        public void updateDgv()
-        {
-            dgvEquipos.DataSource = null;
-            //dgvEquipos.DataSource = EquiposBusiness.GetEquipos();
-        }
+        
+        EquipoBusiness equiposBusiness = new EquipoBusiness();
         public frmEquipos()
         {
             InitializeComponent();
-            updateDgv();
-        }
-
-        private void btnAddEquipo_Click(object sender, EventArgs e)
-        {
-            frmAddEquipos ventana = new frmAddEquipos();
-            ventana.ShowDialog();
         }
 
         private void btnUpdateEquipo_Click(object sender, EventArgs e)
         {
-            frmUpdateEquipos ventana = new frmUpdateEquipos();
-            ventana.ShowDialog();
+
         }
 
-        private void btnVolverMenu_Click(object sender, EventArgs e)
+        private void frmEquipos_Load(object sender, EventArgs e)
         {
-            this.Close();
+            dgvEquipos.DataSource = null;
+            dgvEquipos.DataSource = equiposBusiness.getEquipos();
+        }
+
+        private void btnAddEquipo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

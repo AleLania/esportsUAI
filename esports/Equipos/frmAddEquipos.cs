@@ -108,9 +108,9 @@ namespace esports.Equipos
                 (int)cmbDisciplina.SelectedValue
                 );
 
-            //EquiposBusiness.insertEquipo(equipo);
+           /* EquipoBusiness.insertEquipo(equipo);
 
-           //frmEquipos.updateDgv();
+           frmEquipos.updateDgv();*/
 
             this.Close();
         }

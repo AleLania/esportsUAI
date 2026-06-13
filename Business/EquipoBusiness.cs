@@ -1,10 +1,21 @@
-﻿using System;
+﻿using Data;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business
 {
-    internal class EquipoBusiness
+    public class EquipoBusiness
     {
+
+        public List<EquiposEntity> getEquipos()
+        {
+            return EquipoDAO.getEquipos();
+            
+        }
+
+       // public List<EquiposEntity> insertEquipo(equipo) { }
+
     }
 }
