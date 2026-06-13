@@ -16,5 +16,12 @@
             this.disciplina = disciplina;
         }
 
+        public EquiposEntity(int idEquipo, string nombre, int disciplina)
+        {
+            this.Id = idEquipo;
+            this.nombre = nombre;
+            this.disciplina = disciplina;
+        }
+
     }
 }
