@@ -64,13 +64,14 @@
             btnModificarJugador.TabIndex = 2;
             btnModificarJugador.Text = "Modificar";
             btnModificarJugador.UseVisualStyleBackColor = true;
+            btnModificarJugador.Click += btnModificarJugador_Click;
             // 
             // dgvJugadores
             // 
             dgvJugadores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJugadores.Location = new Point(22, 50);
+            dgvJugadores.Location = new Point(300, 7);
             dgvJugadores.Name = "dgvJugadores";
-            dgvJugadores.Size = new Size(766, 150);
+            dgvJugadores.Size = new Size(392, 323);
             dgvJugadores.TabIndex = 3;
             // 
             // btnVolver
@@ -87,7 +88,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 337);
             Controls.Add(btnVolver);
             Controls.Add(dgvJugadores);
             Controls.Add(btnModificarJugador);
