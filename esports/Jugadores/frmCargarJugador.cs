@@ -23,7 +23,7 @@ namespace esports.Jugadores
         {
             EquipoBusiness equipoBusiness = new EquipoBusiness();
 
-            cmbEquipos.DataSource = equipoBusiness.getEquipos();
+            cmbEquipos.DataSource = EquipoBusiness.getEquipos();
             cmbEquipos.DisplayMember = "nombre"; 
             cmbEquipos.ValueMember = "id";
         }
