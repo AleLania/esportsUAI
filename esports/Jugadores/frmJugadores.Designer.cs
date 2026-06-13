@@ -33,7 +33,6 @@
             btnModificarJugador = new Button();
             dgvJugadores = new DataGridView();
             btnVolver = new Button();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             SuspendLayout();
             // 
@@ -65,13 +64,14 @@
             btnModificarJugador.TabIndex = 2;
             btnModificarJugador.Text = "Modificar";
             btnModificarJugador.UseVisualStyleBackColor = true;
+            btnModificarJugador.Click += btnModificarJugador_Click;
             // 
             // dgvJugadores
             // 
             dgvJugadores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJugadores.Location = new Point(22, 50);
+            dgvJugadores.Location = new Point(300, 7);
             dgvJugadores.Name = "dgvJugadores";
-            dgvJugadores.Size = new Size(766, 150);
+            dgvJugadores.Size = new Size(392, 323);
             dgvJugadores.TabIndex = 3;
             // 
             // btnVolver
@@ -84,21 +84,11 @@
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(147, 334);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "Modificar";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // frmJugadores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            ClientSize = new Size(700, 337);
             Controls.Add(btnVolver);
             Controls.Add(dgvJugadores);
             Controls.Add(btnModificarJugador);
@@ -119,6 +109,5 @@
         private Button btnModificarJugador;
         private DataGridView dgvJugadores;
         private Button btnVolver;
-        private Button button1;
     }
 }
