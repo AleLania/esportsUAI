@@ -28,5 +28,23 @@
             this.puntos = puntos;
         }
 
+
+        public class EquiposTorneoEntity
+        {
+            public string nombre { get; set; }
+            public int PGTorneo { get; set; }
+            public int PPTorneo { get; set; }
+            public int PETorneo { get; set; }
+            public int puntos { get; set; }
+
+            public EquiposTorneoEntity( string nombre, int PGTorneo, int PPTorneo, int PETorneo, int puntos)
+            {
+                this.nombre =   nombre;
+                this.PGTorneo = PGTorneo;
+                this.PPTorneo = PPTorneo;
+                this.PETorneo = PETorneo;
+                this.puntos =   puntos;
+            }
+        }
     }
 }

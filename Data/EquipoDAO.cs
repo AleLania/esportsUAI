@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Mapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
@@ -99,9 +100,9 @@ namespace Data
         }
 
 
-        public static List<EquiposEntity> getPosiciones(int idDisciplina)
+        public static List<EquiposEntity.EquiposTorneoEntity> getPosiciones(int idDisciplina)
         {
-            List<EquiposEntity> equiposByPuntos = new List<EquiposEntity>();
+            List<EquiposEntity.EquiposTorneoEntity> equiposByPuntos = new List<EquiposEntity.EquiposTorneoEntity>();
             try
             {
                 SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
@@ -114,23 +115,7 @@ namespace Data
                         cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            while (reader.Read())
-                            {
-                                DisciplinasEntity disciplina = new DisciplinasEntity(
-                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
-                                    reader["DESCRIPCION"].ToString(),
-                                    Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]));
-                                EquiposEntity equipo = new EquiposEntity(
-                                    Convert.ToInt32(reader["ID_EQUIPO"]),
-                                    reader["NOMBRE"].ToString(),
-                                    disciplina,
-                                    Convert.ToInt32(reader["PG_TORNEO"]),
-                                    Convert.ToInt32(reader["PP_TORNEO"]),
-                                    Convert.ToInt32(reader["PE_TORNEO"]),
-                                    Convert.ToInt32(reader["PUNTOS"])
-                                );
-                                equiposByPuntos.Add(equipo);
-                            }
+                            equiposByPuntos =  EquiposMapper.equiposByPuntos(reader);
                         }
                     }
                     return equiposByPuntos;

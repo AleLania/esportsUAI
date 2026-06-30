@@ -8,7 +8,7 @@ namespace Business
 {
     public static class ResultadosBusiness
     {
-        public static List<EquiposEntity> getResultados(int idDisciplina, int idCompetencia)
+        public static List<EquiposEntity.EquiposTorneoEntity> getResultados(int idDisciplina, int idCompetencia)
         {
             if(idCompetencia == 1) 
             {
