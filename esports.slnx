@@ -7,4 +7,5 @@
   <Project Path="Data/Data.csproj" />
   <Project Path="Entities/Entities.csproj" />
   <Project Path="esports/esports.csproj" />
+  <Project Path="Mapper/Mapper.csproj" Id="82434ea5-6ed5-40be-ba9c-23c8db0bd374" />
 </Solution>

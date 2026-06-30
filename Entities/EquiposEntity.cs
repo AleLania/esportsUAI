@@ -4,7 +4,7 @@
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public int disciplina { get; set; }
+        public DisciplinasEntity disciplina { get; set; }
         public int cantJugadores { get; set; }
         public int PGTorneo { get; set; }
         public int PPTorneo { get; set; }
@@ -17,12 +17,15 @@
             this.id = id;
         }
 
-        public EquiposEntity(int id, string nombre, int disciplina, int cantJugadores)
+        public EquiposEntity(int id, string nombre, DisciplinasEntity disciplina,int PGTorneo, int PPTorneo, int PETorneo, int puntos)
         {
             this.id = id;
             this.nombre = nombre;
-            this.cantJugadores = cantJugadores;
             this.disciplina = disciplina;
+            this.PGTorneo = PGTorneo;
+            this.PPTorneo = PPTorneo;
+            this.PETorneo = PETorneo;
+            this.puntos = puntos;
         }
 
     }
