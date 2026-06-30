@@ -32,7 +32,7 @@
             btnJugadores = new Button();
             btnEquipos = new Button();
             btnPartidos = new Button();
-            btnTabla = new Button();
+            btnCompetencias = new Button();
             btnBracket = new Button();
             SuspendLayout();
             // 
@@ -40,18 +40,20 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(23, 27);
+            label1.Location = new Point(33, 45);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(181, 24);
+            label1.Size = new Size(270, 36);
             label1.TabIndex = 0;
             label1.Text = "Gestión de eSports";
             // 
             // btnJugadores
             // 
             btnJugadores.Font = new Font("Bahnschrift", 11F);
-            btnJugadores.Location = new Point(23, 71);
+            btnJugadores.Location = new Point(33, 118);
+            btnJugadores.Margin = new Padding(4, 5, 4, 5);
             btnJugadores.Name = "btnJugadores";
-            btnJugadores.Size = new Size(114, 37);
+            btnJugadores.Size = new Size(163, 62);
             btnJugadores.TabIndex = 1;
             btnJugadores.Text = "Jugadores";
             btnJugadores.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // btnEquipos
             // 
             btnEquipos.Font = new Font("Bahnschrift", 11F);
-            btnEquipos.Location = new Point(23, 114);
+            btnEquipos.Location = new Point(33, 190);
+            btnEquipos.Margin = new Padding(4, 5, 4, 5);
             btnEquipos.Name = "btnEquipos";
-            btnEquipos.Size = new Size(114, 37);
+            btnEquipos.Size = new Size(163, 62);
             btnEquipos.TabIndex = 2;
             btnEquipos.Text = "Equipos";
             btnEquipos.UseVisualStyleBackColor = true;
@@ -71,31 +74,34 @@
             // btnPartidos
             // 
             btnPartidos.Font = new Font("Bahnschrift", 11F);
-            btnPartidos.Location = new Point(23, 157);
+            btnPartidos.Location = new Point(33, 262);
+            btnPartidos.Margin = new Padding(4, 5, 4, 5);
             btnPartidos.Name = "btnPartidos";
-            btnPartidos.Size = new Size(114, 37);
+            btnPartidos.Size = new Size(163, 62);
             btnPartidos.TabIndex = 3;
             btnPartidos.Text = "Partidos";
             btnPartidos.UseVisualStyleBackColor = true;
             btnPartidos.Click += btnPartidos_Click;
             // 
-            // btnTabla
+            // btnCompetencias
             // 
-            btnTabla.Font = new Font("Bahnschrift", 11F);
-            btnTabla.Location = new Point(23, 200);
-            btnTabla.Name = "btnTabla";
-            btnTabla.Size = new Size(114, 52);
-            btnTabla.TabIndex = 4;
-            btnTabla.Text = "Tabla posiciones";
-            btnTabla.UseVisualStyleBackColor = true;
-            btnTabla.Click += btnTabla_Click;
+            btnCompetencias.Font = new Font("Bahnschrift", 11F);
+            btnCompetencias.Location = new Point(33, 333);
+            btnCompetencias.Margin = new Padding(4, 5, 4, 5);
+            btnCompetencias.Name = "btnCompetencias";
+            btnCompetencias.Size = new Size(163, 87);
+            btnCompetencias.TabIndex = 4;
+            btnCompetencias.Text = "Competencias";
+            btnCompetencias.UseVisualStyleBackColor = true;
+            btnCompetencias.Click += btnCompetencias_Click;
             // 
             // btnBracket
             // 
             btnBracket.Font = new Font("Bahnschrift", 11F);
-            btnBracket.Location = new Point(23, 258);
+            btnBracket.Location = new Point(33, 430);
+            btnBracket.Margin = new Padding(4, 5, 4, 5);
             btnBracket.Name = "btnBracket";
-            btnBracket.Size = new Size(114, 52);
+            btnBracket.Size = new Size(163, 87);
             btnBracket.TabIndex = 5;
             btnBracket.Text = "Bracket Copa";
             btnBracket.UseVisualStyleBackColor = true;
@@ -103,15 +109,16 @@
             // 
             // frmPrincipal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
             Controls.Add(btnBracket);
-            Controls.Add(btnTabla);
+            Controls.Add(btnCompetencias);
             Controls.Add(btnPartidos);
             Controls.Add(btnEquipos);
             Controls.Add(btnJugadores);
             Controls.Add(label1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmPrincipal";
             Text = "frmPrincipal";
             Load += frmPrincipal_Load;
@@ -125,7 +132,7 @@
         private Button btnJugadores;
         private Button btnEquipos;
         private Button btnPartidos;
-        private Button btnTabla;
+        private Button btnCompetencias;
         private Button btnBracket;
     }
 }

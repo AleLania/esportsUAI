@@ -1,5 +1,6 @@
 ﻿using Data;
 using Entities;
+using Mapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,21 @@ namespace Business
             
         }
 
-       public static void insertEquipo(string nombre, int idDisciplina) 
+       public static List<EquiposEntity> EquiposByDisciplina(int idDisciplina)
+        {
+            List<EquiposEntity> listOfEquipos = getEquipos();
+            List<EquiposEntity> filteredList = new List<EquiposEntity>();
+
+            foreach (var equipo in listOfEquipos)
+            {
+                if (equipo.disciplina.id == idDisciplina)
+                {
+                    filteredList.Add(equipo);
+                }
+            }
+            return filteredList; 
+        }
+        public static void insertEquipo(string nombre, int idDisciplina) 
         {
             try
             {

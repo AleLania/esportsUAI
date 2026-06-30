@@ -4,10 +4,16 @@ using System.Text;
 
 namespace Entities
 {
-    internal class CompetenciasEntity
+    public class CompetenciasEntity
     {
         public int id { get; set; }
         public string descripcion { get; set; }
+
+        public CompetenciasEntity(int id, string descripcion)
+        {
+            this.id = id;
+            this.descripcion = descripcion;
+        }
 
     }
 }

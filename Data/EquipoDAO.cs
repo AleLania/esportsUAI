@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Mapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
@@ -17,18 +18,26 @@ namespace Data
                 using (conexion)
                 {
                     conexion.Open();
-
-                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Equipos", conexion))
+                    string sql = "SELECT e.*, d.ID_DISCIPLINA,d.DESCRIPCION, d.CANTIDAD_JUGADORES_EQUIPO \r\nFROM Equipos e\r\nINNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA";
+                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
+                                DisciplinasEntity disciplina = new DisciplinasEntity(
+                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
+                                    reader["DESCRIPCION"].ToString(),
+                                    Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]));
+
                                 EquiposEntity equipo = new EquiposEntity(
                                     Convert.ToInt32(reader["ID_EQUIPO"]),
                                     reader["NOMBRE"].ToString(),
-                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
-                                    Convert.ToInt32(reader["cantidad_jugadores"])
+                                    disciplina,
+                                    Convert.ToInt32(reader["PG_TORNEO"]),
+                                    Convert.ToInt32(reader["PP_TORNEO"]),
+                                    Convert.ToInt32(reader["PE_TORNEO"]),
+                                    Convert.ToInt32(reader["PUNTOS"])
                                 );
                                 equiposLIst.Add(equipo);
                             }
@@ -88,6 +97,36 @@ namespace Data
             {
                 throw;
             }
+        }
+
+
+        public static List<EquiposEntity.EquiposTorneoEntity> getPosiciones(int idDisciplina)
+        {
+            List<EquiposEntity.EquiposTorneoEntity> equiposByPuntos = new List<EquiposEntity.EquiposTorneoEntity>();
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                using (conexion)
+                {
+                    conexion.Open();
+                    string sql = "SELECT e.*, d.ID_DISCIPLINA,d.DESCRIPCION, d.CANTIDAD_JUGADORES_EQUIPO \r\nFROM Equipos e\r\nINNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA\r\nWHERE e.ID_DISCIPLINA = @idDisciplina\r\nORDER BY e.PUNTOS DESC";
+                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            equiposByPuntos =  EquiposMapper.equiposByPuntos(reader);
+                        }
+                    }
+                    return equiposByPuntos;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }    
+
         }
     }
 }

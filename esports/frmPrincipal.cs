@@ -1,4 +1,5 @@
 ﻿using Data;
+using esports.Competencias;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,10 +40,10 @@ namespace esports
             ShowDialog();
         }
 
-        private void btnTabla_Click(object sender, EventArgs e)
+        private void btnCompetencias_Click(object sender, EventArgs e)
         {
-            //aca ventana a tabla de la liga
-            ShowDialog();
+            frmResultados ventana = new frmResultados();
+            ventana.ShowDialog();
         }
 
         private void btnBracket_Click(object sender, EventArgs e)
