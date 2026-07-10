@@ -15,7 +15,7 @@ namespace esports
         public void cargarEquipos()
         {
             dgvEquipos.DataSource = null;
-            dgvEquipos.DataSource = EquipoBusiness.getEquipos();
+            dgvEquipos.DataSource = EquipoBusiness.getEquiposTorneo();
         }
 
         public frmEquipos()

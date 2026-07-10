@@ -90,6 +90,7 @@ namespace esports.Equipos
             Controls.Add(txtNombreEquipo);
             Controls.Add(btnSave);
             Name = "frmAddEquipos";
+            Load += frmAddEquipos_Load;
             ResumeLayout(false);
             PerformLayout();
 
@@ -106,19 +107,26 @@ namespace esports.Equipos
         {
             try
             {
-               string nombre = txtNombreEquipo.Text;
+                string nombre = txtNombreEquipo.Text;
                 int idDisciplina = (int)cmbEsport.SelectedValue;
 
-                EquipoBusiness.insertEquipo(nombre,idDisciplina);
+                EquipoBusiness.insertEquipo(nombre, idDisciplina);
             }
-            catch (Exception ex) 
-            { 
-            MessageBox.Show("Error al guardar el equipo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar el equipo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-           frmEquipos.cargarEquipos();
+            frmEquipos.cargarEquipos();
 
             this.Close();
+        }
+
+        private void frmAddEquipos_Load(object sender, EventArgs e)
+        {
+            cmbEsport.Items.Clear();
+            cmbEsport.DataSource = DisciplinaBusiness.getDisciplinas();
+
         }
     }
 }

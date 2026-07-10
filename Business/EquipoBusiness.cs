@@ -17,20 +17,35 @@ namespace Business
             
         }
 
-       public static List<EquiposEntity> EquiposByDisciplina(int idDisciplina)
+        public static List<EquiposEntity.EquiposTorneoEntity> getEquiposTorneo()
         {
-            List<EquiposEntity> listOfEquipos = getEquipos();
-            List<EquiposEntity> filteredList = new List<EquiposEntity>();
-
-            foreach (var equipo in listOfEquipos)
+            List<EquiposEntity.EquiposTorneoEntity> listOfEquipos = new List<EquiposEntity.EquiposTorneoEntity>();
+            foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
             {
-                if (equipo.disciplina.id == idDisciplina)
-                {
-                    filteredList.Add(equipo);
-                }
+                EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(
+                    equipo.nombre, equipo.PGTorneo, equipo.PPTorneo, equipo.PETorneo, equipo.puntos);
+
+                listOfEquipos.Add(equipoTorneo);
             }
-            return filteredList; 
+            return listOfEquipos;
+
         }
+
+
+        /* public static List<EquiposEntity> EquiposByDisciplina(int idDisciplina)
+          {
+              List<EquiposEntity> listOfEquipos = getEquipos();
+              List<EquiposEntity> filteredList = new List<EquiposEntity>();
+
+              foreach (var equipo in listOfEquipos)
+              {
+                  if (equipo.disciplina.id == idDisciplina)
+                  {
+                      filteredList.Add(equipo);
+                  }
+              }
+              return filteredList; 
+          }*/
         public static void insertEquipo(string nombre, int idDisciplina) 
         {
             try
