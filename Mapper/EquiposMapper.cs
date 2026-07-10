@@ -29,5 +29,20 @@ namespace Mapper
             
             return equipo;
         }
+
+        public static EquiposEntity mapEquipo(SqlDataReader reader, DisciplinasEntity disciplina, string sufijo)
+        {
+            if (reader["ID_EQUIPO" + sufijo] == DBNull.Value) return null;
+
+            return new EquiposEntity(
+                Convert.ToInt32(reader["ID_EQUIPO" + sufijo]),
+                reader["NOMBRE_EQUIPO" + sufijo]?.ToString() ?? string.Empty,
+                disciplina,
+                Convert.ToInt32(reader["PG_EQUIPO" + sufijo]),
+                Convert.ToInt32(reader["PP_EQUIPO" + sufijo]),
+                Convert.ToInt32(reader["PE_EQUIPO" + sufijo]),
+                Convert.ToInt32(reader["PUNTOS_EQUIPO" + sufijo])
+            );
+        }
     }
 }
