@@ -25,15 +25,26 @@ namespace Business
         {
             try
             {
-                 DisciplinasEntity disciplina = DisciplinasDAO.getDisciplinaById(idDisciplina);
+                DisciplinasEntity disciplina = DisciplinasDAO.getDisciplinaById(idDisciplina);
                 return disciplina.cantidadEquipos;
 
             }
             catch (Exception e)
             {
-                throw new Exception("Error al obtener la cantidad de equipos de la disciplina: " + e.Message);      
+                throw new Exception("Error al obtener la cantidad de equipos de la disciplina: " + e.Message);
+            }
+        }
+
+        public static DisciplinasEntity getDisciplinaById(int idDisciplina)
+        {
+            try
+            {
+                return DisciplinasDAO.getDisciplinaById(idDisciplina);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al obtener la disciplina por ID: " + e.Message);
             }
         }
     }
-
 }

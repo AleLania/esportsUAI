@@ -17,6 +17,12 @@
             this.id = id;
         }
 
+        public EquiposEntity(string nombre, DisciplinasEntity disciplina)
+        {
+            this.nombre = nombre;
+            this.disciplina = disciplina;
+        }
+
         public EquiposEntity(int id, string nombre, DisciplinasEntity disciplina,int PGTorneo, int PPTorneo, int PETorneo, int puntos)
         {
             this.id = id;
@@ -32,18 +38,18 @@
         public class EquiposTorneoEntity
         {
             public string nombre { get; set; }
+            public int puntos { get; set; }
             public int PG { get; set; }
             public int PP { get; set; }
             public int PE { get; set; }
-            public int puntos { get; set; }
 
             public EquiposTorneoEntity( EquiposEntity entity)
             {
                 this.nombre = entity.nombre;
+                this.puntos = entity.puntos;
                 this.PG = entity.PGTorneo;
                 this.PP = entity.PPTorneo;
                 this.PE = entity.PETorneo;
-                this.puntos = entity.puntos;
             }
         }
 

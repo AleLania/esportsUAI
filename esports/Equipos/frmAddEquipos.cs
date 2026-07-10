@@ -111,13 +111,12 @@ namespace esports.Equipos
                 int idDisciplina = (int)cmbEsport.SelectedValue;
 
                 EquipoBusiness.insertEquipo(nombre, idDisciplina);
+                frmEquipos.cargarEquipos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar el equipo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            frmEquipos.cargarEquipos();
 
             this.Close();
         }
@@ -126,6 +125,8 @@ namespace esports.Equipos
         {
             cmbEsport.Items.Clear();
             cmbEsport.DataSource = DisciplinaBusiness.getDisciplinas();
+            cmbEsport.DisplayMember = "descripcion";
+            cmbEsport.ValueMember = "id";
 
         }
     }
