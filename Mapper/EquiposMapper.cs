@@ -14,11 +14,10 @@ namespace Mapper
         }
 
 
-        public static List<EquiposEntity.EquiposTorneoEntity> equiposByPuntos(SqlDataReader reader)
+        public static EquiposEntity.EquiposTorneoEntity equiposByPuntos(SqlDataReader reader)
         {
             List<EquiposEntity.EquiposTorneoEntity> equiposTorneoEntities = new List<EquiposTorneoEntity>();
-            while (reader.Read())
-            {
+           
                 EquiposEntity.EquiposTorneoEntity equipo = new EquiposEntity.EquiposTorneoEntity(
                     reader["NOMBRE"].ToString(),
                     Convert.ToInt32(reader["PG_TORNEO"]),
@@ -26,9 +25,9 @@ namespace Mapper
                     Convert.ToInt32(reader["PE_TORNEO"]),
                     Convert.ToInt32(reader["PUNTOS"])
                 );
-                equiposTorneoEntities.Add(equipo);
-            }
-            return equiposTorneoEntities;
+
+            
+            return equipo;
         }
     }
 }

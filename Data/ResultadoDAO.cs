@@ -25,7 +25,10 @@ namespace Data
                         cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            equiposByPuntos = EquiposMapper.equiposByPuntos(reader);
+                            while (reader.Read())
+                            {
+                                equiposByPuntos.Add( EquiposMapper.equiposByPuntos(reader));
+                            }
                         }
                     }
                     return equiposByPuntos;
