@@ -47,6 +47,9 @@ namespace Business
 
         public void actualizarJugador(JugadoresEntity jugador)
         {
+
+            validarJugador(jugador);
+
             JugadorDAO jugadorDAO = new JugadorDAO();
 
             jugadorDAO.ActualizarJugador(jugador);
