@@ -10,11 +10,12 @@ namespace Mapper
     {
         public static DisciplinasEntity Map(SqlDataReader reader)
         {
-            DisciplinasEntity disciplina = new DisciplinasEntity(
+                DisciplinasEntity disciplina = new DisciplinasEntity(
                 Convert.ToInt32(reader["ID_DISCIPLINA"]),
                 reader["DESCRIPCION"].ToString(),
-                Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"])
-            );
+                Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]),
+                Convert.ToInt32(reader["CANTIDAD_EQUIPOS"])
+            );            
 
             return disciplina;
         }

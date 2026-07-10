@@ -23,7 +23,7 @@ namespace Business
             foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
             {
                 EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(
-                    equipo.nombre, equipo.PGTorneo, equipo.PPTorneo, equipo.PETorneo, equipo.puntos);
+                    equipo);
 
                 listOfEquipos.Add(equipoTorneo);
             }
@@ -50,6 +50,23 @@ namespace Business
         {
             try
             {
+
+                if (string.IsNullOrEmpty(nombre))
+                {
+                    throw new ArgumentException("El nombre del equipo no puede estar vacío.");
+                }
+                if (idDisciplina == null)
+                {
+                    throw new ArgumentException("La disciplina no debe estar vacia");
+                }
+                if(EquipoDAO.getEquipos().Exists(e => e.nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)))
+                {
+                    throw new ArgumentException("Ya existe un equipo con ese nombre.");
+                }
+                if(EquipoDAO.countEquiposByDisciplina(idDisciplina) == DisciplinaBusiness.getCantidadEquiposDisciplina(idDisciplina))
+                {
+                    throw new ArgumentException("No se pueden agregar más de 8 equipos a la disciplina.");
+                }
                 EquiposEntity newEquipo = new EquiposEntity(
                 nombre, idDisciplina);
                 EquipoDAO.insertEquipo(newEquipo);

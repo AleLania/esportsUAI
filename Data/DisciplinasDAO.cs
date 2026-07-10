@@ -55,11 +55,7 @@ namespace Data
                         {
                             if (reader.Read())
                             {
-                                disciplina = new DisciplinasEntity(
-                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
-                                    reader["DESCRIPCION"].ToString(),
-                                    Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"])
-                                );
+                                disciplina = DisciplinasMapper.Map(reader);
                             }
                         }
                     }

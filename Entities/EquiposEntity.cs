@@ -37,13 +37,13 @@
             public int PE { get; set; }
             public int puntos { get; set; }
 
-            public EquiposTorneoEntity( string nombre, int PGTorneo, int PPTorneo, int PETorneo, int puntos)
+            public EquiposTorneoEntity( EquiposEntity entity)
             {
-                this.nombre =   nombre;
-                this.PG = PGTorneo;
-                this.PP = PPTorneo;
-                this.PE = PETorneo;
-                this.puntos =   puntos;
+                this.nombre = entity.nombre;
+                this.PG = entity.PGTorneo;
+                this.PP = entity.PPTorneo;
+                this.PE = entity.PETorneo;
+                this.puntos = entity.puntos;
             }
         }
 

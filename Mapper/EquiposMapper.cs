@@ -8,26 +8,18 @@ namespace Mapper
 {
     public static class EquiposMapper
     {
-        public static List<EquiposEntity> equiposByDisciplina(int idDisciplina,List<EquiposEntity> listOfEquipos)
+
+        public static EquiposEntity equiposByPuntos(SqlDataReader reader, DisciplinasEntity disciplina)
         {
-            return null;
-        }
-
-
-        public static EquiposEntity.EquiposTorneoEntity equiposByPuntos(SqlDataReader reader)
-        {
-            List<EquiposEntity.EquiposTorneoEntity> equiposTorneoEntities = new List<EquiposTorneoEntity>();
-           
-                EquiposEntity.EquiposTorneoEntity equipo = new EquiposEntity.EquiposTorneoEntity(
-                    reader["NOMBRE"].ToString(),
-                    Convert.ToInt32(reader["PG_TORNEO"]),
-                    Convert.ToInt32(reader["PP_TORNEO"]),
-                    Convert.ToInt32(reader["PE_TORNEO"]),
-                    Convert.ToInt32(reader["PUNTOS"])
-                );
-
-            
-            return equipo;
+            return new EquiposEntity(
+                Convert.ToInt32(reader["ID_EQUIPO"]),
+                reader["NOMBRE"].ToString(),
+                disciplina,
+                Convert.ToInt32(reader["PG_TORNEO"]),
+                Convert.ToInt32(reader["PP_TORNEO"]),
+                Convert.ToInt32(reader["PE_TORNEO"]),
+                Convert.ToInt32(reader["PUNTOS"])
+            );
         }
 
         public static EquiposEntity mapEquipo(SqlDataReader reader, DisciplinasEntity disciplina, string sufijo)
@@ -47,7 +39,7 @@ namespace Mapper
 
 
         //mapper para que funcione el bracketmapper
-        public static EquiposEntity? MapBracket(SqlDataReader reader, int numeroEquipo)
+        public static EquiposEntity MapBracket(SqlDataReader reader, int numeroEquipo)
         {
             //if porque el left join puede devolver null si leo una instancia de copa que no tiene resultado
             if (reader[$"ID_EQUIPO{numeroEquipo}"] == DBNull.Value)

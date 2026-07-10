@@ -10,11 +10,14 @@ namespace Entities
         public string descripcion { get; set; }
         public int cantidadJugadores { get; set; }
 
-        public DisciplinasEntity(int id, string descripcion, int cantidadJugadores)
+        public int cantidadEquipos { get; set; }
+
+        public DisciplinasEntity(int id, string descripcion, int cantidadJugadores, int cantidadEquipos)
         {
             this.id = id;
             this.descripcion = descripcion;
             this.cantidadJugadores = cantidadJugadores;
+            this.cantidadEquipos = cantidadEquipos;
         }
 
         public override string ToString()

@@ -18,27 +18,17 @@ namespace Data
                 using (conexion)
                 {
                     conexion.Open();
-                    string sql = "SELECT e.*, d.ID_DISCIPLINA,d.DESCRIPCION, d.CANTIDAD_JUGADORES_EQUIPO \r\nFROM Equipos e\r\nINNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA";
+                    string sql = "SELECT e.*, d.ID_DISCIPLINA,d.DESCRIPCION, d.CANTIDAD_JUGADORES_EQUIPO, d.CANTIDAD_EQUIPOS \r\nFROM Equipos e\r\nINNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA";
                     using (SqlCommand cmd = new SqlCommand(sql, conexion))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                DisciplinasEntity disciplina = new DisciplinasEntity(
-                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
-                                    reader["DESCRIPCION"].ToString(),
-                                    Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]));
+                                DisciplinasEntity disciplina = DisciplinasMapper.Map(reader);
 
-                                EquiposEntity equipo = new EquiposEntity(
-                                    Convert.ToInt32(reader["ID_EQUIPO"]),
-                                    reader["NOMBRE"].ToString(),
-                                    disciplina,
-                                    Convert.ToInt32(reader["PG_TORNEO"]),
-                                    Convert.ToInt32(reader["PP_TORNEO"]),
-                                    Convert.ToInt32(reader["PE_TORNEO"]),
-                                    Convert.ToInt32(reader["PUNTOS"])
-                                );
+                                EquiposEntity equipo = EquiposMapper.equiposByPuntos(reader, disciplina);
+
                                 equiposLIst.Add(equipo);
                             }
 
@@ -125,6 +115,34 @@ namespace Data
 
             }
 
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int countEquiposByDisciplina(int idDisciplina)
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                using (conexion)
+                {
+                    conexion.Open();
+
+                    string sql = "SELECT COUNT(*) FROM Equipos WHERE ID_DISCIPLINA = @idDisciplina";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+                        object resultado = cmd.ExecuteScalar();
+
+                        int cantidadEquipos = Convert.ToInt32(resultado);
+
+                        return cantidadEquipos;
+                    }
+                }
+            }
             catch (Exception)
             {
                 throw;
