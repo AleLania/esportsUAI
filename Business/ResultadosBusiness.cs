@@ -10,11 +10,19 @@ namespace Business
     {
         public static List<EquiposEntity.EquiposTorneoEntity> getResultados(int idDisciplina, int idCompetencia)
         {
-            if(idCompetencia == 1) 
+            try
             {
-                return EquipoDAO.getPosiciones(idDisciplina);
+                if (idCompetencia == 1)
+                {
+                    return EquipoDAO.getPosiciones(idDisciplina);
+                }
+                return EquipoDAO.getBrackets(idDisciplina);
             }
-            return null; //EquipoDAO.getBrackets(idDisciplina);
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
     }
 }
