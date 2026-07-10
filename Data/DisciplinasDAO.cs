@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Entities;
+using Mapper;
 
 namespace Data
 {
@@ -24,12 +25,7 @@ namespace Data
                         {
                             while (reader.Read())
                             {
-                                DisciplinasEntity disciplina = new DisciplinasEntity(
-                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
-                                    reader["DESCRIPCION"].ToString(),
-                                    Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"])
-                                );
-                                disciplinasList.Add(disciplina);
+                                disciplinasList.Add(DisciplinasMapper.Map(reader));
                             }
                         }
                     }
