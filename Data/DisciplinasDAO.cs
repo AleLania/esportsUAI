@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Entities;
 using Mapper;
+using System.Security.Cryptography;
 
 namespace Data
 {
