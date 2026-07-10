@@ -8,21 +8,38 @@ namespace Business
 {
     public static class ResultadosBusiness
     {
-        public static List<EquiposEntity.EquiposTorneoEntity> getResultados(int idDisciplina, int idCompetencia)
+        public static List<EquiposEntity.EquiposTorneoEntity> getResultados(int idDisciplina)
         {
             try
             {
-                if (idCompetencia == 1)
-                {
-                    return EquipoDAO.getPosiciones(idDisciplina);
-                }
-                return null;//EquipoDAO.getBrackets(idDisciplina);
+                    return ResultadoDAO.getPosiciones(idDisciplina);
             }
             catch (Exception ex)
             {
                 throw;
             }
             
+        }
+
+        public static List<BracketsEntity.BracketsLayer> getBrackets(int idDisciplina)
+        {
+            try
+            {
+                 List<BracketsEntity> listOfEntities = ResultadoDAO.getBrackets(idDisciplina);
+                List<BracketsEntity.BracketsLayer> listOfLayers = new List<BracketsEntity.BracketsLayer>();
+
+                foreach (BracketsEntity entity in listOfEntities)
+                {
+                    listOfLayers.Add(new BracketsEntity.BracketsLayer(entity));
+                }
+
+                return listOfLayers;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
