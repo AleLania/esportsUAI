@@ -19,16 +19,25 @@ namespace Business
 
         public static List<EquiposEntity.EquiposTorneoEntity> getEquiposTorneo()
         {
-            List<EquiposEntity.EquiposTorneoEntity> listOfEquipos = new List<EquiposEntity.EquiposTorneoEntity>();
-            foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
+            try
             {
-                EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(
-                    equipo);
 
-                listOfEquipos.Add(equipoTorneo);
+
+                List<EquiposEntity.EquiposTorneoEntity> listOfEquipos = new List<EquiposEntity.EquiposTorneoEntity>();
+                foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
+                {
+                    EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(
+                        equipo);
+
+                    listOfEquipos.Add(equipoTorneo);
+                }
+                return listOfEquipos;
             }
-            return listOfEquipos;
+            catch (Exception ex)
+            {
+                throw;
 
+            }
         }
 
 
@@ -68,7 +77,7 @@ namespace Business
                     throw new ArgumentException("No se pueden agregar más de 8 equipos a la disciplina.");
                 }
                 EquiposEntity newEquipo = new EquiposEntity(
-                nombre, idDisciplina);
+                nombre, DisciplinaBusiness.getDisciplinaById(idDisciplina));
                 EquipoDAO.insertEquipo(newEquipo);
             }
             catch (Exception ex)

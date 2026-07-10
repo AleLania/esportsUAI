@@ -15,10 +15,10 @@ namespace Mapper
                 Convert.ToInt32(reader["ID_EQUIPO"]),
                 reader["NOMBRE"].ToString(),
                 disciplina,
-                Convert.ToInt32(reader["PG_TORNEO"]),
-                Convert.ToInt32(reader["PP_TORNEO"]),
-                Convert.ToInt32(reader["PE_TORNEO"]),
-                Convert.ToInt32(reader["PUNTOS"])
+                reader["PG_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_TORNEO"]),
+                reader["PP_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_TORNEO"]),
+                reader["PE_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_TORNEO"]),
+                reader["PUNTOS"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS"])
             );
         }
 
