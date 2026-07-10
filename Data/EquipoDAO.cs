@@ -98,37 +98,6 @@ namespace Data
                 throw;
             }
         }
-
-
-        public static List<EquiposEntity.EquiposTorneoEntity> getPosiciones(int idDisciplina)
-        {
-            List<EquiposEntity.EquiposTorneoEntity> equiposByPuntos = new List<EquiposEntity.EquiposTorneoEntity>();
-            try
-            {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
-                using (conexion)
-                {
-                    conexion.Open();
-                    string sql = "SELECT e.*, d.ID_DISCIPLINA,d.DESCRIPCION, d.CANTIDAD_JUGADORES_EQUIPO \r\nFROM Equipos e\r\nINNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA\r\nWHERE e.ID_DISCIPLINA = @idDisciplina\r\nORDER BY e.PUNTOS DESC";
-                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
-                    {
-                        cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            equiposByPuntos =  EquiposMapper.equiposByPuntos(reader);
-                        }
-                    }
-                    return equiposByPuntos;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }    
-
-        }
-
         
     }
 }
