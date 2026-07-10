@@ -46,10 +46,10 @@ namespace Business
             //validacion minimo de equipos cargados
             //validar cantidad de jugadores por disciplina
 
-            if (partido.equipo1 == 0)
+            if (partido.equipo1 == null)
                 throw new Exception("Debe seleccionar el equipo 1.");
 
-            if (partido.equipo2 == 0)
+            if (partido.equipo2 == null)
                 throw new Exception("Debe seleccionar el equipo 2.");
 
             if (partido.equipo1 == partido.equipo2)
@@ -58,6 +58,41 @@ namespace Business
             if (partido.ganador != partido.equipo1 &&
                 partido.ganador != partido.equipo2)
                 throw new Exception("El ganador debe ser uno de los equipos que disputaron el partido.");
+        }
+
+        public static List<PartidosEntity.PartidosLayer> getPartidosByEquipoYCompetencia(int idEquipo, int idCompetencia, int idDisciplina)
+        {
+            try
+            {
+                DisciplinasEntity disciplina = DisciplinasDAO.getDisciplinaById(idDisciplina);
+                PartidoDAO partidoDAO = new PartidoDAO();
+                List<PartidosEntity> partidos = partidoDAO.getPartidosByEquipoYCompetencia(idEquipo, idCompetencia, disciplina);
+                List<PartidosEntity.PartidosLayer> partidosLayer = new List<PartidosEntity.PartidosLayer>();
+
+                foreach (var p in partidos)
+                {
+                    partidosLayer.Add(new PartidosEntity.PartidosLayer(p));
+                }
+
+                return partidosLayer;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los partidos por equipo y competencia: " + ex.Message);
+            }
+        }
+
+        public static List<PartidosEntity> getPartidos()
+        {
+            try
+            {
+                PartidoDAO partidoDAO = new PartidoDAO();
+                return partidoDAO.ObtenerPartidos();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los partidos: " + ex.Message);
+            }
         }
     }
 }
