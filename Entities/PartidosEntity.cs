@@ -7,9 +7,11 @@ namespace Entities
     public class PartidosEntity
     {
         public int id { get; set; }
-        public int equipo1 { get; set; }
-        public int equipo2 { get; set; }
-        public int ganador { get; set;  }
-        public int idCompetencia { get; set; }
+        public EquiposEntity equipo1 { get; set; }
+        public EquiposEntity equipo2 { get; set; }
+        public EquiposEntity ganador { get; set;  }
+        public CompetenciasEntity idCompetencia { get; set; }
+        public DisciplinasEntity idDisciplina { get; set; }
+
     }
 }

@@ -67,5 +67,32 @@ namespace Data
                 throw;
             }
         }
+        public static int getCantidadJugadoresPorDisciplina(int idDisciplina)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+
+                conexion.Open();
+
+                string sql = @"SELECT CANTIDAD_JUGADORES_EQUIPO
+                       FROM Disciplinas
+                       WHERE ID_DISCIPLINA = @idDisciplina";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+
+                    object resultado = cmd.ExecuteScalar();
+
+                    return Convert.ToInt32(resultado);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }

@@ -89,38 +89,6 @@ namespace Data
             }
         }
 
-
-        public static int getCantidadJugadores(int idEquipo)
-        {
-            try
-            {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
-                using (conexion)
-                {
-                    conexion.Open();
-
-                    string sql = "SELECT COUNT(*) FROM Jugadores WHERE ID_EQUIPO = @idEquipo";
-                    
-                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
-                    {
-                        cmd.Parameters.AddWithValue("@idEquipo", idEquipo);
-                        object resultado = cmd.ExecuteScalar();
-
-                        int cantidadJugadores = Convert.ToInt32 (resultado);
-
-                        return cantidadJugadores;
-                    }
-
-                }
-
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public static int countEquiposByDisciplina(int idDisciplina)
         {
             try
