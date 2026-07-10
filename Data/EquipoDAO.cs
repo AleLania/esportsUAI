@@ -54,7 +54,7 @@ namespace Data
                     using (SqlCommand cmd = new SqlCommand("INSERT INTO Equipos (NOMBRE, ID_DISCIPLINA) VALUES (@nombre, @disciplina)", conexion))
                     {
                         cmd.Parameters.AddWithValue("@nombre", equipo.nombre);
-                        cmd.Parameters.AddWithValue("@disciplina", equipo.disciplina);
+                        cmd.Parameters.AddWithValue("@disciplina", equipo.disciplina.id);
                         cmd.ExecuteNonQuery();
                     }
 
