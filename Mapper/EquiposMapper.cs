@@ -30,5 +30,21 @@ namespace Mapper
             }
             return equiposTorneoEntities;
         }
+
+
+        //mapper para que funcione el bracketmapper
+        public static EquiposEntity? MapBracket(SqlDataReader reader, int numeroEquipo)
+        {
+            //if porque el left join puede devolver null si leo una instancia de copa que no tiene resultado
+            if (reader[$"ID_EQUIPO{numeroEquipo}"] == DBNull.Value)
+                return null;
+
+            EquiposEntity equipo = new EquiposEntity();
+
+            equipo.id = Convert.ToInt32(reader[$"ID_EQUIPO{numeroEquipo}"]);
+            equipo.nombre = reader[$"NOMBRE_EQUIPO{numeroEquipo}"].ToString();
+
+            return equipo;
+        }
     }
 }

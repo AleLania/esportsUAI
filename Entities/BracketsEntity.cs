@@ -10,8 +10,12 @@ namespace Entities
 
         public string instancia { get; set; }
         public DisciplinasEntity disciplina { get; set; }
-        public EquiposEntity equipo1 { get; set; }
-        public EquiposEntity equipo2 { get; set; }
+        public EquiposEntity? equipo1 { get; set; }
+        public EquiposEntity? equipo2 { get; set; }
+
+        public int? idSiguienteBracket {  get; set; }
+        public PartidosEntity partido {  get; set; }
+
 
         public BracketsEntity(int id, string instancia,DisciplinasEntity disciplina, EquiposEntity equipo1, EquiposEntity equipo2)
         {
@@ -42,5 +46,10 @@ namespace Entities
 
         }
 
+        //constructor vacio, perdon ale
+        public BracketsEntity()
+        {
+
+        }
     }
 }
