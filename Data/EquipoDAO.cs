@@ -27,7 +27,7 @@ namespace Data
                             {
                                 DisciplinasEntity disciplina = DisciplinasMapper.Map(reader);
 
-                                EquiposEntity equipo = EquiposMapper.(reader, disciplina);
+                                EquiposEntity equipo = EquiposMapper.equiposByPuntos(reader, disciplina);
 
                                 equiposLIst.Add(equipo);
                             }

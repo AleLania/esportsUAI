@@ -12,7 +12,16 @@ namespace Business
         {
             try
             {
-                    return ResultadoDAO.getPosiciones(idDisciplina);
+                List<EquiposEntity> listOfEntities = ResultadoDAO.getPosiciones(idDisciplina);
+                List<EquiposEntity.EquiposTorneoEntity> resultList = new List<EquiposEntity.EquiposTorneoEntity>();
+
+                foreach (EquiposEntity equipo in listOfEntities)
+                {
+                    EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(equipo);
+                    resultList.Add(equipoTorneo);
+                }
+
+                return resultList;
             }
             catch (Exception ex)
             {

@@ -23,7 +23,7 @@ namespace Business
             foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
             {
                 EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(
-                    equipo.nombre, equipo.PGTorneo, equipo.PPTorneo, equipo.PETorneo, equipo.puntos);
+                    equipo);
 
                 listOfEquipos.Add(equipoTorneo);
             }
