@@ -4,20 +4,21 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Entities;
 using Microsoft.Data.SqlClient;
+using Mapper;
+
 
 namespace Data
 {
     public class JugadorDAO
     {
-        public List<JugadoresEntity> obtenerJugadores()
+        public List<JugadoresEntity> ObtenerJugadores()
         {
             List<JugadoresEntity> jugadores = new List<JugadoresEntity>();
 
             try
             {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
 
-                using (conexion)
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
                     conexion.Open();
 
@@ -38,16 +39,8 @@ namespace Data
                         {
                             while (reader.Read())
                             {
-                                JugadoresEntity jugador = new JugadoresEntity();
-
-                                jugador.IdJugador = Convert.ToInt32(reader["ID_JUGADOR"]);
-                                jugador.NombreApellido = reader["NOMBRE_APELLIDO"].ToString();
-                                jugador.Nick = reader["NICK"].ToString();
-                                jugador.IdEquipo = Convert.ToInt32(reader["ID_EQUIPO"]);
-                                // mapeo nombre equipo
-                                jugador.NombreEquipo = reader["NOMBRE_EQUIPO"].ToString();
-
-                                jugadores.Add(jugador);
+                                //mapper
+                                jugadores.Add(JugadorMapper.Map(reader));
                             }
                         }
                     }
@@ -61,21 +54,19 @@ namespace Data
             return jugadores;
         }
 
-        public void cargarJugador(JugadoresEntity jugadores)
+        public void CargarJugador(JugadoresEntity jugador)
         {
             try
             {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
-
-                using (conexion)
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
                     string sql = "INSERT INTO Jugadores (NOMBRE_APELLIDO, NICK, ID_EQUIPO) VALUES (@NombreApellido, @Nick, @IdEquipo)";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
-                        sqlCommand.Parameters.AddWithValue("NombreApellido", jugadores.NombreApellido);
-                        sqlCommand.Parameters.AddWithValue("Nick", jugadores.Nick);
-                        sqlCommand.Parameters.AddWithValue("IdEquipo", jugadores.IdEquipo);
+                        sqlCommand.Parameters.AddWithValue("NombreApellido", jugador.NombreApellido);
+                        sqlCommand.Parameters.AddWithValue("Nick", jugador.Nick);
+                        sqlCommand.Parameters.AddWithValue("IdEquipo", jugador.IdEquipo);
 
                         conexion.Open();
                         sqlCommand.ExecuteNonQuery();
@@ -90,13 +81,11 @@ namespace Data
 
         //posible transaction para no borrar un jugador que tiene un equipo asignado? uso transaction? habra que armar un DesasignarEquipo?
         //lo hice al pedo
-        public void borrarJugador(int idJugador)
+        public void BorrarJugador(int idJugador)
         {
             try
             {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
-
-                using (conexion)
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
                     string sql = "DELETE FROM Jugadores WHERE ID_JUGADOR = @IdJugador";
 
@@ -117,13 +106,11 @@ namespace Data
         }
 
         //tiene que ser un alta por baja porque no voy a borrarjugadores
-        public void actualizarJugador(JugadoresEntity jugador)
+        public void ActualizarJugador(JugadoresEntity jugador)
         {
             try
             {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
-
-                using (conexion)
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
                     string sql = "UPDATE Jugadores " +
                         "SET NOMBRE_APELLIDO = @NombreApellido, NICK = @Nick, ID_EQUIPO = @IdEquipo " +
@@ -148,17 +135,24 @@ namespace Data
             }
         }
 
-        public JugadoresEntity? obtenerJugadorPorId(int idJugador)
+        public JugadoresEntity? ObtenerJugadorPorId(int idJugador)
         {
-            JugadoresEntity jugador = null;
+            JugadoresEntity? jugador = null;
 
             try
             {
-                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
-
-                using (conexion)
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
-                    string sql = "SELECT * FROM Jugadores WHERE ID_JUGADOR = @idJugador";
+                    string sql = "SELECT " +
+                        "Jugadores.ID_JUGADOR, " +
+                        "Jugadores.NOMBRE_APELLIDO, " +
+                        "Jugadores.NICK, " +
+                        "Jugadores.ID_EQUIPO, " +
+                        "Equipos.NOMBRE AS NOMBRE_EQUIPO " +
+                        "FROM Jugadores " +
+                        "INNER JOIN Equipos " +
+                        "ON Jugadores.ID_EQUIPO = Equipos.ID_EQUIPO " +
+                        "WHERE Jugadores.ID_JUGADOR = @idJugador";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
@@ -170,12 +164,8 @@ namespace Data
                         {
                             if (reader.Read())
                             {
-                                jugador = new JugadoresEntity();
-
-                                jugador.IdJugador = Convert.ToInt32(reader["ID_JUGADOR"]);
-                                jugador.NombreApellido = reader["NOMBRE_APELLIDO"].ToString();
-                                jugador.Nick = reader["NICK"].ToString();
-                                jugador.IdEquipo = Convert.ToInt32(reader["ID_EQUIPO"]);
+                                //mapper
+                                jugador = JugadorMapper.Map(reader);
                             }
                         }
                     }

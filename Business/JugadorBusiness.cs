@@ -9,7 +9,7 @@ namespace Business
         {
             JugadorDAO jugadorDAO = new JugadorDAO();
 
-            return jugadorDAO.obtenerJugadores();
+            return jugadorDAO.ObtenerJugadores();
         }
 
         public void validarJugador(JugadoresEntity jugador)
@@ -27,7 +27,7 @@ namespace Business
 
             JugadorDAO jugadorDAO = new JugadorDAO();
 
-            jugadorDAO.cargarJugador(jugador);
+            jugadorDAO.CargarJugador(jugador);
         }
 
         //lo hice al pedo? creo que si
@@ -35,21 +35,21 @@ namespace Business
         {
             JugadorDAO jugadorDAO = new JugadorDAO();
 
-            jugadorDAO.borrarJugador(idJugador);
+            jugadorDAO.BorrarJugador(idJugador);
         }
 
         public JugadoresEntity? obtenerJugadorPorId(int idJugador)
         {
             JugadorDAO jugadorDAO = new JugadorDAO();
 
-            return jugadorDAO.obtenerJugadorPorId(idJugador);
+            return jugadorDAO.ObtenerJugadorPorId(idJugador);
         }
 
         public void actualizarJugador(JugadoresEntity jugador)
         {
             JugadorDAO jugadorDAO = new JugadorDAO();
 
-            jugadorDAO.actualizarJugador(jugador);
+            jugadorDAO.ActualizarJugador(jugador);
         }
     }
 }
