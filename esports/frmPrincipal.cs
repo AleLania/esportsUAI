@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using esports.Partidos;
 
 namespace esports
 {
@@ -37,7 +38,8 @@ namespace esports
         private void btnPartidos_Click(object sender, EventArgs e)
         {
             //aca ventana a partidos
-            ShowDialog();
+            frmPartidos ventana = new frmPartidos();
+            ventana.ShowDialog();
         }
 
         private void btnCompetencias_Click(object sender, EventArgs e)
