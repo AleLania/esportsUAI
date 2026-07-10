@@ -46,5 +46,10 @@
                 this.puntos =   puntos;
             }
         }
+
+        //arme el constrcutor vacio perdon ale
+        public EquiposEntity()
+        {
+        }
     }
 }
