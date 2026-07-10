@@ -8,11 +8,6 @@ namespace Mapper
 {
     public static class EquiposMapper
     {
-        public static List<EquiposEntity> equiposByDisciplina(int idDisciplina,List<EquiposEntity> listOfEquipos)
-        {
-            return null;
-        }
-
 
         public static EquiposEntity.EquiposTorneoEntity equiposByPuntos(SqlDataReader reader)
         {
