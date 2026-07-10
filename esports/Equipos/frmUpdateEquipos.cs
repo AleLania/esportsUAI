@@ -45,7 +45,7 @@ namespace esports.Equipos
         {
             cmbEquipos.Items.Clear();
             cmbEquipos.DataSource = EquipoBusiness.getEquipos();
-            cmbEquipos.DisplayMember = "descripcion";
+            cmbEquipos.DisplayMember = "nombre";
             cmbEquipos.ValueMember = "id";
         }
     }
