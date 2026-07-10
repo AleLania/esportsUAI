@@ -16,7 +16,7 @@ namespace Business
                 {
                     return EquipoDAO.getPosiciones(idDisciplina);
                 }
-                return EquipoDAO.getBrackets(idDisciplina);
+                return null;//EquipoDAO.getBrackets(idDisciplina);
             }
             catch (Exception ex)
             {
