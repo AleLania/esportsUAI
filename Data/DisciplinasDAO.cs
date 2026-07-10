@@ -37,5 +37,38 @@ namespace Data
                 throw;
             }
         }
+
+        public static DisciplinasEntity getDisciplinaById(int idDisciplina)
+        {
+            DisciplinasEntity disciplina = null;
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                using (conexion)
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Disciplinas WHERE ID_DISCIPLINA = @idDisciplina", conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                disciplina = new DisciplinasEntity(
+                                    Convert.ToInt32(reader["ID_DISCIPLINA"]),
+                                    reader["DESCRIPCION"].ToString(),
+                                    Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"])
+                                );
+                            }
+                        }
+                    }
+                    return disciplina;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

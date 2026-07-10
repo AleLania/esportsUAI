@@ -41,11 +41,24 @@ namespace esports.Competencias
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            int idDisciplina = (int)cmbEsport.SelectedValue;
-            int idCompetencia = (int)cmbCompetencia.SelectedValue;
+            try
+            {
+                int idDisciplina = (int)cmbEsport.SelectedValue;
+                int idCompetencia = (int)cmbCompetencia.SelectedValue;
 
-            dgvResultados.DataSource = null;
-            dgvResultados.DataSource = ResultadosBusiness.getResultados(idDisciplina, idCompetencia);
+                dgvResultados.DataSource = null;
+                if (idCompetencia == 1)
+                {
+                    dgvResultados.DataSource = ResultadosBusiness.getResultados(idDisciplina);
+                }
+                else { dgvResultados.DataSource = ResultadosBusiness.getBrackets(idDisciplina); }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener los resultados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
