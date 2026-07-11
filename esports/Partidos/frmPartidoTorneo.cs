@@ -72,5 +72,30 @@ namespace esports.Partidos
 
             cmbEquipoGanador.DataSource = posiblesGanadores;
         }
+
+        private void btnCargarPartidoTorneo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PartidosEntity partido = new PartidosEntity(
+                    (EquiposEntity)cmbEquipo1.SelectedItem,
+                    (EquiposEntity)cmbEquipo2.SelectedItem,
+                    (EquiposEntity)cmbEquipoGanador.SelectedItem,
+                    new CompetenciasEntity(1, "Torneo"),
+                    (DisciplinasEntity)cmbDisciplina.SelectedItem);
+
+                PartidoBusiness business = new PartidoBusiness();
+
+                business.CargarPartido(partido);
+
+                MessageBox.Show("Partido cargado correctamente.");
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
