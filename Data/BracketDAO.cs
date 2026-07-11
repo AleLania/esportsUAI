@@ -74,6 +74,7 @@ namespace Data
                     "B.INSTANCIA, " +
                     "D.ID_DISCIPLINA, " +
                     "D.DESCRIPCION, " +
+                    "D.CANTIDAD_EQUIPOS, " +
                     "D.CANTIDAD_JUGADORES_EQUIPO, " +
                     "E1.ID_EQUIPO AS ID_EQUIPO1, " +
                     "E1.NOMBRE AS NOMBRE_EQUIPO1, " +
@@ -126,6 +127,7 @@ namespace Data
                         "B.ID_PARTIDO, " +
                         "D.ID_DISCIPLINA, " +
                         "D.DESCRIPCION, " +
+                        "D.CANTIDAD_EQUIPOS, " +
                         "D.CANTIDAD_JUGADORES_EQUIPO " +
                         "FROM Brackets B " +
                         "INNER JOIN Disciplinas D " +
@@ -177,6 +179,7 @@ namespace Data
                     "B.ID_PARTIDO, " +
                     "D.ID_DISCIPLINA, " +
                     "D.DESCRIPCION, " +
+                    "D.CANTIDAD_EQUIPOS, " +
                     "D.CANTIDAD_JUGADORES_EQUIPO " +
                     "FROM Brackets B " +
                     "INNER JOIN Disciplinas D " +

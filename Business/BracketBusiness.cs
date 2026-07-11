@@ -1,5 +1,6 @@
 ﻿using Data;
 using Entities;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,14 +10,38 @@ namespace Business
 {
     public class BracketBusiness
     {
-        public void AvanzarGanador(int idPartido)
+        public void AvanzarGanador(PartidosEntity partido, BracketsEntity bracket)
         {
             try
             {
-                using (var trx = new TransactionScope())
-                {
+                BracketDAO bracketDAO = new BracketDAO();
 
-                    trx.Complete();
+                if(bracket.idSiguienteBracket == null)
+                {
+                    return;
+                }
+
+                BracketsEntity? siguienteBracket = bracketDAO.ObtenerBracketPorId(bracket.idSiguienteBracket.Value);
+
+                if(siguienteBracket == null)
+                {
+                    throw new Exception("No se encontró el siguiente Bracket");
+                }
+                //si el primer equipo está vacío, asigno el ganador ahí
+                if (siguienteBracket.equipo1 == null)
+                {
+                    bracketDAO.ActualizarEquipo1(siguienteBracket.id, partido.ganador.id);
+
+                    //actualizo el objeto en memoria
+                    siguienteBracket.equipo1 = partido.ganador;
+                }
+                else
+                {
+                    //si no, asigno el ganador al segundo equipo
+                    bracketDAO.ActualizarEquipo2(siguienteBracket.id, partido.ganador.id);
+
+                    //actualizo el objeto en memoria
+                    siguienteBracket.equipo2 = partido.ganador;
                 }
             }
             catch (Exception ex)
@@ -72,11 +97,31 @@ namespace Business
 
         public void ActualizarBracket(PartidosEntity partido)
         {
-            BracketDAO bracketDAO = new BracketDAO();
+            try
+            {
+                BracketDAO bracketDAO = new BracketDAO();
 
-            BracketsEntity bracket = ObtenerOAsignarBracket(partido);
 
-            //bracketDAO.AsignarPartido();
+                using (var trx = new TransactionScope())
+                {
+                    //obtengo o asigno el bracket al partido
+                    BracketsEntity bracket = ObtenerOAsignarBracket(partido);
+
+                    //registro el partido en el bracket
+                    bracketDAO.AsignarPartido(bracket.id, partido.id);
+
+                    if (bracket.idSiguienteBracket != null)
+                    {
+                        AvanzarGanador(partido, bracket);
+                    }
+                    trx.Complete();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el bracket", ex);
+            }
 
         }
     }

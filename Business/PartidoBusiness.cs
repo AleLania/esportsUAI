@@ -43,7 +43,7 @@ namespace Business
             try
             {
                 PartidoDAO partidoDAO = new PartidoDAO();
-
+                BracketBusiness bracketBusiness = new BracketBusiness();
                 using (var trx = new TransactionScope())
                 {
                     //metodos de validacion
@@ -57,6 +57,10 @@ namespace Business
                     {
                         EquipoBusiness.updateResultadosEquipos(partido);
                     }
+                    else
+                    {
+                        bracketBusiness.ActualizarBracket(partido);
+                    }
 
                     trx.Complete();
                 }
@@ -64,7 +68,7 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al cargar el partido", ex);
+                throw new Exception(ex.ToString());
             }
         }
 
