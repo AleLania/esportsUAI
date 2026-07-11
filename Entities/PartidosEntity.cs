@@ -40,5 +40,6 @@ namespace Entities
                 this.disciplina = entity.disciplina.descripcion;
             }
         }
+
     }
 }

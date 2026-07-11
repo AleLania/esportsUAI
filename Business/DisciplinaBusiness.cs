@@ -46,5 +46,17 @@ namespace Business
                 throw new Exception("Error al obtener la disciplina por ID: " + e.Message);
             }
         }
+
+        public static int getCantidadJugadoresDisciplina(int idDisciplina)
+        {
+            try
+            {
+                return DisciplinasDAO.getCantidadJugadoresPorDisciplina(idDisciplina);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener la cantidad de jugadores de la disciplina.");
+            }
+        }
     }
 }
