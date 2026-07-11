@@ -69,6 +69,9 @@ namespace Business
                     return bracket;
                 }
 
+                //verifico que el equipo no este en otro bracket de cuartos
+                ValidarEquiposCuartos(partido);
+
                 //si no existe, busco un bracket disponible
                 bracket = bracketDAO.ObtenerBracketDisponible(partido.disciplina.id);
 
@@ -91,7 +94,7 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener o asignar un bracket.", ex);
+                throw;
             }
         }
 
@@ -120,9 +123,53 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar el bracket", ex);
+                throw;
             }
 
+        }
+
+        public void ValidarEquiposCuartos(PartidosEntity partido)
+        {
+            try
+            {
+                BracketDAO bracketDAO = new BracketDAO();
+
+                //cargo los brackets
+                List<BracketsEntity> brackets = bracketDAO.ObtenerBrackets();
+
+                //recorro lista
+                foreach(BracketsEntity bracket in brackets)
+                {
+                    //si es otra disciplina, sigo
+                    if(bracket.disciplina.id != partido.disciplina.id)
+                    {
+                        continue;
+                    }
+
+                    //solo valido cuartos porque las otras instancias se arman solas
+
+                    if(!bracket.instancia.StartsWith("cuartos"))
+                    {
+                        continue;
+                    }
+
+                    //verifico si los equipos ya estan en algun bracket de cuartos
+                    if ((bracket.equipo1?.id == partido.equipo1.id) ||
+                        (bracket.equipo2?.id == partido.equipo1.id) ||
+                        (bracket.equipo1?.id == partido.equipo2.id) ||
+                        (bracket.equipo2?.id == partido.equipo2.id))
+                    {
+                        throw new Exception("Uno de los equipos ya se encuentra jugando los cuartos de final.");
+                    }
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
