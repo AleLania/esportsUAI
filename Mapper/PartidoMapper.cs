@@ -6,19 +6,43 @@ using System.Text;
 
 namespace Mapper
 {
-    public class PartidoMapper
+    public static class PartidoMapper
     {
-        public static PartidosEntity Map(SqlDataReader reader)
+        public static PartidosEntity Map(SqlDataReader reader, DisciplinasEntity disciplina)
         {
-            PartidosEntity partido = new PartidosEntity();
+            CompetenciasEntity competencia = new CompetenciasEntity(
+                Convert.ToInt32(reader["ID_COMPETENCIA"]),
+                reader["DESCRIPCION_COMPETENCIA"].ToString()
+            );
 
-            partido.id = Convert.ToInt32(reader["ID_PARTIDO"]);
-            partido.equipo1 = Convert.ToInt32(reader["EQUIPO1"]);
-            partido.equipo2 = Convert.ToInt32(reader["EQUIPO2"]);
-            partido.ganador = Convert.ToInt32(reader["EQUIPO2"]);
-            partido.idCompetencia = Convert.ToInt32(reader["ID_COMPETENCIA"]);
+            EquiposEntity equipo1 = new EquiposEntity(
+                Convert.ToInt32(reader["EQUIPO1"]),
+                reader["NOMBRE_EQUIPO1"].ToString(),
+                disciplina,
+                reader["PG_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_EQUIPO1"]),
+                reader["PP_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_EQUIPO1"]),
+                reader["PE_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_EQUIPO1"]),
+                reader["PUNTOS_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS_EQUIPO1"])
+            );
 
-            return partido;
+            EquiposEntity equipo2 = new EquiposEntity(
+                Convert.ToInt32(reader["EQUIPO2"]),
+                reader["NOMBRE_EQUIPO2"].ToString(),
+                disciplina,
+                reader["PG_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_EQUIPO2"]),
+                reader["PP_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_EQUIPO2"]),
+                reader["PE_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_EQUIPO2"]),
+                reader["PUNTOS_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS_EQUIPO2"])
+            );
+
+            EquiposEntity ganador = new EquiposEntity(
+                Convert.ToInt32(reader["GANADOR"]),
+                reader["NOMBRE_GANADOR"].ToString(),
+                disciplina,
+                0, 0, 0, 0
+            );
+
+            return new PartidosEntity(equipo1, equipo2, ganador, competencia, disciplina);
         }
     }
 }

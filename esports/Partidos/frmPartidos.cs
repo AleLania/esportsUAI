@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Business;
+using esports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using esports;
 
 namespace esports.Partidos
 {
@@ -18,6 +19,17 @@ namespace esports.Partidos
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cmbEquipo.Items.Clear();
+            cmbEquipo.DataSource = EquipoBusiness.getEquipos();
+            cmbEquipo.DisplayMember = "nombre";
+            cmbEquipo.ValueMember = "id";
+
+            cmbCompetencia.Items.Clear();
+            cmbCompetencia.DataSource = CompetenciasBusiness.getCompetencias();
+            cmbCompetencia.DisplayMember = "descripcion";
+            cmbCompetencia.ValueMember = "id";
+
+            dgvPartidos.DataSource = PartidoBusiness.getPartidos();
 
         }
 
@@ -32,5 +44,21 @@ namespace esports.Partidos
             frmPartidoTorneo ventana = new frmPartidoTorneo();
             ventana.ShowDialog();
         }
+
+       /* private void btnFiltrarPartidos_Click(object sender, EventArgs e)
+        {try
+            {
+                int idEquipo = (int)cmbEquipo.SelectedValue;
+                int idCompetencia = (int)cmbCompetencia.SelectedValue;
+
+                dgvPartidos.DataSource = null;
+                dgvPartidos.DataSource = PartidoBusiness.getPartidosByEquipoYCompetencia(idEquipo, idCompetencia);
+
+            }
+            catch (Exception ex) 
+            { 
+            MessageBox.Show("Error al filtrar partidos: " + ex.Message);
+            }
+        }*/
     }
 }
