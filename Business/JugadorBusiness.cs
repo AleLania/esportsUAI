@@ -23,11 +23,18 @@ namespace Business
 
         public void cargarJugador(JugadoresEntity jugador)
         {
-            validarJugador(jugador);
+            try
+            {
+                validarJugador(jugador);
 
-            JugadorDAO jugadorDAO = new JugadorDAO();
+                JugadorDAO jugadorDAO = new JugadorDAO();
 
-            jugadorDAO.CargarJugador(jugador);
+                jugadorDAO.CargarJugador(jugador);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al cargar el jugador: {ex.Message}");
+            }
         }
 
         //lo hice al pedo? creo que si
