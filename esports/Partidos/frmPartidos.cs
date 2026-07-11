@@ -61,5 +61,11 @@ namespace esports.Partidos
                 MessageBox.Show("Error al filtrar partidos: " + ex.Message);
             }
         }
+
+        private void btnBorrarFiltros_Click(object sender, EventArgs e)
+        {
+            dgvPartidos.DataSource = null;
+            dgvPartidos.DataSource = PartidoBusiness.getPartidos();
+        }
     }
 }
