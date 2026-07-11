@@ -38,6 +38,7 @@
             label3 = new Label();
             cmbCompetencia = new ComboBox();
             btnFiltrarPartidos = new Button();
+            btnBorrarFiltros = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPartidos).BeginInit();
             SuspendLayout();
             // 
@@ -129,7 +130,8 @@
             // 
             // btnFiltrarPartidos
             // 
-            btnFiltrarPartidos.Location = new Point(63, 182);
+            btnFiltrarPartidos.Location = new Point(12, 250);
+            btnFiltrarPartidos.Margin = new Padding(3, 4, 3, 4);
             btnFiltrarPartidos.Name = "btnFiltrarPartidos";
             btnFiltrarPartidos.Size = new Size(139, 37);
             btnFiltrarPartidos.TabIndex = 10;
@@ -137,11 +139,23 @@
             btnFiltrarPartidos.UseVisualStyleBackColor = true;
             btnFiltrarPartidos.Click += btnFiltrarPartidos_Click;
             // 
+            // btnBorrarFiltros
+            // 
+            btnBorrarFiltros.Location = new Point(199, 250);
+            btnBorrarFiltros.Margin = new Padding(3, 4, 3, 4);
+            btnBorrarFiltros.Name = "btnBorrarFiltros";
+            btnBorrarFiltros.Size = new Size(159, 49);
+            btnBorrarFiltros.TabIndex = 11;
+            btnBorrarFiltros.Text = "Borrar filtros";
+            btnBorrarFiltros.UseVisualStyleBackColor = true;
+            btnBorrarFiltros.Click += btnBorrarFiltros_Click;
+            // 
             // frmPartidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(btnBorrarFiltros);
             Controls.Add(btnFiltrarPartidos);
             Controls.Add(cmbCompetencia);
             Controls.Add(label3);
@@ -172,5 +186,6 @@
         private Label label3;
         private ComboBox cmbCompetencia;
         private Button btnFiltrarPartidos;
+        private Button btnBorrarFiltros;
     }
 }
