@@ -28,14 +28,14 @@ namespace Entities
             IdJugador = id;
             NombreApellido = nombreApellido;
             Nick = nick;
-            this.equipo = new EquiposEntity(idEquipo, "", null, 0, 0, 0, 0);
+            this.equipo = new EquiposEntity(idEquipo, "", null, 0, 0, 0);
         }
 
         public JugadoresEntity(string nombreApellido, string nick, int idEquipo)
         {
             NombreApellido = nombreApellido;
             Nick = nick;
-            this.equipo = new EquiposEntity(idEquipo, "", null, 0, 0, 0, 0);
+            this.equipo = new EquiposEntity(idEquipo, "", null, 0, 0, 0);
         }
 
     }

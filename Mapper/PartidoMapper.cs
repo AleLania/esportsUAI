@@ -27,7 +27,6 @@ namespace Mapper
                 disciplina,
                 reader["PG_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_EQUIPO1"]),
                 reader["PP_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_EQUIPO1"]),
-                reader["PE_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_EQUIPO1"]),
                 reader["PUNTOS_EQUIPO1"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS_EQUIPO1"])
             );
 
@@ -37,7 +36,6 @@ namespace Mapper
                 disciplina,
                 reader["PG_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_EQUIPO2"]),
                 reader["PP_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_EQUIPO2"]),
-                reader["PE_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_EQUIPO2"]),
                 reader["PUNTOS_EQUIPO2"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS_EQUIPO2"])
             );
 
@@ -45,7 +43,7 @@ namespace Mapper
                 Convert.ToInt32(reader["GANADOR"]),
                 reader["NOMBRE_GANADOR"].ToString(),
                 disciplina,
-                0, 0, 0, 0
+                0, 0, 0
             );
 
             return new PartidosEntity(equipo1, equipo2, ganador, competencia, disciplina);
