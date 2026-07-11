@@ -41,20 +41,19 @@ namespace Business
         }
 
 
-        /* public static List<EquiposEntity> EquiposByDisciplina(int idDisciplina)
+         public static List<EquiposEntity> EquiposByDisciplina(int idDisciplina)
           {
-              List<EquiposEntity> listOfEquipos = getEquipos();
-              List<EquiposEntity> filteredList = new List<EquiposEntity>();
+            try
+            {
+                List<EquiposEntity> listOfEquipos = EquipoDAO.getEquiposByDisciplina(idDisciplina);
 
-              foreach (var equipo in listOfEquipos)
-              {
-                  if (equipo.disciplina.id == idDisciplina)
-                  {
-                      filteredList.Add(equipo);
-                  }
-              }
-              return filteredList; 
-          }*/
+                return listOfEquipos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener equipos por disciplina: " + ex.Message);
+            }
+          }
         public static void insertEquipo(string nombre, int idDisciplina) 
         {
             try

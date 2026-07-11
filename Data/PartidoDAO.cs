@@ -58,7 +58,7 @@ namespace Data
                         Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]),
                         Convert.ToInt32(reader["CANTIDAD_EQUIPOS"])
                     );
-                    partidos.Add(PartidoMapper.Map(reader, disciplina));
+                    partidos.Add(PartidoMapper.Map(reader));
                 }
 
                 return partidos;
@@ -148,7 +148,7 @@ namespace Data
                         {
                             if(reader.Read())
                             {
-                                partido = PartidoMapper.Map(reader, null);
+                                partido = PartidoMapper.Map(reader);
                             }
                         }
                     }
@@ -163,7 +163,7 @@ namespace Data
             return partido;
         }
 
-        public List<PartidosEntity> getPartidosByEquipoYCompetencia(int idEquipo, int idCompetencia, DisciplinasEntity disciplina)
+        public List<PartidosEntity> getPartidosByEquipoYCompetencia(int idEquipo, int idCompetencia)
         {
             List<PartidosEntity> partidos = new List<PartidosEntity>();
             try
@@ -171,31 +171,36 @@ namespace Data
                 using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 conexion.Open();
                 string sql = @"
-            SELECT 
-                p.ID_PARTIDO,
-                p.EQUIPO1,
-                p.EQUIPO2,
-                p.GANADOR,
-                p.ID_COMPETENCIA,
-                c.DESCRIPCION           AS DESCRIPCION_COMPETENCIA,
-                e1.NOMBRE               AS NOMBRE_EQUIPO1,
-                e1.PG_TORNEO            AS PG_EQUIPO1,
-                e1.PP_TORNEO            AS PP_EQUIPO1,
-                e1.PE_TORNEO            AS PE_EQUIPO1,
-                e1.PUNTOS               AS PUNTOS_EQUIPO1,
-                e2.NOMBRE               AS NOMBRE_EQUIPO2,
-                e2.PG_TORNEO            AS PG_EQUIPO2,
-                e2.PP_TORNEO            AS PP_EQUIPO2,
-                e2.PE_TORNEO            AS PE_EQUIPO2,
-                e2.PUNTOS               AS PUNTOS_EQUIPO2,
-                eg.NOMBRE               AS NOMBRE_GANADOR
-            FROM Partidos p
-            INNER JOIN Competencias c  ON p.ID_COMPETENCIA = c.ID_COMPETENCIA
-            INNER JOIN Equipos e1      ON p.EQUIPO1        = e1.ID_EQUIPO
-            INNER JOIN Equipos e2      ON p.EQUIPO2        = e2.ID_EQUIPO
-            INNER JOIN Equipos eg      ON p.GANADOR        = eg.ID_EQUIPO
-            WHERE (p.EQUIPO1 = @IdEquipo OR p.EQUIPO2 = @IdEquipo)
-              AND p.ID_COMPETENCIA = @IdCompetencia";
+                SELECT 
+                    p.ID_PARTIDO,
+                    p.EQUIPO1,
+                    p.EQUIPO2,
+                    p.GANADOR,
+                    p.ID_COMPETENCIA,
+                    c.DESCRIPCION               AS DESCRIPCION_COMPETENCIA,
+                    e1.NOMBRE                   AS NOMBRE_EQUIPO1,
+                    e1.PG_TORNEO                AS PG_EQUIPO1,
+                    e1.PP_TORNEO                AS PP_EQUIPO1,
+                    e1.PE_TORNEO                AS PE_EQUIPO1,
+                    e1.PUNTOS                   AS PUNTOS_EQUIPO1,
+                    e2.NOMBRE                   AS NOMBRE_EQUIPO2,
+                    e2.PG_TORNEO                AS PG_EQUIPO2,
+                    e2.PP_TORNEO                AS PP_EQUIPO2,
+                    e2.PE_TORNEO                AS PE_EQUIPO2,
+                    e2.PUNTOS                   AS PUNTOS_EQUIPO2,
+                    eg.NOMBRE                   AS NOMBRE_GANADOR,
+                    d.ID_DISCIPLINA,
+                    d.DESCRIPCION               AS DESCRIPCION_DISCIPLINA,
+                    d.CANTIDAD_JUGADORES_EQUIPO,
+                    d.CANTIDAD_EQUIPOS
+                FROM Partidos p
+                INNER JOIN Competencias c  ON p.ID_COMPETENCIA = c.ID_COMPETENCIA
+                INNER JOIN Equipos e1      ON p.EQUIPO1        = e1.ID_EQUIPO
+                INNER JOIN Equipos e2      ON p.EQUIPO2        = e2.ID_EQUIPO
+                INNER JOIN Equipos eg      ON p.GANADOR        = eg.ID_EQUIPO
+                INNER JOIN Disciplinas d   ON e1.ID_DISCIPLINA = d.ID_DISCIPLINA
+                WHERE (p.EQUIPO1 = @IdEquipo OR p.EQUIPO2 = @IdEquipo)
+                  AND p.ID_COMPETENCIA = @IdCompetencia"; ;
 
                 using SqlCommand cmd = new SqlCommand(sql, conexion);
                 cmd.Parameters.AddWithValue("@IdEquipo", idEquipo);
@@ -204,7 +209,7 @@ namespace Data
                 using SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    partidos.Add(PartidoMapper.Map(reader, disciplina));
+                    partidos.Add(PartidoMapper.Map(reader));
                 }
 
                 return partidos;
