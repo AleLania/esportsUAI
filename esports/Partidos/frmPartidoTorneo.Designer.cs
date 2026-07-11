@@ -36,6 +36,8 @@
             lblEquipo1 = new Label();
             btnCargarPartidoTorneo = new Button();
             lblPartidoTorneo = new Label();
+            cmbDisciplina = new ComboBox();
+            lblDisciplina = new Label();
             SuspendLayout();
             // 
             // cmbEquipoGanador
@@ -102,17 +104,36 @@
             // 
             lblPartidoTorneo.AutoSize = true;
             lblPartidoTorneo.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPartidoTorneo.Location = new Point(22, 25);
+            lblPartidoTorneo.Location = new Point(22, 20);
             lblPartidoTorneo.Name = "lblPartidoTorneo";
             lblPartidoTorneo.Size = new Size(173, 18);
             lblPartidoTorneo.TabIndex = 11;
             lblPartidoTorneo.Text = "Cargar Partido de Torneo";
+            // 
+            // cmbDisciplina
+            // 
+            cmbDisciplina.FormattingEnabled = true;
+            cmbDisciplina.Location = new Point(162, 53);
+            cmbDisciplina.Name = "cmbDisciplina";
+            cmbDisciplina.Size = new Size(121, 23);
+            cmbDisciplina.TabIndex = 21;
+            // 
+            // lblDisciplina
+            // 
+            lblDisciplina.AutoSize = true;
+            lblDisciplina.Location = new Point(33, 56);
+            lblDisciplina.Name = "lblDisciplina";
+            lblDisciplina.Size = new Size(58, 15);
+            lblDisciplina.TabIndex = 20;
+            lblDisciplina.Text = "Disciplina";
             // 
             // frmPartidoTorneo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(322, 320);
+            Controls.Add(cmbDisciplina);
+            Controls.Add(lblDisciplina);
             Controls.Add(cmbEquipoGanador);
             Controls.Add(cmbEquipo2);
             Controls.Add(cmbEquipo1);
@@ -138,5 +159,7 @@
         private Label lblEquipo1;
         private Button btnCargarPartidoTorneo;
         private Label lblPartidoTorneo;
+        private ComboBox cmbDisciplina;
+        private Label lblDisciplina;
     }
 }
