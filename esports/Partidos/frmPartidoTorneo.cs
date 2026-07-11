@@ -40,12 +40,13 @@ namespace esports.Partidos
                 (DisciplinasEntity)cmbDisciplina.SelectedItem;
 
             List<EquiposEntity> equipos =
-                EquipoBusiness.GetEquiposPorDisciplina(disciplina.id);
+                EquipoBusiness.getEquiposByDisciplina(disciplina.id);
 
             cmbEquipo1.DataSource = equipos;
             cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
 
             cmbEquipoGanador.DataSource = null;
+
         }
 
         private void cmbEquipo1_SelectedIndexChanged(object sender, EventArgs e)

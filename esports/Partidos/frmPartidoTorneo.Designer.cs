@@ -55,6 +55,7 @@
             cmbEquipo2.Name = "cmbEquipo2";
             cmbEquipo2.Size = new Size(121, 23);
             cmbEquipo2.TabIndex = 18;
+            cmbEquipo2.SelectedIndexChanged += cmbEquipo2_SelectedIndexChanged;
             // 
             // cmbEquipo1
             // 
@@ -63,6 +64,7 @@
             cmbEquipo1.Name = "cmbEquipo1";
             cmbEquipo1.Size = new Size(121, 23);
             cmbEquipo1.TabIndex = 17;
+            cmbEquipo1.SelectedIndexChanged += cmbEquipo1_SelectedIndexChanged;
             // 
             // lblGanador
             // 
@@ -117,6 +119,7 @@
             cmbDisciplina.Name = "cmbDisciplina";
             cmbDisciplina.Size = new Size(121, 23);
             cmbDisciplina.TabIndex = 21;
+            cmbDisciplina.SelectedIndexChanged += cmbDisciplina_SelectedIndexChanged;
             // 
             // lblDisciplina
             // 

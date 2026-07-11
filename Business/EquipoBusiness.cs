@@ -41,7 +41,7 @@ namespace Business
         }
 
 
-         public static List<EquiposEntity> EquiposByDisciplina(int idDisciplina)
+         public static List<EquiposEntity> getEquiposByDisciplina(int idDisciplina)
           {
             try
             {
