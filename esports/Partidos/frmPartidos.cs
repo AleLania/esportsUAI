@@ -19,18 +19,24 @@ namespace esports.Partidos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cmbEquipo.Items.Clear();
-            cmbEquipo.DataSource = EquipoBusiness.getEquipos();
-            cmbEquipo.DisplayMember = "nombre";
-            cmbEquipo.ValueMember = "id";
+            try
+            {
+                cmbEquipo.Items.Clear();
+                cmbEquipo.DataSource = EquipoBusiness.getEquipos();
+                cmbEquipo.DisplayMember = "nombre";
+                cmbEquipo.ValueMember = "id";
 
-            cmbCompetencia.Items.Clear();
-            cmbCompetencia.DataSource = CompetenciasBusiness.getCompetencias();
-            cmbCompetencia.DisplayMember = "descripcion";
-            cmbCompetencia.ValueMember = "id";
+                cmbCompetencia.Items.Clear();
+                cmbCompetencia.DataSource = CompetenciasBusiness.getCompetencias();
+                cmbCompetencia.DisplayMember = "descripcion";
+                cmbCompetencia.ValueMember = "id";
 
-            dgvPartidos.DataSource = PartidoBusiness.getPartidos();
-
+                dgvPartidos.DataSource = PartidoBusiness.getPartidos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar datos: " + ex.Message);
+            }
         }
 
         private void btnCargarPartidoCopa_Click(object sender, EventArgs e)
@@ -78,8 +84,16 @@ namespace esports.Partidos
         }
         private void btnBorrarFiltros_Click(object sender, EventArgs e)
         {
-            dgvPartidos.DataSource = null;
-            dgvPartidos.DataSource = PartidoBusiness.getPartidos();
+            try
+            {
+                dgvPartidos.DataSource = null;
+                dgvPartidos.DataSource = PartidoBusiness.getPartidos();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar filtros: " + ex.Message);
+            }
         }
 
     }
