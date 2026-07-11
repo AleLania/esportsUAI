@@ -35,8 +35,15 @@ namespace esports.Partidos
 
         private void btnCargarPartidoCopa_Click(object sender, EventArgs e)
         {
-            frmPartidoCopa ventana = new frmPartidoCopa();
-            ventana.ShowDialog();
+            try
+            {
+                frmPartidoCopa ventana = new frmPartidoCopa();
+                ventana.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo cargar partido Copa.");
+            }
         }
 
         private void btnFiltrarPartidos_Click(object sender, EventArgs e)
@@ -58,13 +65,22 @@ namespace esports.Partidos
 
         private void btnCargarPartidoTorneo_Click_1(object sender, EventArgs e)
         {
-            frmPartidoTorneo ventana = new frmPartidoTorneo();
-            ventana.ShowDialog();
+            try
+            {
+                frmPartidoTorneo ventana = new frmPartidoTorneo();
+                ventana.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo cargar partido Torneo.");
+            }
+
         }
         private void btnBorrarFiltros_Click(object sender, EventArgs e)
         {
             dgvPartidos.DataSource = null;
             dgvPartidos.DataSource = PartidoBusiness.getPartidos();
         }
+
     }
 }
