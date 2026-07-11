@@ -62,6 +62,57 @@ namespace Data
 
         }
 
+        public BracketsEntity? ObtenerBracketPorId(int idBracket)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+
+                string sql =
+                    "SELECT " +
+                    "B.ID_BRACKET, " +
+                    "B.INSTANCIA, " +
+                    "D.ID_DISCIPLINA, " +
+                    "D.DESCRIPCION, " +
+                    "D.CANTIDAD_JUGADORES_EQUIPO, " +
+                    "E1.ID_EQUIPO AS ID_EQUIPO1, " +
+                    "E1.NOMBRE AS NOMBRE_EQUIPO1, " +
+                    "E2.ID_EQUIPO AS ID_EQUIPO2, " +
+                    "E2.NOMBRE AS NOMBRE_EQUIPO2, " +
+                    "B.ID_SIGUIENTE_BRACKET, " +
+                    "B.ID_PARTIDO " +
+                    "FROM Brackets B " +
+                    "INNER JOIN Disciplinas D " +
+                    "ON B.ID_DISCIPLINA = D.ID_DISCIPLINA " +
+                    "LEFT JOIN Equipos E1 " +
+                    "ON B.ID_EQUIPO1 = E1.ID_EQUIPO " +
+                    "LEFT JOIN Equipos E2 " +
+                    "ON B.ID_EQUIPO2 = E2.ID_EQUIPO " +
+                    "WHERE B.ID_BRACKET = @idBracket";
+
+                using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                {
+                    sqlCommand.Parameters.AddWithValue("@idBracket", idBracket);
+
+                    conexion.Open();
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return BracketsMapper.Map(reader);
+                        }
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el bracket por ID.", ex);
+            }
+        }
+
         public BracketsEntity? ObtenerBracketDisponible(int idDisciplina)
         {
             try
@@ -188,6 +239,92 @@ namespace Data
             catch (Exception ex)
             {
                 throw new Exception("No se pudieron asignar los equipos al bracket", ex);
+            }
+
+        }
+
+        public void AsignarPartido(int idBracket, int idPartido)
+        {
+            try
+            {
+
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    conexion.Open();
+
+                    string sql = "UPDATE Brackets " +
+                        "SET ID_PARTIDO = @idPartido " +
+                        "WHERE ID_BRACKET = @idBracket; ";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@idPartido", idPartido);
+                        sqlCommand.Parameters.AddWithValue("@idBracket", idBracket);
+
+                        sqlCommand.ExecuteNonQuery();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo asignar el partido al bracket", ex);
+            }
+
+        }
+
+        //tuve que armar esto porque no me salio armar uno generico que sirva para ambos equipos
+        public void ActualizarEquipo1(int idBracket, int idEquipo)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    conexion.Open();
+
+                    string sql = "UPDATE Brackets " +
+                                 "SET ID_EQUIPO1 = @idEquipo " +
+                                 "WHERE ID_BRACKET = @idBracket";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@idEquipo", idEquipo);
+                        sqlCommand.Parameters.AddWithValue("@idBracket", idBracket);
+
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo actualizar el equipo 1 del bracket.", ex);
+            }
+        }
+
+        public void ActualizarEquipo2(int idBracket, int idEquipo)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    conexion.Open();
+
+                    string sql = "UPDATE Brackets " +
+                                 "SET ID_EQUIPO2 = @idEquipo " +
+                                 "WHERE ID_BRACKET = @idBracket";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@idEquipo", idEquipo);
+                        sqlCommand.Parameters.AddWithValue("@idBracket", idBracket);
+
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo actualizar el equipo 2 del bracket.", ex);
             }
         }
     }

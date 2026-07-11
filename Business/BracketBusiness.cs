@@ -30,16 +30,35 @@ namespace Business
         {
             try
             {
-
                 BracketDAO bracketDAO = new BracketDAO();
-                BracketsEntity? bracket = bracketDAO.ObtenerBracketDisponible(partido.disciplina.id);
-                if (bracket == null)
+
+                //verifico si el partido ya tiene un bracket asignado
+                BracketsEntity? bracket = bracketDAO.ObtenerBracketPorEquipos(
+                    partido.equipo1.id,
+                    partido.equipo2.id,
+                    partido.disciplina.id);
+
+                //si existe, lo devuelvo
+                if (bracket != null)
                 {
-                    throw new Exception("No hay brackets disponibles para la disciplina");
+                    return bracket;
                 }
 
-                bracketDAO.AsignarEquipos(bracket.id, partido.equipo1.id, partido.equipo2.id);
+                //si no existe, busco un bracket disponible
+                bracket = bracketDAO.ObtenerBracketDisponible(partido.disciplina.id);
 
+                if (bracket == null)
+                {
+                    throw new Exception("No hay brackets disponibles para la disciplina.");
+                }
+
+                //asigno los equipos al bracket
+                bracketDAO.AsignarEquipos(
+                    bracket.id,
+                    partido.equipo1.id,
+                    partido.equipo2.id);
+
+                //actualizo el objeto
                 bracket.equipo1 = partido.equipo1;
                 bracket.equipo2 = partido.equipo2;
 
@@ -47,8 +66,18 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener o asignar brackets", ex);
+                throw new Exception("Error al obtener o asignar un bracket.", ex);
             }
+        }
+
+        public void ActualizarBracket(PartidosEntity partido)
+        {
+            BracketDAO bracketDAO = new BracketDAO();
+
+            BracketsEntity bracket = ObtenerOAsignarBracket(partido);
+
+            //bracketDAO.AsignarPartido();
+
         }
     }
 }
