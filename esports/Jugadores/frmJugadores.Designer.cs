@@ -33,6 +33,7 @@
             btnModificarJugador = new Button();
             dgvJugadores = new DataGridView();
             btnVolver = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             SuspendLayout();
             // 
@@ -40,17 +41,18 @@
             // 
             lblJugadores.AutoSize = true;
             lblJugadores.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblJugadores.Location = new Point(22, 29);
+            lblJugadores.Location = new Point(25, 39);
             lblJugadores.Name = "lblJugadores";
-            lblJugadores.Size = new Size(114, 18);
+            lblJugadores.Size = new Size(143, 23);
             lblJugadores.TabIndex = 0;
             lblJugadores.Text = "ABM Jugadores";
             // 
             // btnAgregarJugador
             // 
-            btnAgregarJugador.Location = new Point(40, 279);
+            btnAgregarJugador.Location = new Point(43, 320);
+            btnAgregarJugador.Margin = new Padding(3, 4, 3, 4);
             btnAgregarJugador.Name = "btnAgregarJugador";
-            btnAgregarJugador.Size = new Size(75, 23);
+            btnAgregarJugador.Size = new Size(86, 31);
             btnAgregarJugador.TabIndex = 1;
             btnAgregarJugador.Text = "Agregar";
             btnAgregarJugador.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // 
             // btnModificarJugador
             // 
-            btnModificarJugador.Location = new Point(147, 279);
+            btnModificarJugador.Location = new Point(165, 320);
+            btnModificarJugador.Margin = new Padding(3, 4, 3, 4);
             btnModificarJugador.Name = "btnModificarJugador";
-            btnModificarJugador.Size = new Size(75, 23);
+            btnModificarJugador.Size = new Size(86, 31);
             btnModificarJugador.TabIndex = 2;
             btnModificarJugador.Text = "Modificar";
             btnModificarJugador.UseVisualStyleBackColor = true;
@@ -69,31 +72,47 @@
             // dgvJugadores
             // 
             dgvJugadores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJugadores.Location = new Point(300, 7);
+            dgvJugadores.Location = new Point(343, 9);
+            dgvJugadores.Margin = new Padding(3, 4, 3, 4);
             dgvJugadores.Name = "dgvJugadores";
-            dgvJugadores.Size = new Size(392, 323);
+            dgvJugadores.RowHeadersWidth = 51;
+            dgvJugadores.Size = new Size(448, 431);
             dgvJugadores.TabIndex = 3;
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(40, 350);
+            btnVolver.Location = new Point(46, 467);
+            btnVolver.Margin = new Padding(3, 4, 3, 4);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(75, 23);
+            btnVolver.Size = new Size(86, 31);
             btnVolver.TabIndex = 4;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(43, 405);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(86, 31);
+            button1.TabIndex = 5;
+            button1.Text = "Volver";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // frmJugadores
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 337);
+            ClientSize = new Size(800, 449);
+            Controls.Add(button1);
             Controls.Add(btnVolver);
             Controls.Add(dgvJugadores);
             Controls.Add(btnModificarJugador);
             Controls.Add(btnAgregarJugador);
             Controls.Add(lblJugadores);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmJugadores";
             Text = "frmJugadores";
             Load += frmJugadores_Load;
@@ -109,5 +128,6 @@
         private Button btnModificarJugador;
         private DataGridView dgvJugadores;
         private Button btnVolver;
+        private Button button1;
     }
 }

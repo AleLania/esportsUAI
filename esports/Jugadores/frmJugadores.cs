@@ -45,7 +45,7 @@ namespace esports
             {
                 MessageBox.Show("Error al cargar los jugadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         private void frmJugadores_Load(object sender, EventArgs e)
         {
@@ -62,6 +62,11 @@ namespace esports
             frmModificarJugador ventana = new frmModificarJugador();
             ventana.ShowDialog();
             cargarJugadores();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

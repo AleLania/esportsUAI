@@ -74,11 +74,5 @@ namespace esports
                 MessageBox.Show("Error al abrir la ventana de competencias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnBracket_Click(object sender, EventArgs e)
-        {
-            //aca ventana al bracket de la copa
-            ShowDialog();
-        }
     }
 }

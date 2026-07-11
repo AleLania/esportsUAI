@@ -20,7 +20,7 @@ namespace esports.Competencias
                 cmbEsport.DisplayMember = "descripcion";
                 cmbEsport.ValueMember = "id";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener las disciplinas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -35,7 +35,7 @@ namespace esports.Competencias
                 cmbCompetencia.DisplayMember = "descripcion";
                 cmbCompetencia.ValueMember = "id";
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener las competencias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -66,13 +66,18 @@ namespace esports.Competencias
                     dgvResultados.DataSource = ResultadosBusiness.getResultados(idDisciplina);
                 }
                 else { dgvResultados.DataSource = ResultadosBusiness.getBrackets(idDisciplina); }
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener los resultados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
