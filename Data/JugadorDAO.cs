@@ -160,7 +160,7 @@ namespace Data
                                     e.PUNTOS,
                                     d.ID_DISCIPLINA,
                                     d.DESCRIPCION AS DESCRIPCION_DISCIPLINA,
-                                    d.CANTIDAD_JUGADORES_EQUIPO
+                                    d.CANTIDAD_JUGADORES_EQUIPO,
                                     d.CANTIDAD_EQUIPOS
                                 FROM Jugadores j
                                 INNER JOIN Equipos e    ON j.ID_EQUIPO = e.ID_EQUIPO
