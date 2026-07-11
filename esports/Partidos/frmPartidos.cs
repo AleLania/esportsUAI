@@ -37,6 +37,8 @@ namespace esports.Partidos
         {
             frmPartidoCopa ventana = new frmPartidoCopa();
             ventana.ShowDialog();
+
+            CargarGrilla();
         }
 
         private void btnFiltrarPartidos_Click(object sender, EventArgs e)
@@ -60,11 +62,21 @@ namespace esports.Partidos
         {
             frmPartidoTorneo ventana = new frmPartidoTorneo();
             ventana.ShowDialog();
+
+            CargarGrilla();
         }
         private void btnBorrarFiltros_Click(object sender, EventArgs e)
         {
             dgvPartidos.DataSource = null;
             dgvPartidos.DataSource = PartidoBusiness.getPartidos();
+        }
+
+        private void CargarGrilla()
+        {
+            PartidoBusiness business = new PartidoBusiness();
+
+            dgvPartidos.DataSource = null;
+            dgvPartidos.DataSource = business.ObtenerPartidos();
         }
     }
 }
