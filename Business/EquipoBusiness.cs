@@ -125,7 +125,7 @@ namespace Business
 
         }
 
-        public void updateResultadosEquipos(PartidosEntity partido)
+        public static void updateResultadosEquipos(PartidosEntity partido)
         {
             try
             {
