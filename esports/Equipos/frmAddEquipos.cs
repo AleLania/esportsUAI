@@ -123,11 +123,17 @@ namespace esports.Equipos
 
         private void frmAddEquipos_Load(object sender, EventArgs e)
         {
-            cmbEsport.Items.Clear();
-            cmbEsport.DataSource = DisciplinaBusiness.getDisciplinas();
-            cmbEsport.DisplayMember = "descripcion";
-            cmbEsport.ValueMember = "id";
-
+            try
+            {
+                cmbEsport.Items.Clear();
+                cmbEsport.DataSource = DisciplinaBusiness.getDisciplinas();
+                cmbEsport.DisplayMember = "descripcion";
+                cmbEsport.ValueMember = "id";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las disciplinas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

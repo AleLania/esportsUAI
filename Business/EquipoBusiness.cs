@@ -4,6 +4,7 @@ using Mapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Business
@@ -21,8 +22,6 @@ namespace Business
         {
             try
             {
-
-
                 List<EquiposEntity.EquiposTorneoEntity> listOfEquipos = new List<EquiposEntity.EquiposTorneoEntity>();
                 foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
                 {
@@ -75,9 +74,13 @@ namespace Business
                 {
                     throw new ArgumentException("No se pueden agregar más de 8 equipos a la disciplina.");
                 }
-                EquiposEntity newEquipo = new EquiposEntity(
+                using (var trx = new TransactionScope())
+                {
+                    EquiposEntity newEquipo = new EquiposEntity(
                 nombre, DisciplinaBusiness.getDisciplinaById(idDisciplina));
-                EquipoDAO.insertEquipo(newEquipo);
+                    EquipoDAO.insertEquipo(newEquipo);
+                    trx.Complete();
+                }
             }
             catch (Exception ex)
             {
@@ -93,10 +96,14 @@ namespace Business
                 {
                     throw new ArgumentException("El nombre del equipo no puede estar vacío.");
                 }
-                EquiposEntity updatedEquipo = new EquiposEntity(
-                nombre, id);
+                using (var trx = new TransactionScope())
+                {
+                    EquiposEntity updatedEquipo = new EquiposEntity(
+                    nombre, id);
 
-                EquipoDAO.updateEquipo(updatedEquipo);
+                    EquipoDAO.updateEquipo(updatedEquipo);
+                    trx.Complete();
+                }
             }
             catch (Exception ex)
             {

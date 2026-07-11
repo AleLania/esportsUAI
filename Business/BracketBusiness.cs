@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace Business
 {
@@ -9,27 +10,19 @@ namespace Business
     {
         public void AvanzarGanador(int idPartido)
         {
+            try
+            {
+                using (var trx = new TransactionScope())
+                {
 
+                    trx.Complete();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al avanzar el ganador: " + e.Message);
+            }
         }
 
-        //private BracketsEntity ObtenerBracketActual(int idPartido)
-        //{
-
-        //}
-
-        //private BracketsEntity ObtenerSiguienteBracket(int idPartido)
-        //{
-
-        //}
-
-        private void AgregarEquipo(BracketsEntity bracket, int idEquipo)
-        {
-
-        }
-
-        private void CrearPartido(BracketsEntity bracket)
-        {
-
-        }
     }
 }

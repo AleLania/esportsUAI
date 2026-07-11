@@ -1,5 +1,7 @@
 ﻿using Data;
 using Entities;
+using Microsoft.Data.SqlClient;
+using System.Transactions;
 
 namespace Business
 {
@@ -31,10 +33,14 @@ namespace Business
             try
             {
                 validarJugador(jugador);
+                using (var trx = new TransactionScope())
+                {
+                    JugadorDAO jugadorDAO = new JugadorDAO();
 
-                JugadorDAO jugadorDAO = new JugadorDAO();
+                    jugadorDAO.CargarJugador(jugador);
+                    trx.Complete();
 
-                jugadorDAO.CargarJugador(jugador);
+                }
             }
             catch (Exception ex)
             {
@@ -59,12 +65,14 @@ namespace Business
 
         public void actualizarJugador(JugadoresEntity jugador)
         {
-
             validarJugador(jugador);
+            using (var trx = new TransactionScope())
+            {
+                JugadorDAO jugadorDAO = new JugadorDAO();
 
-            JugadorDAO jugadorDAO = new JugadorDAO();
-
-            jugadorDAO.ActualizarJugador(jugador);
+                jugadorDAO.ActualizarJugador(jugador);
+                trx.Complete();
+            }
         }
     }
 }
