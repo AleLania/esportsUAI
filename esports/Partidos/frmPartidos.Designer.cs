@@ -134,7 +134,7 @@
             btnFiltrarPartidos.TabIndex = 10;
             btnFiltrarPartidos.Text = "Filtrar partidos";
             btnFiltrarPartidos.UseVisualStyleBackColor = true;
-            //btnFiltrarPartidos.Click += btnFiltrarPartidos_Click;
+            btnFiltrarPartidos.Click += btnFiltrarPartidos_Click;
             // 
             // frmPartidos
             // 

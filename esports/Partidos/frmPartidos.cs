@@ -45,8 +45,9 @@ namespace esports.Partidos
             ventana.ShowDialog();
         }
 
-       /* private void btnFiltrarPartidos_Click(object sender, EventArgs e)
-        {try
+        private void btnFiltrarPartidos_Click(object sender, EventArgs e)
+        {
+            try
             {
                 int idEquipo = (int)cmbEquipo.SelectedValue;
                 int idCompetencia = (int)cmbCompetencia.SelectedValue;
@@ -55,10 +56,10 @@ namespace esports.Partidos
                 dgvPartidos.DataSource = PartidoBusiness.getPartidosByEquipoYCompetencia(idEquipo, idCompetencia);
 
             }
-            catch (Exception ex) 
-            { 
-            MessageBox.Show("Error al filtrar partidos: " + ex.Message);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar partidos: " + ex.Message);
             }
-        }*/
+        }
     }
 }
