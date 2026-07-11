@@ -101,6 +101,7 @@
             btnCargarPartidoTorneo.TabIndex = 12;
             btnCargarPartidoTorneo.Text = "Cargar Partido Torneo";
             btnCargarPartidoTorneo.UseVisualStyleBackColor = true;
+            btnCargarPartidoTorneo.Click += btnCargarPartidoTorneo_Click;
             // 
             // lblPartidoTorneo
             // 
