@@ -33,19 +33,26 @@ namespace esports.Partidos
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbDisciplina.SelectedItem == null)
-                return;
+            try
+            {
+                if (cmbDisciplina.SelectedItem == null)
+                    return;
 
-            DisciplinasEntity disciplina =
-                (DisciplinasEntity)cmbDisciplina.SelectedItem;
+                DisciplinasEntity disciplina =
+                    (DisciplinasEntity)cmbDisciplina.SelectedItem;
 
-            List<EquiposEntity> equipos =
-                EquipoBusiness.getEquiposByDisciplina(disciplina.id);
+                List<EquiposEntity> equipos =
+                    EquipoBusiness.getEquiposByDisciplina(disciplina.id);
 
-            cmbEquipo1.DataSource = equipos;
-            cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
+                cmbEquipo1.DataSource = equipos;
+                cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
 
-            cmbEquipoGanador.DataSource = null;
+                cmbEquipoGanador.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
@@ -61,16 +68,24 @@ namespace esports.Partidos
 
         private void CargarGanadores()
         {
-            if (cmbEquipo1.SelectedItem == null || cmbEquipo2.SelectedItem == null)
-                return;
+            try
+            {
+                if (cmbEquipo1.SelectedItem == null || cmbEquipo2.SelectedItem == null)
+                    return;
 
-            List<EquiposEntity> posiblesGanadores =
-                new List<EquiposEntity>();
+                List<EquiposEntity> posiblesGanadores =
+                    new List<EquiposEntity>();
 
-            posiblesGanadores.Add((EquiposEntity)cmbEquipo1.SelectedItem);
-            posiblesGanadores.Add((EquiposEntity)cmbEquipo2.SelectedItem);
+                posiblesGanadores.Add((EquiposEntity)cmbEquipo1.SelectedItem);
+                posiblesGanadores.Add((EquiposEntity)cmbEquipo2.SelectedItem);
 
-            cmbEquipoGanador.DataSource = posiblesGanadores;
+                cmbEquipoGanador.DataSource = posiblesGanadores;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnCargarPartidoTorneo_Click(object sender, EventArgs e)

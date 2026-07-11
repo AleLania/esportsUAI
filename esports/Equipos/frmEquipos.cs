@@ -14,8 +14,16 @@ namespace esports
     {
         public void cargarEquipos()
         {
-            dgvEquipos.DataSource = null;
-            dgvEquipos.DataSource = EquipoBusiness.getEquiposTorneo();
+            try
+            {
+                dgvEquipos.DataSource = null;
+                dgvEquipos.DataSource = EquipoBusiness.getEquiposTorneo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         public frmEquipos()
@@ -25,9 +33,16 @@ namespace esports
 
         private void btnUpdateEquipo_Click(object sender, EventArgs e)
         {
-            frmUpdateEquipos ventana = new frmUpdateEquipos();
-            ventana.ShowDialog();
-            cargarEquipos();
+            try
+            {
+                frmUpdateEquipos ventana = new frmUpdateEquipos();
+                ventana.ShowDialog();
+                cargarEquipos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void frmEquipos_Load(object sender, EventArgs e)

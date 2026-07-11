@@ -13,18 +13,32 @@ namespace esports.Competencias
     {
         public void getDiscplinas()
         {
-            cmbEsport.Items.Clear();
-            cmbEsport.DataSource = DisciplinaBusiness.getDisciplinas();
-            cmbEsport.DisplayMember = "descripcion";
-            cmbEsport.ValueMember = "id";
+            try
+            {
+                cmbEsport.Items.Clear();
+                cmbEsport.DataSource = DisciplinaBusiness.getDisciplinas();
+                cmbEsport.DisplayMember = "descripcion";
+                cmbEsport.ValueMember = "id";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error al obtener las disciplinas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void getCómpetencias()
         {
-            cmbCompetencia.Items.Clear();
-            cmbCompetencia.DataSource = CompetenciasBusiness.getCompetencias();
-            cmbCompetencia.DisplayMember = "descripcion";
-            cmbCompetencia.ValueMember = "id";
+            try
+            {
+                cmbCompetencia.Items.Clear();
+                cmbCompetencia.DataSource = CompetenciasBusiness.getCompetencias();
+                cmbCompetencia.DisplayMember = "descripcion";
+                cmbCompetencia.ValueMember = "id";
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Error al obtener las competencias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

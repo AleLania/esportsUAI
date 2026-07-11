@@ -43,10 +43,17 @@ namespace esports.Equipos
 
         private void frmUpdateEquipos_Load(object sender, EventArgs e)
         {
-            cmbEquipos.Items.Clear();
-            cmbEquipos.DataSource = EquipoBusiness.getEquipos();
-            cmbEquipos.DisplayMember = "nombre";
-            cmbEquipos.ValueMember = "id";
+            try
+            {
+                cmbEquipos.Items.Clear();
+                cmbEquipos.DataSource = EquipoBusiness.getEquipos();
+                cmbEquipos.DisplayMember = "nombre";
+                cmbEquipos.ValueMember = "id";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los equipos: " + ex.Message);
+            }
         }
     }
 }

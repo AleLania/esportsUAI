@@ -25,27 +25,54 @@ namespace esports
 
         private void btnJugadores_Click(object sender, EventArgs e)
         {
-            frmJugadores ventana = new frmJugadores();
-            ventana.ShowDialog();
+            try
+            {
+                frmJugadores ventana = new frmJugadores();
+                ventana.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ventana de jugadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEquipos_Click(object sender, EventArgs e)
         {
-            frmEquipos ventana = new frmEquipos();
-            ventana.ShowDialog();
+            try
+            {
+                frmEquipos ventana = new frmEquipos();
+                ventana.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ventana de equipos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPartidos_Click(object sender, EventArgs e)
         {
-            //aca ventana a partidos
-            frmPartidos ventana = new frmPartidos();
-            ventana.ShowDialog();
+            try
+            {
+                frmPartidos ventana = new frmPartidos();
+                ventana.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ventana de partidos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCompetencias_Click(object sender, EventArgs e)
         {
-            frmResultados ventana = new frmResultados();
-            ventana.ShowDialog();
+            try
+            {
+                frmResultados ventana = new frmResultados();
+                ventana.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ventana de competencias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnBracket_Click(object sender, EventArgs e)
