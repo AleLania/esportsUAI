@@ -10,31 +10,60 @@ namespace Business
     {
         public List<PartidosEntity> ObtenerPartidos()
         {
-            PartidoDAO partidoDAO = new PartidoDAO();
+            try
+            {
+                PartidoDAO partidoDAO = new PartidoDAO();
 
-            return partidoDAO.ObtenerPartidos();
+                return partidoDAO.ObtenerPartidos();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
         public PartidosEntity? ObtenerPartidoPorId(int idPartido)
         {
-            PartidoDAO partidoDAO = new PartidoDAO();
+            try
+            {
+                PartidoDAO partidoDAO = new PartidoDAO();
 
-            return partidoDAO.ObtenerPartidoPorId(idPartido);
+                return partidoDAO.ObtenerPartidoPorId(idPartido);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public void CargarPartido(PartidosEntity partido)
+        public void CargarPartido(PartidosEntity partido, DisciplinasEntity idDisciplina)
         {
-            //metodo de validacion
+            try
+            {
+                //metodos de validacion
+                ValidarPartido(partido);
+                ValidarCantidadJugadores(partido.equipo1, idDisciplina);
+                ValidarCantidadJugadores(partido.equipo2, idDisciplina);
 
-            PartidoDAO partidoDAO = new PartidoDAO();
+                PartidoDAO partidoDAO = new PartidoDAO();
 
-            partidoDAO.CargarPartido(partido);
+                partidoDAO.CargarPartido(partido);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
         //por ahora no se si se va a implementar
-        public void ActualizarPartido(PartidosEntity partido)
+        public void ActualizarPartido(PartidosEntity partido, DisciplinasEntity idDisciplina)
         {
             //validacion
+            ValidarPartido(partido);
+            ValidarCantidadJugadores(partido.equipo1, idDisciplina);
+            ValidarCantidadJugadores(partido.equipo2, idDisciplina);
 
             PartidoDAO partidoDAO = new PartidoDAO();
 
@@ -52,11 +81,14 @@ namespace Business
             if (partido.equipo2 == null)
                 throw new Exception("Debe seleccionar el equipo 2.");
 
-            if (partido.equipo1 == partido.equipo2)
+            if (partido.ganador == null)
+                throw new Exception("Debe seleccionar un ganador");
+
+            if (partido.equipo1.id == partido.equipo2.id)
                 throw new Exception("Un equipo no puede jugar contra sí mismo.");
 
-            if (partido.ganador != partido.equipo1 &&
-                partido.ganador != partido.equipo2)
+            if (partido.ganador.id != partido.equipo1.id &&
+                partido.ganador.id != partido.equipo2.id)
                 throw new Exception("El ganador debe ser uno de los equipos que disputaron el partido.");
         }
 
@@ -100,6 +132,15 @@ namespace Business
             {
                 throw new Exception("Error al obtener los partidos: " + ex.Message);
             }
+        }
+
+        private void ValidarCantidadJugadores(EquiposEntity equipo, DisciplinasEntity disciplina)
+        {
+            int cantidadActual = JugadorDAO.getCantidadJugadores(equipo.id);
+            int cantidadRequerida = DisciplinaBusiness.getCantidadJugadoresDisciplina(disciplina.id);
+
+            if (cantidadActual < cantidadRequerida)
+                throw new Exception("El equipo no cumple con la cantidad mínima de jugadores para la disciplina");
         }
     }
 }

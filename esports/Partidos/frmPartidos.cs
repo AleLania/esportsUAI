@@ -39,12 +39,6 @@ namespace esports.Partidos
             ventana.ShowDialog();
         }
 
-        private void btnCargarPartidoTorneo_Click(object sender, EventArgs e)
-        {
-            frmPartidoTorneo ventana = new frmPartidoTorneo();
-            ventana.ShowDialog();
-        }
-
         private void btnFiltrarPartidos_Click(object sender, EventArgs e)
         {
             try
@@ -62,6 +56,10 @@ namespace esports.Partidos
             }
         }
 
+        private void btnCargarPartidoTorneo_Click_1(object sender, EventArgs e)
+        {
+            frmPartidoTorneo ventana = new frmPartidoTorneo();
+            ventana.ShowDialog();
         private void btnBorrarFiltros_Click(object sender, EventArgs e)
         {
             dgvPartidos.DataSource = null;

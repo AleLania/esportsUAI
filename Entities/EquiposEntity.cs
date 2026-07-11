@@ -11,8 +11,8 @@
         public int PETorneo { get; set; }
         public int puntos { get; set; }
 
-        public EquiposEntity(string nombre, int id) 
-        { 
+        public EquiposEntity(string nombre, int id)
+        {
             this.nombre = nombre;
             this.id = id;
         }
@@ -23,7 +23,7 @@
             this.disciplina = disciplina;
         }
 
-        public EquiposEntity(int id, string nombre, DisciplinasEntity disciplina,int PGTorneo, int PPTorneo, int PETorneo, int puntos)
+        public EquiposEntity(int id, string nombre, DisciplinasEntity disciplina, int PGTorneo, int PPTorneo, int PETorneo, int puntos)
         {
             this.id = id;
             this.nombre = nombre;
@@ -43,7 +43,7 @@
             public int PP { get; set; }
             public int PE { get; set; }
 
-            public EquiposTorneoEntity( EquiposEntity entity)
+            public EquiposTorneoEntity(EquiposEntity entity)
             {
                 this.nombre = entity.nombre;
                 this.puntos = entity.puntos;
@@ -56,6 +56,11 @@
         //arme el constrcutor vacio perdon ale
         public EquiposEntity()
         {
+        }
+
+        public override string ToString()
+        {
+            return nombre;
         }
     }
 }
