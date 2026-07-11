@@ -11,10 +11,6 @@ namespace Entities
         public string Nick { get; set; }
         public EquiposEntity equipo { get; set; }
 
-        //arme este para poder mostrar el nombre del equipo en el dgv
-        public string NombreEquipo { get; set;  }
-
-
         public JugadoresEntity(int id, string nombreApellido, string nick, EquiposEntity equipo)
         {
             IdJugador = id;
