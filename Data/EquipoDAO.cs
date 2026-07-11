@@ -148,5 +148,38 @@ namespace Data
                 throw;
             }
         }
+
+        public static EquiposEntity getEquipoById(int idEquipo)
+        {
+            EquiposEntity equipo = null;
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                using (conexion)
+                {
+                    conexion.Open();
+                    string sql = "SELECT e.*, d.ID_DISCIPLINA,d.DESCRIPCION, d.CANTIDAD_JUGADORES_EQUIPO, d.CANTIDAD_EQUIPOS \r\nFROM Equipos e\r\nINNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA WHERE e.ID_EQUIPO = @idEquipo";
+                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idEquipo", idEquipo);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                DisciplinasEntity disciplina = DisciplinasMapper.Map(reader);
+                                equipo = EquiposMapper.equiposByPuntos(reader, disciplina);
+
+                                return equipo;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return equipo;
+        }
     }
 }

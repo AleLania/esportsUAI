@@ -52,7 +52,7 @@ namespace esports.Jugadores
             {
                 txtNuevoNombre.Text = jugador.NombreApellido;
                 txtNick.Text = jugador.Nick;
-                cmbEquipos.SelectedValue = jugador.IdEquipo;
+                cmbEquipos.SelectedValue = jugador.equipo.id;
             }
         }
 
@@ -60,12 +60,12 @@ namespace esports.Jugadores
         {
             try
             {
-                JugadoresEntity jugador = new JugadoresEntity();
-
-                jugador.IdJugador = Convert.ToInt32(cmbJugador.SelectedValue);
-                jugador.NombreApellido = txtNuevoNombre.Text;
-                jugador.Nick = txtNick.Text;
-                jugador.IdEquipo = Convert.ToInt32(cmbEquipos.SelectedValue);
+                JugadoresEntity jugador = new JugadoresEntity(
+                    Convert.ToInt32(cmbJugador.SelectedValue),
+                    txtNuevoNombre.Text,
+                    txtNick.Text,
+                    Convert.ToInt32(cmbEquipos.SelectedValue)
+                    );
 
                 JugadorBusiness jugadorBusiness = new JugadorBusiness();
 

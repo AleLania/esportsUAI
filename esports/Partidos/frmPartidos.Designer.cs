@@ -46,17 +46,18 @@
             // 
             lblPartidos.AutoSize = true;
             lblPartidos.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPartidos.Location = new Point(107, 278);
+            lblPartidos.Location = new Point(122, 371);
             lblPartidos.Name = "lblPartidos";
-            lblPartidos.Size = new Size(100, 18);
+            lblPartidos.Size = new Size(125, 23);
             lblPartidos.TabIndex = 1;
             lblPartidos.Text = "ABM Partidos";
             // 
             // btnCargarPartidoCopa
             // 
-            btnCargarPartidoCopa.Location = new Point(10, 306);
+            btnCargarPartidoCopa.Location = new Point(11, 408);
+            btnCargarPartidoCopa.Margin = new Padding(3, 4, 3, 4);
             btnCargarPartidoCopa.Name = "btnCargarPartidoCopa";
-            btnCargarPartidoCopa.Size = new Size(139, 37);
+            btnCargarPartidoCopa.Size = new Size(159, 49);
             btnCargarPartidoCopa.TabIndex = 2;
             btnCargarPartidoCopa.Text = "Cargar Partido de Copa";
             btnCargarPartidoCopa.UseVisualStyleBackColor = true;
@@ -64,9 +65,10 @@
             // 
             // btnCargarPartidoTorneo
             // 
-            btnCargarPartidoTorneo.Location = new Point(174, 306);
+            btnCargarPartidoTorneo.Location = new Point(199, 408);
+            btnCargarPartidoTorneo.Margin = new Padding(3, 4, 3, 4);
             btnCargarPartidoTorneo.Name = "btnCargarPartidoTorneo";
-            btnCargarPartidoTorneo.Size = new Size(139, 37);
+            btnCargarPartidoTorneo.Size = new Size(159, 49);
             btnCargarPartidoTorneo.TabIndex = 3;
             btnCargarPartidoTorneo.Text = "Cargar Partido de Torneo";
             btnCargarPartidoTorneo.UseVisualStyleBackColor = true;
@@ -75,65 +77,62 @@
             // dgvPartidos
             // 
             dgvPartidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPartidos.Location = new Point(337, 9);
-            dgvPartidos.Margin = new Padding(3, 2, 3, 2);
+            dgvPartidos.Location = new Point(385, 12);
             dgvPartidos.Name = "dgvPartidos";
             dgvPartidos.RowHeadersWidth = 51;
-            dgvPartidos.Size = new Size(452, 423);
+            dgvPartidos.Size = new Size(517, 564);
             dgvPartidos.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(63, 9);
+            label1.Location = new Point(72, 12);
             label1.Name = "label1";
-            label1.Size = new Size(170, 18);
+            label1.Size = new Size(216, 23);
             label1.TabIndex = 5;
             label1.Text = "Visualizador de Partidos";
             // 
             // cmbEquipo
             // 
             cmbEquipo.FormattingEnabled = true;
-            cmbEquipo.Location = new Point(63, 68);
-            cmbEquipo.Margin = new Padding(3, 2, 3, 2);
+            cmbEquipo.Location = new Point(72, 91);
             cmbEquipo.Name = "cmbEquipo";
-            cmbEquipo.Size = new Size(133, 23);
+            cmbEquipo.Size = new Size(151, 28);
             cmbEquipo.TabIndex = 6;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(67, 45);
+            label2.Location = new Point(77, 60);
             label2.Name = "label2";
-            label2.Size = new Size(44, 15);
+            label2.Size = new Size(56, 20);
             label2.TabIndex = 7;
             label2.Text = "Equipo";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(67, 111);
+            label3.Location = new Point(77, 148);
             label3.Name = "label3";
-            label3.Size = new Size(78, 15);
+            label3.Size = new Size(97, 20);
             label3.TabIndex = 8;
             label3.Text = "Competencia";
             // 
             // cmbCompetencia
             // 
             cmbCompetencia.FormattingEnabled = true;
-            cmbCompetencia.Location = new Point(63, 136);
-            cmbCompetencia.Margin = new Padding(3, 2, 3, 2);
+            cmbCompetencia.Location = new Point(72, 181);
             cmbCompetencia.Name = "cmbCompetencia";
-            cmbCompetencia.Size = new Size(133, 23);
+            cmbCompetencia.Size = new Size(151, 28);
             cmbCompetencia.TabIndex = 9;
             // 
             // btnFiltrarPartidos
             // 
-            btnFiltrarPartidos.Location = new Point(12, 250);
-            btnFiltrarPartidos.Margin = new Padding(3, 4, 3, 4);
+            btnFiltrarPartidos.Location = new Point(11, 271);
+            btnFiltrarPartidos.Margin = new Padding(3, 5, 3, 5);
             btnFiltrarPartidos.Name = "btnFiltrarPartidos";
-            btnFiltrarPartidos.Size = new Size(139, 37);
+            btnFiltrarPartidos.Size = new Size(159, 49);
             btnFiltrarPartidos.TabIndex = 10;
             btnFiltrarPartidos.Text = "Filtrar partidos";
             btnFiltrarPartidos.UseVisualStyleBackColor = true;
@@ -141,8 +140,8 @@
             // 
             // btnBorrarFiltros
             // 
-            btnBorrarFiltros.Location = new Point(199, 250);
-            btnBorrarFiltros.Margin = new Padding(3, 4, 3, 4);
+            btnBorrarFiltros.Location = new Point(199, 271);
+            btnBorrarFiltros.Margin = new Padding(3, 5, 3, 5);
             btnBorrarFiltros.Name = "btnBorrarFiltros";
             btnBorrarFiltros.Size = new Size(159, 49);
             btnBorrarFiltros.TabIndex = 11;
@@ -152,9 +151,9 @@
             // 
             // frmPartidos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(1045, 800);
             Controls.Add(btnBorrarFiltros);
             Controls.Add(btnFiltrarPartidos);
             Controls.Add(cmbCompetencia);
@@ -166,6 +165,7 @@
             Controls.Add(btnCargarPartidoTorneo);
             Controls.Add(btnCargarPartidoCopa);
             Controls.Add(lblPartidos);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmPartidos";
             Text = "Form1";
             Load += Form1_Load;

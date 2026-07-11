@@ -22,16 +22,23 @@ namespace Data
                 {
                     conexion.Open();
 
-                    //arme un join para poder mostrar el equipo en el dgv y no solo el id_equipo
-                    string sql = "SELECT " +
-                        "Jugadores.ID_JUGADOR, " +
-                        "Jugadores.NOMBRE_APELLIDO, " +
-                        "Jugadores.NICK, " +
-                        "Jugadores.ID_EQUIPO, " +
-                        "Equipos.NOMBRE AS NOMBRE_EQUIPO " +
-                        "FROM Jugadores " +
-                        "INNER JOIN Equipos " +
-                        "ON Jugadores.ID_EQUIPO = Equipos.ID_EQUIPO";
+                    string sql = @"SELECT 
+                                    j.ID_JUGADOR,
+                                    j.NOMBRE_APELLIDO,
+                                    j.NICK,
+                                    e.ID_EQUIPO,
+                                    e.NOMBRE AS NOMBRE_EQUIPO,
+                                    e.PG_TORNEO,
+                                    e.PP_TORNEO,
+                                    e.PE_TORNEO,
+                                    e.PUNTOS,
+                                    d.ID_DISCIPLINA,
+                                    d.DESCRIPCION AS DESCRIPCION_DISCIPLINA,
+                                    d.CANTIDAD_JUGADORES_EQUIPO,
+                                    d.CANTIDAD_EQUIPOS
+                                FROM Jugadores j
+                                INNER JOIN Equipos e    ON j.ID_EQUIPO = e.ID_EQUIPO
+                                INNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
@@ -66,7 +73,7 @@ namespace Data
                     {
                         sqlCommand.Parameters.AddWithValue("NombreApellido", jugador.NombreApellido);
                         sqlCommand.Parameters.AddWithValue("Nick", jugador.Nick);
-                        sqlCommand.Parameters.AddWithValue("IdEquipo", jugador.IdEquipo);
+                        sqlCommand.Parameters.AddWithValue("IdEquipo", jugador.equipo.id);
 
                         conexion.Open();
                         sqlCommand.ExecuteNonQuery();
@@ -121,7 +128,7 @@ namespace Data
                         sqlCommand.Parameters.AddWithValue("@IdJugador", jugador.IdJugador);
                         sqlCommand.Parameters.AddWithValue("@NombreApellido", jugador.NombreApellido);
                         sqlCommand.Parameters.AddWithValue("@Nick", jugador.Nick);
-                        sqlCommand.Parameters.AddWithValue("@IdEquipo", jugador.IdEquipo);
+                        sqlCommand.Parameters.AddWithValue("@IdEquipo", jugador.equipo.id);
 
                         conexion.Open();
                         sqlCommand.ExecuteNonQuery();
@@ -143,16 +150,23 @@ namespace Data
             {
                 using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
-                    string sql = "SELECT " +
-                        "Jugadores.ID_JUGADOR, " +
-                        "Jugadores.NOMBRE_APELLIDO, " +
-                        "Jugadores.NICK, " +
-                        "Jugadores.ID_EQUIPO, " +
-                        "Equipos.NOMBRE AS NOMBRE_EQUIPO " +
-                        "FROM Jugadores " +
-                        "INNER JOIN Equipos " +
-                        "ON Jugadores.ID_EQUIPO = Equipos.ID_EQUIPO " +
-                        "WHERE Jugadores.ID_JUGADOR = @idJugador";
+                    string sql = @"SELECT 
+                                    j.ID_JUGADOR,
+                                    j.NOMBRE_APELLIDO,
+                                    j.NICK,
+                                    e.ID_EQUIPO,
+                                    e.NOMBRE AS NOMBRE_EQUIPO,
+                                    e.PG_TORNEO,
+                                    e.PP_TORNEO,
+                                    e.PE_TORNEO,
+                                    e.PUNTOS,
+                                    d.ID_DISCIPLINA,
+                                    d.DESCRIPCION AS DESCRIPCION_DISCIPLINA,
+                                    d.CANTIDAD_JUGADORES_EQUIPO
+                                    d.CANTIDAD_EQUIPOS
+                                FROM Jugadores j
+                                INNER JOIN Equipos e    ON j.ID_EQUIPO = e.ID_EQUIPO
+                                INNER JOIN Disciplinas d ON e.ID_DISCIPLINA = d.ID_DISCIPLINA";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {

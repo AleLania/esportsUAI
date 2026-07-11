@@ -14,7 +14,7 @@ namespace Business
         public static List<EquiposEntity> getEquipos()
         {
             return EquipoDAO.getEquipos();
-            
+
         }
 
         public static List<EquiposEntity.EquiposTorneoEntity> getEquiposTorneo()
@@ -41,8 +41,8 @@ namespace Business
         }
 
 
-         public static List<EquiposEntity> getEquiposByDisciplina(int idDisciplina)
-          {
+        public static List<EquiposEntity> getEquiposByDisciplina(int idDisciplina)
+        {
             try
             {
                 List<EquiposEntity> listOfEquipos = EquipoDAO.getEquiposByDisciplina(idDisciplina);
@@ -53,8 +53,8 @@ namespace Business
             {
                 throw new Exception("Error al obtener equipos por disciplina: " + ex.Message);
             }
-          }
-        public static void insertEquipo(string nombre, int idDisciplina) 
+        }
+        public static void insertEquipo(string nombre, int idDisciplina)
         {
             try
             {
@@ -67,11 +67,11 @@ namespace Business
                 {
                     throw new ArgumentException("La disciplina no debe estar vacia");
                 }
-                if(EquipoDAO.getEquipos().Exists(e => e.nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)))
+                if (EquipoDAO.getEquipos().Exists(e => e.nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)))
                 {
                     throw new ArgumentException("Ya existe un equipo con ese nombre.");
                 }
-                if(EquipoDAO.countEquiposByDisciplina(idDisciplina) == DisciplinaBusiness.getCantidadEquiposDisciplina(idDisciplina))
+                if (EquipoDAO.countEquiposByDisciplina(idDisciplina) == DisciplinaBusiness.getCantidadEquiposDisciplina(idDisciplina))
                 {
                     throw new ArgumentException("No se pueden agregar más de 8 equipos a la disciplina.");
                 }
@@ -102,8 +102,20 @@ namespace Business
             {
                 throw;
             }
-            
+
         }
 
+        public static EquiposEntity getEquipoById(int id)
+        {
+            try
+            {
+                return EquipoDAO.getEquipoById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el equipo por ID: " + ex.Message);
+            }
+
+        }
     }
 }

@@ -32,13 +32,20 @@ namespace esports
 
         private void cargarJugadores()
         {
-            JugadorBusiness jugador = new JugadorBusiness();
+            try
+            {
+                JugadorBusiness jugador = new JugadorBusiness();
 
-            dgvJugadores.DataSource = jugador.obtenerJugadores();
+                dgvJugadores.DataSource = jugador.obtenerJugadores();
 
-            //oculto columnas de id que quedan feo
-            dgvJugadores.Columns["IdJugador"].Visible = false;
-            dgvJugadores.Columns["IdEquipo"].Visible = false;
+                //oculto columnas de id que quedan feo
+                dgvJugadores.Columns["IdJugador"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los jugadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         private void frmJugadores_Load(object sender, EventArgs e)
         {

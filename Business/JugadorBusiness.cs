@@ -19,6 +19,11 @@ namespace Business
 
             if (string.IsNullOrWhiteSpace(jugador.Nick))
                 throw new Exception("El nick no puede estar vacío.");
+
+            EquiposEntity equipoCompleto = EquipoBusiness.getEquipoById(jugador.equipo.id);
+
+            if (JugadorDAO.getCantidadJugadores(jugador.equipo.id) >= equipoCompleto.disciplina.cantidadJugadores)
+                throw new Exception("El equipo ya tiene la cantidad máxima de jugadores.");
         }
 
         public void cargarJugador(JugadoresEntity jugador)

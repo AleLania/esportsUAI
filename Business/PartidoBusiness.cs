@@ -134,7 +134,7 @@ namespace Business
             }
         }
 
-        private void ValidarCantidadJugadores(EquiposEntity equipo, DisciplinasEntity disciplina)
+        public void ValidarCantidadJugadores(EquiposEntity equipo, DisciplinasEntity disciplina)
         {
             int cantidadActual = JugadorDAO.getCantidadJugadores(equipo.id);
             int cantidadRequerida = DisciplinaBusiness.getCantidadJugadoresDisciplina(disciplina.id);
