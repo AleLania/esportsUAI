@@ -34,7 +34,7 @@
             lblGanador = new Label();
             lblEquipo2 = new Label();
             lblEquipo1 = new Label();
-            btnCargarPartidoTorneo = new Button();
+            btnCargarPartidoCopa = new Button();
             lblPartidoTorneo = new Label();
             cmbDisciplina = new ComboBox();
             lblDisciplina = new Label();
@@ -93,15 +93,15 @@
             lblEquipo1.TabIndex = 22;
             lblEquipo1.Text = "Equipo 1";
             // 
-            // btnCargarPartidoTorneo
+            // btnCargarPartidoCopa
             // 
-            btnCargarPartidoTorneo.Location = new Point(34, 252);
-            btnCargarPartidoTorneo.Name = "btnCargarPartidoTorneo";
-            btnCargarPartidoTorneo.Size = new Size(139, 23);
-            btnCargarPartidoTorneo.TabIndex = 21;
-            btnCargarPartidoTorneo.Text = "Cargar Partido Copa";
-            btnCargarPartidoTorneo.UseVisualStyleBackColor = true;
-            btnCargarPartidoTorneo.Click += btnCargarPartidoTorneo_Click;
+            btnCargarPartidoCopa.Location = new Point(34, 252);
+            btnCargarPartidoCopa.Name = "btnCargarPartidoCopa";
+            btnCargarPartidoCopa.Size = new Size(139, 23);
+            btnCargarPartidoCopa.TabIndex = 21;
+            btnCargarPartidoCopa.Text = "Cargar Partido Copa";
+            btnCargarPartidoCopa.UseVisualStyleBackColor = true;
+            btnCargarPartidoCopa.Click += btnCargarPartidoCopa_Click;
             // 
             // lblPartidoTorneo
             // 
@@ -144,7 +144,7 @@
             Controls.Add(lblGanador);
             Controls.Add(lblEquipo2);
             Controls.Add(lblEquipo1);
-            Controls.Add(btnCargarPartidoTorneo);
+            Controls.Add(btnCargarPartidoCopa);
             Controls.Add(lblPartidoTorneo);
             Name = "frmPartidoCopa";
             Text = "frmPartidoCopa";
@@ -161,7 +161,7 @@
         private Label lblGanador;
         private Label lblEquipo2;
         private Label lblEquipo1;
-        private Button btnCargarPartidoTorneo;
+        private Button btnCargarPartidoCopa;
         private Label lblPartidoTorneo;
         private ComboBox cmbDisciplina;
         private Label lblDisciplina;

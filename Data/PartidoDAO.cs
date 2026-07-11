@@ -73,7 +73,7 @@ namespace Data
             {
                 using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
-                    string sql = "INSERT INTO Partidos (EQUIPO1, EQUIPO2, GANADOR, ID_COMPETENCIA) VALUES (@Equipo1, @Equipo2, @Ganador, @IdCompetencia)";
+                    string sql = "INSERT INTO Partidos (EQUIPO1, EQUIPO2, GANADOR, ID_COMPETENCIA) VALUES (@Equipo1, @Equipo2, @Ganador, @IdCompetencia); SELECT SCOPE_IDENTITY()";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
@@ -83,7 +83,10 @@ namespace Data
                         sqlCommand.Parameters.AddWithValue("@IdCompetencia", partido.competencia.id);
 
                         conexion.Open();
-                        sqlCommand.ExecuteNonQuery();
+
+                        object resultado = sqlCommand.ExecuteScalar();
+
+                        partido.id = Convert.ToInt32(resultado);
 
                     }
                 }

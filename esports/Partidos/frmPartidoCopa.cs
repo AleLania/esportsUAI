@@ -80,7 +80,7 @@ namespace esports.Partidos
             cmbEquipoGanador.DataSource = posiblesGanadores;
         }
 
-        private void btnCargarPartidoTorneo_Click(object sender, EventArgs e)
+        private void btnCargarPartidoCopa_Click(object sender, EventArgs e)
         {
             try
             {

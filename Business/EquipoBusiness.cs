@@ -124,5 +124,36 @@ namespace Business
             }
 
         }
+
+        public static void updateResultadosEquipos(PartidosEntity partido)
+        {
+            try
+            {
+                EquiposEntity ganador = partido.ganador;
+                EquiposEntity perdedor;
+
+                if(ganador.id == partido.equipo1.id)
+                {
+                    perdedor = partido.equipo2;
+                }
+                else
+                {
+                    perdedor = partido.equipo1;
+                }
+
+                ganador.PGTorneo++;
+                ganador.puntos += 3;
+                perdedor.PPTorneo++;
+
+                EquipoDAO.updateEstadisticasEquipo(ganador);
+
+                EquipoDAO.updateEstadisticasEquipo(perdedor);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudieron actualizar los resultados", ex);
+            }
+
+        }
     }
 }

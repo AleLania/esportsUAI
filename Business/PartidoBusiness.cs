@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace Business
 {
@@ -18,7 +19,7 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error al obtener partidos", ex);
             }
 
         }
@@ -33,7 +34,7 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error al obtener partido por id", ex);
             }
         }
 
@@ -41,33 +42,55 @@ namespace Business
         {
             try
             {
-                //metodos de validacion
-                ValidarPartido(partido);
-                ValidarCantidadJugadores(partido.equipo1, partido.disciplina);
-                ValidarCantidadJugadores(partido.equipo2, partido.disciplina);
-
                 PartidoDAO partidoDAO = new PartidoDAO();
+                BracketBusiness bracketBusiness = new BracketBusiness();
+                using (var trx = new TransactionScope())
+                {
+                    //metodos de validacion
+                    ValidarPartido(partido);
+                    ValidarCantidadJugadores(partido.equipo1, partido.disciplina);
+                    ValidarCantidadJugadores(partido.equipo2, partido.disciplina);
 
-                partidoDAO.CargarPartido(partido);
+                    partidoDAO.CargarPartido(partido);
+
+                    if (partido.competencia.id == 1)
+                    {
+                        EquipoBusiness.updateResultadosEquipos(partido);
+                    }
+                    else
+                    {
+                        bracketBusiness.ActualizarBracket(partido);
+                    }
+
+                    trx.Complete();
+                }
+
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.ToString());
             }
-
         }
 
         //por ahora no se si se va a implementar
         public void ActualizarPartido(PartidosEntity partido, DisciplinasEntity idDisciplina)
         {
-            //validacion
-            ValidarPartido(partido);
-            ValidarCantidadJugadores(partido.equipo1, idDisciplina);
-            ValidarCantidadJugadores(partido.equipo2, idDisciplina);
+            try
+            {
+                //validacion
+                ValidarPartido(partido);
+                ValidarCantidadJugadores(partido.equipo1, idDisciplina);
+                ValidarCantidadJugadores(partido.equipo2, idDisciplina);
 
-            PartidoDAO partidoDAO = new PartidoDAO();
+                PartidoDAO partidoDAO = new PartidoDAO();
 
-            partidoDAO.ActualizarPartido(partido);
+                partidoDAO.ActualizarPartido(partido);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el resultado del partido", ex);
+            }
+
         }
 
         public void ValidarPartido(PartidosEntity partido)
@@ -142,5 +165,7 @@ namespace Business
             if (cantidadActual < cantidadRequerida)
                 throw new Exception("El equipo no cumple con la cantidad mínima de jugadores para la disciplina");
         }
+
+
     }
 }
