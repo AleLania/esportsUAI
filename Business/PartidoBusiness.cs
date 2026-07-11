@@ -142,5 +142,7 @@ namespace Business
             if (cantidadActual < cantidadRequerida)
                 throw new Exception("El equipo no cumple con la cantidad mínima de jugadores para la disciplina");
         }
+
+
     }
 }

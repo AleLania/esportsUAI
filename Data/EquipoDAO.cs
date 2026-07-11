@@ -190,7 +190,7 @@ namespace Data
                 using (conexion)
                 {
                     conexion.Open();
-                    using (SqlCommand cmd = new SqlCommand("UPDATE Equipos SET PG_TORNEO = @pg, PP_TORNEO = @pp PUNTOS = @puntos WHERE ID_EQUIPO = @id", conexion))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Equipos SET PG_TORNEO = @pg, PP_TORNEO = @pp, PUNTOS = @puntos WHERE ID_EQUIPO = @id", conexion))
                     {
                         cmd.Parameters.AddWithValue("@pg", equipo.PGTorneo);
                         cmd.Parameters.AddWithValue("@pp", equipo.PPTorneo);
