@@ -181,5 +181,29 @@ namespace Data
             }
             return equipo;
         }
+
+        public static void updateEstadisticasEquipo(EquiposEntity equipo)
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                using (conexion)
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Equipos SET PG_TORNEO = @pg, PP_TORNEO = @pp PUNTOS = @puntos WHERE ID_EQUIPO = @id", conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@pg", equipo.PGTorneo);
+                        cmd.Parameters.AddWithValue("@pp", equipo.PPTorneo);
+                        cmd.Parameters.AddWithValue("@puntos", equipo.puntos);
+                        cmd.Parameters.AddWithValue("@id", equipo.id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

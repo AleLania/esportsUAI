@@ -17,7 +17,6 @@ namespace Mapper
                 disciplina,
                 reader["PG_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_TORNEO"]),
                 reader["PP_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_TORNEO"]),
-                reader["PE_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_TORNEO"]),
                 reader["PUNTOS"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS"])
             );
         }
@@ -32,7 +31,6 @@ namespace Mapper
                 disciplina,
                 Convert.ToInt32(reader["PG_EQUIPO" + sufijo]),
                 Convert.ToInt32(reader["PP_EQUIPO" + sufijo]),
-                Convert.ToInt32(reader["PE_EQUIPO" + sufijo]),
                 Convert.ToInt32(reader["PUNTOS_EQUIPO" + sufijo])
             );
         }

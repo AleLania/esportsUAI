@@ -26,27 +26,34 @@ namespace esports.Partidos
                 cmbDisciplina.ValueMember = "id";
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show("No se pudo cargar el Form");
             }
         }
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbDisciplina.SelectedItem == null)
-                return;
+            try
+            {
+                if (cmbDisciplina.SelectedItem == null)
+                    return;
 
-            DisciplinasEntity disciplina =
-                (DisciplinasEntity)cmbDisciplina.SelectedItem;
+                DisciplinasEntity disciplina =
+                    (DisciplinasEntity)cmbDisciplina.SelectedItem;
 
-            List<EquiposEntity> equipos =
-                EquipoBusiness.getEquiposByDisciplina(disciplina.id);
+                List<EquiposEntity> equipos =
+                    EquipoBusiness.getEquiposByDisciplina(disciplina.id);
 
-            cmbEquipo1.DataSource = equipos;
-            cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
+                cmbEquipo1.DataSource = equipos;
+                cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
 
-            cmbEquipoGanador.DataSource = null;
+                cmbEquipoGanador.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo cambiar la disciplina");
+            }
 
         }
 
