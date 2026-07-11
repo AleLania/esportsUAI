@@ -42,11 +42,11 @@ namespace esports.Jugadores
         {
             try
             {
-                JugadoresEntity jugador = new JugadoresEntity();
-
-                jugador.NombreApellido = txtNombreApellido.Text;
-                jugador.IdEquipo = Convert.ToInt32(cmbEquipos.SelectedValue);
-                jugador.Nick = txtNick.Text;
+                JugadoresEntity jugador = new JugadoresEntity(
+                    txtNombreApellido.Text,
+                    txtNick.Text,
+                    Convert.ToInt32(cmbEquipos.SelectedValue)
+                    );
 
                 JugadorBusiness jugadorBusiness = new JugadorBusiness();
 

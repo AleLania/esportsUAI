@@ -7,20 +7,33 @@ using Microsoft.Data.SqlClient;
 
 namespace Mapper
 {
-    public class JugadorMapper
+    public static class JugadorMapper
     {
         public static JugadoresEntity Map(SqlDataReader reader)
         {
-            JugadoresEntity jugador = new JugadoresEntity();
+            DisciplinasEntity disciplina = new DisciplinasEntity(
+                Convert.ToInt32(reader["ID_DISCIPLINA"]),
+                reader["DESCRIPCION_DISCIPLINA"].ToString(),
+                Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]),
+                Convert.ToInt32(reader["CANTIDAD_EQUIPOS"])
+            );
 
-            jugador.IdJugador = Convert.ToInt32(reader["ID_JUGADOR"]);
-            jugador.NombreApellido = reader["NOMBRE_APELLIDO"].ToString();
-            jugador.Nick = reader["NICK"].ToString();
-            jugador.IdEquipo = Convert.ToInt32(reader["ID_EQUIPO"]);
-            // mapeo nombre equipo
-            jugador.NombreEquipo = reader["NOMBRE_EQUIPO"].ToString();
+            EquiposEntity equipo = new EquiposEntity(
+                Convert.ToInt32(reader["ID_EQUIPO"]),
+                reader["NOMBRE_EQUIPO"].ToString(),
+                disciplina,
+                reader["PG_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_TORNEO"]),
+                reader["PP_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_TORNEO"]),
+                reader["PE_TORNEO"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PE_TORNEO"]),
+                reader["PUNTOS"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS"])
+            );
 
-            return jugador;
+            return new JugadoresEntity(
+                Convert.ToInt32(reader["ID_JUGADOR"]),
+                reader["NOMBRE_APELLIDO"].ToString(),
+                reader["NICK"].ToString(),
+                equipo
+            );
         }
     }
 }
