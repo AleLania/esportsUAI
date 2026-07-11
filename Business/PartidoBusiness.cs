@@ -92,13 +92,12 @@ namespace Business
                 throw new Exception("El ganador debe ser uno de los equipos que disputaron el partido.");
         }
 
-        public static List<PartidosEntity.PartidosLayer> getPartidosByEquipoYCompetencia(int idEquipo, int idCompetencia, int idDisciplina)
+        public static List<PartidosEntity.PartidosLayer> getPartidosByEquipoYCompetencia(int idEquipo, int idCompetencia)
         {
             try
             {
-                DisciplinasEntity disciplina = DisciplinasDAO.getDisciplinaById(idDisciplina);
                 PartidoDAO partidoDAO = new PartidoDAO();
-                List<PartidosEntity> partidos = partidoDAO.getPartidosByEquipoYCompetencia(idEquipo, idCompetencia, disciplina);
+                List<PartidosEntity> partidos = partidoDAO.getPartidosByEquipoYCompetencia(idEquipo, idCompetencia);
                 List<PartidosEntity.PartidosLayer> partidosLayer = new List<PartidosEntity.PartidosLayer>();
 
                 foreach (var p in partidos)
@@ -114,12 +113,20 @@ namespace Business
             }
         }
 
-        public static List<PartidosEntity> getPartidos()
+        public static List<PartidosEntity.PartidosLayer> getPartidos()
         {
             try
             {
                 PartidoDAO partidoDAO = new PartidoDAO();
-                return partidoDAO.ObtenerPartidos();
+                List<PartidosEntity> partidos = partidoDAO.ObtenerPartidos();
+                List<PartidosEntity.PartidosLayer> partidosLayer = new List<PartidosEntity.PartidosLayer>();
+
+                foreach (var p in partidos)
+                {
+                    partidosLayer.Add(new PartidosEntity.PartidosLayer(p));
+                }
+
+                return partidosLayer;
             }
             catch (Exception ex)
             {

@@ -8,8 +8,14 @@ namespace Mapper
 {
     public static class PartidoMapper
     {
-        public static PartidosEntity Map(SqlDataReader reader, DisciplinasEntity disciplina)
+        public static PartidosEntity Map(SqlDataReader reader)
         {
+            DisciplinasEntity disciplina = new DisciplinasEntity(
+        Convert.ToInt32(reader["ID_DISCIPLINA"]),
+        reader["DESCRIPCION_DISCIPLINA"].ToString(),
+        Convert.ToInt32(reader["CANTIDAD_JUGADORES_EQUIPO"]),
+        Convert.ToInt32(reader["CANTIDAD_EQUIPOS"])
+    );
             CompetenciasEntity competencia = new CompetenciasEntity(
                 Convert.ToInt32(reader["ID_COMPETENCIA"]),
                 reader["DESCRIPCION_COMPETENCIA"].ToString()
