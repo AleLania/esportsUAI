@@ -37,14 +37,14 @@ namespace Business
             }
         }
 
-        public void CargarPartido(PartidosEntity partido, DisciplinasEntity idDisciplina)
+        public void CargarPartido(PartidosEntity partido)
         {
             try
             {
                 //metodos de validacion
                 ValidarPartido(partido);
-                ValidarCantidadJugadores(partido.equipo1, idDisciplina);
-                ValidarCantidadJugadores(partido.equipo2, idDisciplina);
+                ValidarCantidadJugadores(partido.equipo1, partido.disciplina);
+                ValidarCantidadJugadores(partido.equipo2, partido.disciplina);
 
                 PartidoDAO partidoDAO = new PartidoDAO();
 

@@ -75,15 +75,14 @@ namespace Data
             {
                 using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
                 {
-                    string sql = "INSERT INTO Partidos (EQUIPO1, EQUIPO2, GANADOR, ID_COMPETENCIA, ID_DISCIPLINA) VALUES (@Equipo1, @Equipo2, @Ganador, @IdCompetencia, @IdDisciplina)";
+                    string sql = "INSERT INTO Partidos (EQUIPO1, EQUIPO2, GANADOR, ID_COMPETENCIA) VALUES (@Equipo1, @Equipo2, @Ganador, @IdCompetencia)";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
                     {
-                        sqlCommand.Parameters.AddWithValue("@Equipo1", partido.equipo1);
-                        sqlCommand.Parameters.AddWithValue("@Equipo2", partido.equipo2);
-                        sqlCommand.Parameters.AddWithValue("@Ganador", partido.ganador);
+                        sqlCommand.Parameters.AddWithValue("@Equipo1", partido.equipo1.id);
+                        sqlCommand.Parameters.AddWithValue("@Equipo2", partido.equipo2.id);
+                        sqlCommand.Parameters.AddWithValue("@Ganador", partido.ganador.id);
                         sqlCommand.Parameters.AddWithValue("@IdCompetencia", partido.competencia.id);
-                        sqlCommand.Parameters.AddWithValue("@IdDisciplina", partido.disciplina.id);
 
                         conexion.Open();
                         sqlCommand.ExecuteNonQuery();

@@ -61,7 +61,6 @@ namespace esports.Partidos
             frmPartidoTorneo ventana = new frmPartidoTorneo();
             ventana.ShowDialog();
         }
-
         private void btnBorrarFiltros_Click(object sender, EventArgs e)
         {
             dgvPartidos.DataSource = null;
