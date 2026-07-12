@@ -33,7 +33,7 @@
             lblGanador = new Label();
             lblEquipo1 = new Label();
             btnCargarPartidoCopa = new Button();
-            lblPartidoTorneo = new Label();
+            lblPartidoCopa = new Label();
             cmbDisciplina = new ComboBox();
             lblDisciplina = new Label();
             groupBox1 = new GroupBox();
@@ -84,15 +84,15 @@
             btnCargarPartidoCopa.UseVisualStyleBackColor = true;
             btnCargarPartidoCopa.Click += btnCargarPartidoCopa_Click;
             // 
-            // lblPartidoTorneo
+            // lblPartidoCopa
             // 
-            lblPartidoTorneo.AutoSize = true;
-            lblPartidoTorneo.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPartidoTorneo.Location = new Point(39, 27);
-            lblPartidoTorneo.Name = "lblPartidoTorneo";
-            lblPartidoTorneo.Size = new Size(162, 18);
-            lblPartidoTorneo.TabIndex = 20;
-            lblPartidoTorneo.Text = "Cargar Partido de Copa";
+            lblPartidoCopa.AutoSize = true;
+            lblPartidoCopa.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPartidoCopa.Location = new Point(39, 27);
+            lblPartidoCopa.Name = "lblPartidoCopa";
+            lblPartidoCopa.Size = new Size(162, 18);
+            lblPartidoCopa.TabIndex = 20;
+            lblPartidoCopa.Text = "Cargar Partido de Copa";
             // 
             // cmbDisciplina
             // 
@@ -132,9 +132,10 @@
             Controls.Add(lblDisciplina);
             Controls.Add(lblGanador);
             Controls.Add(lblEquipo1);
-            Controls.Add(lblPartidoTorneo);
+            Controls.Add(lblPartidoCopa);
             Controls.Add(groupBox1);
             Name = "frmPartidoCopa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Cargar Partido de Copa";
             Load += frmPartidoCopa_Load;
             groupBox1.ResumeLayout(false);
@@ -149,7 +150,7 @@
         private Label lblGanador;
         private Label lblEquipo1;
         private Button btnCargarPartidoCopa;
-        private Label lblPartidoTorneo;
+        private Label lblPartidoCopa;
         private ComboBox cmbDisciplina;
         private Label lblDisciplina;
         private GroupBox groupBox1;

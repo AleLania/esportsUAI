@@ -157,6 +157,7 @@
             Controls.Add(lblPartidoTorneo);
             Controls.Add(groupBox1);
             Name = "frmPartidoTorneo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmPartidoTorneo";
             Load += frmPartidoTorneo_Load;
             ResumeLayout(false);

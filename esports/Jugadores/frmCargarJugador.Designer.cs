@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             lblNombre = new Label();
             lblNick = new Label();
             lblEquipo = new Label();
@@ -37,21 +36,15 @@
             cmbEquipos = new ComboBox();
             btnGuardar = new Button();
             btnVolver = new Button();
+            lblAltaJugador = new Label();
+            groupBox1 = new GroupBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(33, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(89, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Alta de Jugador";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(33, 81);
+            lblNombre.Location = new Point(22, 65);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(107, 15);
             lblNombre.TabIndex = 1;
@@ -60,7 +53,7 @@
             // lblNick
             // 
             lblNick.AutoSize = true;
-            lblNick.Location = new Point(33, 119);
+            lblNick.Location = new Point(22, 107);
             lblNick.Name = "lblNick";
             lblNick.Size = new Size(31, 15);
             lblNick.TabIndex = 2;
@@ -69,7 +62,7 @@
             // lblEquipo
             // 
             lblEquipo.AutoSize = true;
-            lblEquipo.Location = new Point(33, 166);
+            lblEquipo.Location = new Point(22, 150);
             lblEquipo.Name = "lblEquipo";
             lblEquipo.Size = new Size(44, 15);
             lblEquipo.TabIndex = 3;
@@ -77,32 +70,32 @@
             // 
             // txtNombreApellido
             // 
-            txtNombreApellido.Location = new Point(165, 78);
+            txtNombreApellido.Location = new Point(154, 62);
             txtNombreApellido.Name = "txtNombreApellido";
-            txtNombreApellido.Size = new Size(100, 23);
+            txtNombreApellido.Size = new Size(122, 23);
             txtNombreApellido.TabIndex = 4;
             // 
             // txtNick
             // 
-            txtNick.Location = new Point(165, 119);
+            txtNick.Location = new Point(154, 103);
             txtNick.Name = "txtNick";
-            txtNick.Size = new Size(100, 23);
+            txtNick.Size = new Size(122, 23);
             txtNick.TabIndex = 5;
             // 
             // cmbEquipos
             // 
             cmbEquipos.FormattingEnabled = true;
-            cmbEquipos.Location = new Point(161, 158);
+            cmbEquipos.Location = new Point(154, 147);
             cmbEquipos.Name = "cmbEquipos";
-            cmbEquipos.Size = new Size(104, 23);
+            cmbEquipos.Size = new Size(122, 23);
             cmbEquipos.TabIndex = 6;
             cmbEquipos.SelectedIndexChanged += cmbEquipos_SelectedIndexChanged;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(56, 227);
+            btnGuardar.Location = new Point(67, 195);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(92, 28);
+            btnGuardar.Size = new Size(132, 32);
             btnGuardar.TabIndex = 7;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -110,7 +103,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(56, 335);
+            btnVolver.Location = new Point(35, 274);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(92, 28);
             btnVolver.TabIndex = 8;
@@ -118,30 +111,50 @@
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
+            // lblAltaJugador
+            // 
+            lblAltaJugador.AutoSize = true;
+            lblAltaJugador.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAltaJugador.Location = new Point(70, 15);
+            lblAltaJugador.Name = "lblAltaJugador";
+            lblAltaJugador.Size = new Size(113, 18);
+            lblAltaJugador.TabIndex = 21;
+            lblAltaJugador.Text = "Alta de Jugador";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(lblAltaJugador);
+            groupBox1.Controls.Add(btnGuardar);
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(269, 247);
+            groupBox1.TabIndex = 22;
+            groupBox1.TabStop = false;
+            // 
             // frmCargarJugador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(293, 271);
             Controls.Add(btnVolver);
-            Controls.Add(btnGuardar);
             Controls.Add(cmbEquipos);
             Controls.Add(txtNick);
             Controls.Add(txtNombreApellido);
             Controls.Add(lblEquipo);
             Controls.Add(lblNick);
             Controls.Add(lblNombre);
-            Controls.Add(label1);
+            Controls.Add(groupBox1);
             Name = "frmCargarJugador";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCargarJugador";
             Load += frmCargarJugador_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Label lblNombre;
         private Label lblNick;
         private Label lblEquipo;
@@ -150,5 +163,7 @@
         private ComboBox cmbEquipos;
         private Button btnGuardar;
         private Button btnVolver;
+        private Label lblAltaJugador;
+        private GroupBox groupBox1;
     }
 }

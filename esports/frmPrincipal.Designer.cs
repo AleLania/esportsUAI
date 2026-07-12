@@ -110,6 +110,7 @@
             Controls.Add(label1);
             Controls.Add(groupBox1);
             Name = "frmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UAI eSports - Menú";
             Load += frmPrincipal_Load;
             ResumeLayout(false);
