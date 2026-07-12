@@ -10,9 +10,9 @@ using System.Transactions;
 
 namespace Business
 {
-    public class BracketBusiness
+    public static class BracketBusiness
     {
-        public void AvanzarGanador(PartidosEntity partido, BracketsEntity bracket)
+        public static  void AvanzarGanador(PartidosEntity partido, BracketsEntity bracket)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Business
         }
 
         //como al cargar un equipo no cargamos automaticamente en la tabla de brackets, armo esto y el bracket se llena a medida que se cargan partidos de Copa
-        public BracketsEntity ObtenerOAsignarBracket(PartidosEntity partido)
+        public static BracketsEntity getOAsignarBracket(PartidosEntity partido)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Business
             }
         }
 
-        public void actualizarBracket(PartidosEntity partido)
+        public static void actualizarBracket(PartidosEntity partido)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace Business
                 using (var trx = new TransactionScope())
                 {
                     //obtengo o asigno el bracket al partido
-                    BracketsEntity bracket = ObtenerOAsignarBracket(partido);
+                    BracketsEntity bracket = getOAsignarBracket(partido);
 
                     //registro el partido en el bracket
                     bracketDAO.asignarPartido(bracket.id, partido.id);
@@ -130,7 +130,7 @@ namespace Business
 
         }
 
-        public void validarEquiposCuartos(PartidosEntity partido)
+        public static void validarEquiposCuartos(PartidosEntity partido)
         {
             try
             {
@@ -174,7 +174,7 @@ namespace Business
             }
         }
 
-        public void armarBracketsCopa(int idDisciplina)
+        public static void armarBracketsCopa(int idDisciplina)
         {
             try
             {
@@ -209,7 +209,7 @@ namespace Business
             }
         }
 
-        public List<BracketsEntity> getBracketsConEquipos(int idDisciplina)
+        public static List<BracketsEntity> getBracketsConEquipos(int idDisciplina)
         {
             BracketDAO bracketDAO = new BracketDAO();
             return bracketDAO.getBracketsConEquipos(idDisciplina);

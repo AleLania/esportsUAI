@@ -206,7 +206,7 @@
         private Label lblPartidos;
         private Button btnCargarPartidoCopa;
         private Button btnCargarPartidoTorneo;
-        private DataGridView dgvPartidos;
+        public DataGridView dgvPartidos;
         private Label label1;
         private ComboBox cmbEquipo;
         private Label label2;

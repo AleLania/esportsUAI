@@ -12,15 +12,19 @@ namespace esports.Partidos
 {
     public partial class frmPartidoTorneo : Form
     {
-        public frmPartidoTorneo()
+        frmPartidos frmPartidos;
+        public frmPartidoTorneo(frmPartidos frmPartidos)
         {
             InitializeComponent();
+            this.frmPartidos = frmPartidos;
+
         }
 
         private void frmPartidoTorneo_Load(object sender, EventArgs e)
         {
             try
             {
+                cmbDisciplina.DataSource = null;
                 cmbDisciplina.DataSource = DisciplinaBusiness.getDisciplinas();
                 cmbDisciplina.DisplayMember = "descripcion";
                 cmbDisciplina.ValueMember = "id";
@@ -45,7 +49,12 @@ namespace esports.Partidos
                     EquipoBusiness.getEquiposByDisciplina(disciplina.id);
 
                 cmbEquipo1.DataSource = equipos;
+                cmbEquipo1.DisplayMember = "nombre";
+                cmbEquipo1.ValueMember = "id";
                 cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
+
+                cmbEquipo2.DisplayMember = "nombre";
+                cmbEquipo2.ValueMember = "id";
 
                 cmbEquipoGanador.DataSource = null;
             }
@@ -80,6 +89,8 @@ namespace esports.Partidos
                 posiblesGanadores.Add((EquiposEntity)cmbEquipo2.SelectedItem);
 
                 cmbEquipoGanador.DataSource = posiblesGanadores;
+                cmbEquipoGanador.DisplayMember = "nombre";
+                cmbEquipoGanador.ValueMember = "id";
             }
             catch (Exception ex)
             {
@@ -104,6 +115,7 @@ namespace esports.Partidos
                 business.CargarPartido(partido);
 
                 MessageBox.Show("Partido cargado correctamente.");
+                frmPartidos.actualizarDgv();
 
                 Close();
             }

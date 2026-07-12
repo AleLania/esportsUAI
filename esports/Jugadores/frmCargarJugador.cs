@@ -54,7 +54,8 @@ namespace esports.Jugadores
 
                 MessageBox.Show("Jugador agregado correctamente");
 
-
+                txtNombreApellido.Clear();
+                txtNick.Clear();
             }
 
             catch (Exception ex)

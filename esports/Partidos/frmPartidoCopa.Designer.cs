@@ -37,6 +37,7 @@
             cmbDisciplina = new ComboBox();
             lblDisciplina = new Label();
             groupBox1 = new GroupBox();
+            label1 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             cmbBracket.Name = "cmbBracket";
             cmbBracket.Size = new Size(121, 23);
             cmbBracket.TabIndex = 25;
+            cmbBracket.SelectedIndexChanged += cmbBracket_SelectedIndexChanged;
             // 
             // lblGanador
             // 
@@ -86,13 +88,11 @@
             // 
             // lblPartidoCopa
             // 
-            lblPartidoCopa.AutoSize = true;
-            lblPartidoCopa.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPartidoCopa.Location = new Point(39, 27);
+            lblPartidoCopa.Location = new Point(0, 0);
+            lblPartidoCopa.Margin = new Padding(2, 0, 2, 0);
             lblPartidoCopa.Name = "lblPartidoCopa";
-            lblPartidoCopa.Size = new Size(162, 18);
-            lblPartidoCopa.TabIndex = 20;
-            lblPartidoCopa.Text = "Cargar Partido de Copa";
+            lblPartidoCopa.Size = new Size(70, 14);
+            lblPartidoCopa.TabIndex = 30;
             // 
             // cmbDisciplina
             // 
@@ -114,6 +114,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cmbBracket);
             groupBox1.Controls.Add(cmbEquipoGanador);
             groupBox1.Controls.Add(btnCargarPartidoCopa);
@@ -122,6 +123,16 @@
             groupBox1.Size = new Size(224, 237);
             groupBox1.TabIndex = 30;
             groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(36, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(162, 18);
+            label1.TabIndex = 28;
+            label1.Text = "Cargar Partido de Copa";
             // 
             // frmPartidoCopa
             // 
@@ -139,6 +150,7 @@
             Text = "Cargar Partido de Copa";
             Load += frmPartidoCopa_Load;
             groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -154,5 +166,6 @@
         private ComboBox cmbDisciplina;
         private Label lblDisciplina;
         private GroupBox groupBox1;
+        private Label label1;
     }
 }

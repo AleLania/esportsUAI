@@ -43,7 +43,6 @@ namespace Business
             try
             {
                 PartidoDAO partidoDAO = new PartidoDAO();
-                BracketBusiness bracketBusiness = new BracketBusiness();
                 using (var trx = new TransactionScope())
                 {
                     //metodos de validacion
@@ -59,7 +58,7 @@ namespace Business
                     }
                     else
                     {
-                        bracketBusiness.actualizarBracket(partido);
+                        BracketBusiness.actualizarBracket(partido);
                     }
 
                     trx.Complete();

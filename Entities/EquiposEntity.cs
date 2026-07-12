@@ -39,7 +39,6 @@
             public int puntos { get; set; }
             public int PG { get; set; }
             public int PP { get; set; }
-            public int PE { get; set; }
 
             public EquiposTorneoEntity(EquiposEntity entity)
             {
