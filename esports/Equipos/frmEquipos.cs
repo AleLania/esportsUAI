@@ -35,7 +35,7 @@ namespace esports
         {
             try
             {
-                frmUpdateEquipos ventana = new frmUpdateEquipos();
+                frmUpdateEquipos ventana = new frmUpdateEquipos(this);
                 ventana.ShowDialog();
                 cargarEquipos();
             }
@@ -52,7 +52,7 @@ namespace esports
 
         private void btnAddEquipo_Click(object sender, EventArgs e)
         {
-            frmAddEquipos ventana = new frmAddEquipos();
+            frmAddEquipos ventana = new frmAddEquipos(this);
             ventana.ShowDialog();
             cargarEquipos();
         }

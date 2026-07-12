@@ -13,9 +13,11 @@ namespace esports.Equipos
     public partial class frmAddEquipos : Form
     {
         frmEquipos frmEquipos;
-        public frmAddEquipos()
+        public frmAddEquipos(frmEquipos frmEquipos)
         {
             InitializeComponent();
+            this.frmEquipos = frmEquipos;
+
         }
 
         private void InitializeComponent()

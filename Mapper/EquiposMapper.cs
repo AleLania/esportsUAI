@@ -29,9 +29,9 @@ namespace Mapper
                 Convert.ToInt32(reader["ID_EQUIPO" + sufijo]),
                 reader["NOMBRE_EQUIPO" + sufijo]?.ToString() ?? string.Empty,
                 disciplina,
-                Convert.ToInt32(reader["PG_EQUIPO" + sufijo]),
-                Convert.ToInt32(reader["PP_EQUIPO" + sufijo]),
-                Convert.ToInt32(reader["PUNTOS_EQUIPO" + sufijo])
+                reader["PG_EQUIPO" + sufijo] == DBNull.Value ? 0 : Convert.ToInt32(reader["PG_EQUIPO" + sufijo]),
+                reader["PP_EQUIPO" + sufijo] == DBNull.Value ? 0 : Convert.ToInt32(reader["PP_EQUIPO" + sufijo]),
+                reader["PUNTOS_EQUIPO" + sufijo] == DBNull.Value ? 0 : Convert.ToInt32(reader["PUNTOS_EQUIPO" + sufijo])
             );
         }
 

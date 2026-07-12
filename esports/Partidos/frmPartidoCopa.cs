@@ -45,8 +45,7 @@ namespace esports.Partidos
                 List<EquiposEntity> equipos =
                     EquipoBusiness.getEquiposByDisciplina(disciplina.id);
 
-                cmbEquipo1.DataSource = equipos;
-                cmbEquipo2.DataSource = new List<EquiposEntity>(equipos);
+                cmbBracket.DataSource = equipos;
 
                 cmbEquipoGanador.DataSource = null;
             }
@@ -57,46 +56,48 @@ namespace esports.Partidos
 
         }
 
-        private void cmbEquipo1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbBracket_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarGanadores();
+            try
+            {
+                if (cmbBracket.SelectedItem == null) return;
+
+                BracketsEntity bracket = (BracketsEntity)cmbBracket.SelectedItem;
+
+                List<EquiposEntity> posiblesGanadores = new List<EquiposEntity>();
+                if (bracket.equipo1 != null) posiblesGanadores.Add(bracket.equipo1);
+                if (bracket.equipo2 != null) posiblesGanadores.Add(bracket.equipo2);
+
+                cmbEquipoGanador.DataSource = posiblesGanadores;
+                cmbEquipoGanador.DisplayMember = "nombre";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar equipos: " + ex.Message);
+            }
         }
 
-        private void cmbEquipo2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarGanadores();
-        }
-        private void CargarGanadores()
-        {
-            if (cmbEquipo1.SelectedItem == null || cmbEquipo2.SelectedItem == null)
-                return;
-
-            List<EquiposEntity> posiblesGanadores =
-                new List<EquiposEntity>();
-
-            posiblesGanadores.Add((EquiposEntity)cmbEquipo1.SelectedItem);
-            posiblesGanadores.Add((EquiposEntity)cmbEquipo2.SelectedItem);
-
-            cmbEquipoGanador.DataSource = posiblesGanadores;
-        }
 
         private void btnCargarPartidoCopa_Click(object sender, EventArgs e)
         {
             try
             {
+                BracketsEntity bracket = (BracketsEntity)cmbBracket.SelectedItem;
+                EquiposEntity ganador = (EquiposEntity)cmbEquipoGanador.SelectedItem;
+                DisciplinasEntity disciplina = (DisciplinasEntity)cmbDisciplina.SelectedItem;
+
                 PartidosEntity partido = new PartidosEntity(
-                    (EquiposEntity)cmbEquipo1.SelectedItem,
-                    (EquiposEntity)cmbEquipo2.SelectedItem,
-                    (EquiposEntity)cmbEquipoGanador.SelectedItem,
+                    bracket.equipo1,
+                    bracket.equipo2,
+                    ganador,
                     new CompetenciasEntity(2, "Copa"),
-                    (DisciplinasEntity)cmbDisciplina.SelectedItem);
+                    disciplina
+                );
 
                 PartidoBusiness business = new PartidoBusiness();
-
                 business.CargarPartido(partido);
 
                 MessageBox.Show("Partido cargado correctamente.");
-
                 Close();
             }
             catch (Exception ex)

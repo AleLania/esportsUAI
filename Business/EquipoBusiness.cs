@@ -57,32 +57,35 @@ namespace Business
         {
             try
             {
-
                 if (string.IsNullOrEmpty(nombre))
-                {
                     throw new ArgumentException("El nombre del equipo no puede estar vacío.");
-                }
-                if (idDisciplina == null)
-                {
-                    throw new ArgumentException("La disciplina no debe estar vacia");
-                }
+
                 if (EquipoDAO.getEquipos().Exists(e => e.nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)))
-                {
                     throw new ArgumentException("Ya existe un equipo con ese nombre.");
-                }
-                if (EquipoDAO.countEquiposByDisciplina(idDisciplina) == DisciplinaBusiness.getCantidadEquiposDisciplina(idDisciplina))
-                {
+
+                int cantidadActual = EquipoDAO.countEquiposByDisciplina(idDisciplina);
+                int cantidadMaxima = DisciplinaBusiness.getCantidadEquiposDisciplina(idDisciplina);
+
+                if (cantidadActual == cantidadMaxima)
                     throw new ArgumentException("No se pueden agregar más de 8 equipos a la disciplina.");
-                }
+
                 using (var trx = new TransactionScope())
                 {
                     EquiposEntity newEquipo = new EquiposEntity(
-                nombre, DisciplinaBusiness.getDisciplinaById(idDisciplina));
+                        nombre, DisciplinaBusiness.getDisciplinaById(idDisciplina));
                     EquipoDAO.insertEquipo(newEquipo);
+
+                    // si con este equipo se completa el cupo, armamos los brackets
+                    if (cantidadActual + 1 == cantidadMaxima)
+                    {
+                        BracketBusiness bracketBusiness = new BracketBusiness();
+                        bracketBusiness.armarBracketsCopa(idDisciplina);
+                    }
+
                     trx.Complete();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

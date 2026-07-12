@@ -13,9 +13,11 @@ namespace esports.Equipos
     public partial class frmUpdateEquipos : frmAddEquipos
     {
         frmEquipos frmEquiposs = new frmEquipos();
-        public frmUpdateEquipos()
+
+        public frmUpdateEquipos(frmEquipos frmEquipos) : base(frmEquipos)
         {
             InitializeComponent();
+            this.frmEquiposs = frmEquipos;
             cmbEsport.Visible = false;
             label2.Visible = false;
         }
