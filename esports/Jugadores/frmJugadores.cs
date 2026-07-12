@@ -36,9 +36,8 @@ namespace esports
             {
                 JugadorBusiness jugador = new JugadorBusiness();
 
-                dgvJugadores.DataSource = jugador.obtenerJugadores();
+                dgvJugadores.DataSource = jugador.getJugadores();
 
-                //oculto columnas de id que quedan feo
                 dgvJugadores.Columns["IdJugador"].Visible = false;
             }
             catch (Exception ex)

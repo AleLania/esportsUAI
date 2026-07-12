@@ -205,5 +205,34 @@ namespace Data
                 throw;
             }
         }
+
+        public static bool existeNombre(string nombre, int idEquipo)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    string sql = @"SELECT COUNT(*)
+                           FROM Equipos
+                           WHERE NOMBRE = @Nombre
+                           AND ID_EQUIPO <> @IdEquipo";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("Nombre", nombre);
+                        sqlCommand.Parameters.AddWithValue("IdEquipo", idEquipo);
+
+                        conexion.Open();
+                        int cantidad = (int)sqlCommand.ExecuteScalar();
+
+                        return cantidad > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

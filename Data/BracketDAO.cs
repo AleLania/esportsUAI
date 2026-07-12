@@ -391,13 +391,11 @@
                     e1.NOMBRE                   AS NOMBRE_EQUIPO1,
                     e1.PG_TORNEO                AS PG_EQUIPO1,
                     e1.PP_TORNEO                AS PP_EQUIPO1,
-                    e1.PE_TORNEO                AS PE_EQUIPO1,
                     e1.PUNTOS                   AS PUNTOS_EQUIPO1,
                     e2.ID_EQUIPO                AS ID_EQUIPO2,
                     e2.NOMBRE                   AS NOMBRE_EQUIPO2,
                     e2.PG_TORNEO                AS PG_EQUIPO2,
                     e2.PP_TORNEO                AS PP_EQUIPO2,
-                    e2.PE_TORNEO                AS PE_EQUIPO2,
                     e2.PUNTOS                   AS PUNTOS_EQUIPO2
                 FROM Brackets b
                 INNER JOIN Disciplinas d ON b.ID_DISCIPLINA = d.ID_DISCIPLINA
