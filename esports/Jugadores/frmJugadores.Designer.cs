@@ -118,6 +118,7 @@
             Controls.Add(lblJugadores);
             Controls.Add(groupBox1);
             Name = "frmJugadores";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestión de Jugadores";
             Load += frmJugadores_Load;
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).EndInit();

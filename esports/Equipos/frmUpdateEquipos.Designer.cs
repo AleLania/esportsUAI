@@ -30,82 +30,97 @@
         {
             cmbEquipos = new ComboBox();
             label4 = new Label();
+            btnSave = new Button();
+            txtNombreEquipo = new TextBox();
+            lblModificarEquipo = new Label();
+            lblNuevoNombre = new Label();
+            groupBox1 = new GroupBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnSave
-            // 
-            btnSave.Location = new Point(77, 275);
-            btnSave.Margin = new Padding(2);
-            btnSave.Size = new Size(174, 58);
-            btnSave.Click += btnSave_Click;
-            // 
-            // txtNombreEquipo
-            // 
-            txtNombreEquipo.Location = new Point(90, 191);
-            txtNombreEquipo.Margin = new Padding(2);
-            txtNombreEquipo.Size = new Size(140, 27);
-            // 
-            // cmbEsport
-            // 
-            cmbEsport.Location = new Point(244, 305);
-            cmbEsport.Margin = new Padding(2);
-            cmbEsport.Size = new Size(146, 28);
-            // 
-            // label1
-            // 
-            label1.Location = new Point(90, 154);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            // 
-            // label2
-            // 
-            label2.Location = new Point(244, 272);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            // 
-            // label3
-            // 
-            label3.Location = new Point(10, 17);
-            label3.Margin = new Padding(2, 0, 2, 0);
-            label3.Size = new Size(124, 20);
-            label3.Text = "Modificar Equipo";
             // 
             // cmbEquipos
             // 
             cmbEquipos.FormattingEnabled = true;
-            cmbEquipos.Location = new Point(90, 108);
+            cmbEquipos.Location = new Point(141, 72);
             cmbEquipos.Margin = new Padding(2);
             cmbEquipos.Name = "cmbEquipos";
-            cmbEquipos.Size = new Size(146, 28);
+            cmbEquipos.Size = new Size(128, 23);
             cmbEquipos.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(90, 78);
+            label4.Location = new Point(24, 75);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(131, 20);
+            label4.Size = new Size(103, 15);
             label4.TabIndex = 7;
             label4.Text = "Seleccione equipo";
             // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(78, 176);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(132, 32);
+            btnSave.TabIndex = 8;
+            btnSave.Text = "Modificar Equipo";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // txtNombreEquipo
+            // 
+            txtNombreEquipo.Location = new Point(169, 116);
+            txtNombreEquipo.Name = "txtNombreEquipo";
+            txtNombreEquipo.Size = new Size(100, 23);
+            txtNombreEquipo.TabIndex = 9;
+            // 
+            // lblModificarEquipo
+            // 
+            lblModificarEquipo.AutoSize = true;
+            lblModificarEquipo.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblModificarEquipo.Location = new Point(91, 19);
+            lblModificarEquipo.Name = "lblModificarEquipo";
+            lblModificarEquipo.Size = new Size(119, 18);
+            lblModificarEquipo.TabIndex = 22;
+            lblModificarEquipo.Text = "Modificar Equipo";
+            // 
+            // lblNuevoNombre
+            // 
+            lblNuevoNombre.AutoSize = true;
+            lblNuevoNombre.Location = new Point(24, 119);
+            lblNuevoNombre.Margin = new Padding(2, 0, 2, 0);
+            lblNuevoNombre.Name = "lblNuevoNombre";
+            lblNuevoNombre.Size = new Size(89, 15);
+            lblNuevoNombre.TabIndex = 23;
+            lblNuevoNombre.Text = "Nuevo Nombre";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(lblModificarEquipo);
+            groupBox1.Controls.Add(btnSave);
+            groupBox1.Location = new Point(12, 6);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(277, 224);
+            groupBox1.TabIndex = 24;
+            groupBox1.TabStop = false;
+            // 
             // frmUpdateEquipos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(356, 355);
+            ClientSize = new Size(304, 243);
+            Controls.Add(lblNuevoNombre);
+            Controls.Add(txtNombreEquipo);
             Controls.Add(label4);
             Controls.Add(cmbEquipos);
+            Controls.Add(groupBox1);
             Margin = new Padding(2);
             Name = "frmUpdateEquipos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += frmUpdateEquipos_Load;
-            Controls.SetChildIndex(btnSave, 0);
-            Controls.SetChildIndex(txtNombreEquipo, 0);
-            Controls.SetChildIndex(cmbEsport, 0);
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(label2, 0);
-            Controls.SetChildIndex(label3, 0);
-            Controls.SetChildIndex(cmbEquipos, 0);
-            Controls.SetChildIndex(label4, 0);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +129,10 @@
 
         private ComboBox cmbEquipos;
         private Label label4;
+        private Button btnSave;
+        private TextBox txtNombreEquipo;
+        private Label lblModificarEquipo;
+        private Label lblNuevoNombre;
+        private GroupBox groupBox1;
     }
 }

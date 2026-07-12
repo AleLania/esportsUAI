@@ -189,6 +189,7 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
             Name = "frmPartidos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Visualizador y Gestor de Partidos";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPartidos).EndInit();
