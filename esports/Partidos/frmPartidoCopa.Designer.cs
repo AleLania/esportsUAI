@@ -36,52 +36,49 @@
             lblPartidoTorneo = new Label();
             cmbDisciplina = new ComboBox();
             lblDisciplina = new Label();
+            groupBox1 = new GroupBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // cmbEquipoGanador
             // 
             cmbEquipoGanador.FormattingEnabled = true;
-            cmbEquipoGanador.Location = new Point(233, 327);
-            cmbEquipoGanador.Margin = new Padding(4, 5, 4, 5);
+            cmbEquipoGanador.Location = new Point(90, 142);
             cmbEquipoGanador.Name = "cmbEquipoGanador";
-            cmbEquipoGanador.Size = new Size(171, 33);
+            cmbEquipoGanador.Size = new Size(121, 23);
             cmbEquipoGanador.TabIndex = 27;
             // 
             // cmbBracket
             // 
             cmbBracket.FormattingEnabled = true;
-            cmbBracket.Location = new Point(233, 172);
-            cmbBracket.Margin = new Padding(4, 5, 4, 5);
+            cmbBracket.Location = new Point(90, 91);
             cmbBracket.Name = "cmbBracket";
-            cmbBracket.Size = new Size(171, 33);
+            cmbBracket.Size = new Size(121, 23);
             cmbBracket.TabIndex = 25;
             // 
             // lblGanador
             // 
             lblGanador.AutoSize = true;
-            lblGanador.Location = new Point(50, 332);
-            lblGanador.Margin = new Padding(4, 0, 4, 0);
+            lblGanador.Location = new Point(14, 158);
             lblGanador.Name = "lblGanador";
-            lblGanador.Size = new Size(80, 25);
+            lblGanador.Size = new Size(52, 15);
             lblGanador.TabIndex = 24;
             lblGanador.Text = "Ganador";
             // 
             // lblEquipo1
             // 
             lblEquipo1.AutoSize = true;
-            lblEquipo1.Location = new Point(49, 177);
-            lblEquipo1.Margin = new Padding(4, 0, 4, 0);
+            lblEquipo1.Location = new Point(14, 106);
             lblEquipo1.Name = "lblEquipo1";
-            lblEquipo1.Size = new Size(69, 25);
+            lblEquipo1.Size = new Size(46, 15);
             lblEquipo1.TabIndex = 22;
             lblEquipo1.Text = "Bracket";
             // 
             // btnCargarPartidoCopa
             // 
-            btnCargarPartidoCopa.Location = new Point(49, 420);
-            btnCargarPartidoCopa.Margin = new Padding(4, 5, 4, 5);
+            btnCargarPartidoCopa.Location = new Point(48, 185);
             btnCargarPartidoCopa.Name = "btnCargarPartidoCopa";
-            btnCargarPartidoCopa.Size = new Size(199, 38);
+            btnCargarPartidoCopa.Size = new Size(132, 32);
             btnCargarPartidoCopa.TabIndex = 21;
             btnCargarPartidoCopa.Text = "Cargar Partido Copa";
             btnCargarPartidoCopa.UseVisualStyleBackColor = true;
@@ -91,50 +88,56 @@
             // 
             lblPartidoTorneo.AutoSize = true;
             lblPartidoTorneo.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPartidoTorneo.Location = new Point(34, 55);
-            lblPartidoTorneo.Margin = new Padding(4, 0, 4, 0);
+            lblPartidoTorneo.Location = new Point(39, 27);
             lblPartidoTorneo.Name = "lblPartidoTorneo";
-            lblPartidoTorneo.Size = new Size(250, 28);
+            lblPartidoTorneo.Size = new Size(162, 18);
             lblPartidoTorneo.TabIndex = 20;
             lblPartidoTorneo.Text = "Cargar Partido de Copa";
             // 
             // cmbDisciplina
             // 
             cmbDisciplina.FormattingEnabled = true;
-            cmbDisciplina.Location = new Point(234, 105);
-            cmbDisciplina.Margin = new Padding(4, 5, 4, 5);
+            cmbDisciplina.Location = new Point(102, 64);
             cmbDisciplina.Name = "cmbDisciplina";
-            cmbDisciplina.Size = new Size(171, 33);
+            cmbDisciplina.Size = new Size(121, 23);
             cmbDisciplina.TabIndex = 29;
             cmbDisciplina.SelectedIndexChanged += cmbDisciplina_SelectedIndexChanged;
             // 
             // lblDisciplina
             // 
             lblDisciplina.AutoSize = true;
-            lblDisciplina.Location = new Point(50, 110);
-            lblDisciplina.Margin = new Padding(4, 0, 4, 0);
+            lblDisciplina.Location = new Point(14, 66);
             lblDisciplina.Name = "lblDisciplina";
-            lblDisciplina.Size = new Size(87, 25);
+            lblDisciplina.Size = new Size(58, 15);
             lblDisciplina.TabIndex = 28;
             lblDisciplina.Text = "Disciplina";
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(cmbBracket);
+            groupBox1.Controls.Add(cmbEquipoGanador);
+            groupBox1.Controls.Add(btnCargarPartidoCopa);
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(224, 237);
+            groupBox1.TabIndex = 30;
+            groupBox1.TabStop = false;
+            // 
             // frmPartidoCopa
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(481, 537);
+            ClientSize = new Size(258, 271);
             Controls.Add(cmbDisciplina);
             Controls.Add(lblDisciplina);
-            Controls.Add(cmbEquipoGanador);
-            Controls.Add(cmbBracket);
             Controls.Add(lblGanador);
             Controls.Add(lblEquipo1);
-            Controls.Add(btnCargarPartidoCopa);
             Controls.Add(lblPartidoTorneo);
-            Margin = new Padding(4, 5, 4, 5);
+            Controls.Add(groupBox1);
             Name = "frmPartidoCopa";
-            Text = "frmPartidoCopa";
+            Text = "Cargar Partido de Copa";
             Load += frmPartidoCopa_Load;
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -149,5 +152,6 @@
         private Label lblPartidoTorneo;
         private ComboBox cmbDisciplina;
         private Label lblDisciplina;
+        private GroupBox groupBox1;
     }
 }

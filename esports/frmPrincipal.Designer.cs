@@ -39,19 +39,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(26, 36);
+            label1.Location = new Point(23, 27);
             label1.Name = "label1";
-            label1.Size = new Size(225, 30);
+            label1.Size = new Size(181, 24);
             label1.TabIndex = 0;
             label1.Text = "Gestión de eSports";
             // 
             // btnJugadores
             // 
             btnJugadores.Font = new Font("Bahnschrift", 11F);
-            btnJugadores.Location = new Point(26, 94);
-            btnJugadores.Margin = new Padding(3, 4, 3, 4);
+            btnJugadores.Location = new Point(23, 70);
             btnJugadores.Name = "btnJugadores";
-            btnJugadores.Size = new Size(130, 50);
+            btnJugadores.Size = new Size(114, 38);
             btnJugadores.TabIndex = 1;
             btnJugadores.Text = "Jugadores";
             btnJugadores.UseVisualStyleBackColor = true;
@@ -60,10 +59,9 @@
             // btnEquipos
             // 
             btnEquipos.Font = new Font("Bahnschrift", 11F);
-            btnEquipos.Location = new Point(26, 152);
-            btnEquipos.Margin = new Padding(3, 4, 3, 4);
+            btnEquipos.Location = new Point(23, 114);
             btnEquipos.Name = "btnEquipos";
-            btnEquipos.Size = new Size(130, 50);
+            btnEquipos.Size = new Size(114, 38);
             btnEquipos.TabIndex = 2;
             btnEquipos.Text = "Equipos";
             btnEquipos.UseVisualStyleBackColor = true;
@@ -72,10 +70,9 @@
             // btnPartidos
             // 
             btnPartidos.Font = new Font("Bahnschrift", 11F);
-            btnPartidos.Location = new Point(26, 210);
-            btnPartidos.Margin = new Padding(3, 4, 3, 4);
+            btnPartidos.Location = new Point(23, 158);
             btnPartidos.Name = "btnPartidos";
-            btnPartidos.Size = new Size(130, 50);
+            btnPartidos.Size = new Size(114, 38);
             btnPartidos.TabIndex = 3;
             btnPartidos.Text = "Partidos";
             btnPartidos.UseVisualStyleBackColor = true;
@@ -84,10 +81,9 @@
             // btnCompetencias
             // 
             btnCompetencias.Font = new Font("Bahnschrift", 11F);
-            btnCompetencias.Location = new Point(26, 266);
-            btnCompetencias.Margin = new Padding(3, 4, 3, 4);
+            btnCompetencias.Location = new Point(23, 200);
             btnCompetencias.Name = "btnCompetencias";
-            btnCompetencias.Size = new Size(130, 70);
+            btnCompetencias.Size = new Size(114, 52);
             btnCompetencias.TabIndex = 4;
             btnCompetencias.Text = "Competencias";
             btnCompetencias.UseVisualStyleBackColor = true;
@@ -95,17 +91,16 @@
             // 
             // frmPrincipal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(btnCompetencias);
             Controls.Add(btnPartidos);
             Controls.Add(btnEquipos);
             Controls.Add(btnJugadores);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmPrincipal";
-            Text = "frmPrincipal";
+            Text = "UAI eSports - Menú";
             Load += frmPrincipal_Load;
             ResumeLayout(false);
             PerformLayout();

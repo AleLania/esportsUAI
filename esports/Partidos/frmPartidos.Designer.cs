@@ -39,14 +39,18 @@
             cmbCompetencia = new ComboBox();
             btnFiltrarPartidos = new Button();
             btnBorrarFiltros = new Button();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dgvPartidos).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // lblPartidos
             // 
             lblPartidos.AutoSize = true;
             lblPartidos.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPartidos.Location = new Point(107, 278);
+            lblPartidos.Location = new Point(42, 19);
             lblPartidos.Name = "lblPartidos";
             lblPartidos.Size = new Size(100, 18);
             lblPartidos.TabIndex = 1;
@@ -54,7 +58,7 @@
             // 
             // btnCargarPartidoCopa
             // 
-            btnCargarPartidoCopa.Location = new Point(10, 306);
+            btnCargarPartidoCopa.Location = new Point(21, 58);
             btnCargarPartidoCopa.Name = "btnCargarPartidoCopa";
             btnCargarPartidoCopa.Size = new Size(139, 37);
             btnCargarPartidoCopa.TabIndex = 2;
@@ -64,7 +68,7 @@
             // 
             // btnCargarPartidoTorneo
             // 
-            btnCargarPartidoTorneo.Location = new Point(174, 306);
+            btnCargarPartidoTorneo.Location = new Point(12, 115);
             btnCargarPartidoTorneo.Name = "btnCargarPartidoTorneo";
             btnCargarPartidoTorneo.Size = new Size(157, 37);
             btnCargarPartidoTorneo.TabIndex = 3;
@@ -75,18 +79,18 @@
             // dgvPartidos
             // 
             dgvPartidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPartidos.Location = new Point(337, 9);
+            dgvPartidos.Location = new Point(206, 9);
             dgvPartidos.Margin = new Padding(3, 2, 3, 2);
             dgvPartidos.Name = "dgvPartidos";
             dgvPartidos.RowHeadersWidth = 51;
-            dgvPartidos.Size = new Size(565, 580);
+            dgvPartidos.Size = new Size(565, 501);
             dgvPartidos.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(63, 9);
+            label1.Location = new Point(13, 27);
             label1.Name = "label1";
             label1.Size = new Size(170, 18);
             label1.TabIndex = 5;
@@ -95,7 +99,7 @@
             // cmbEquipo
             // 
             cmbEquipo.FormattingEnabled = true;
-            cmbEquipo.Location = new Point(63, 68);
+            cmbEquipo.Location = new Point(21, 75);
             cmbEquipo.Margin = new Padding(3, 2, 3, 2);
             cmbEquipo.Name = "cmbEquipo";
             cmbEquipo.Size = new Size(133, 23);
@@ -104,7 +108,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(67, 45);
+            label2.Location = new Point(59, 48);
             label2.Name = "label2";
             label2.Size = new Size(44, 15);
             label2.TabIndex = 7;
@@ -113,7 +117,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(67, 111);
+            label3.Location = new Point(45, 127);
             label3.Name = "label3";
             label3.Size = new Size(78, 15);
             label3.TabIndex = 8;
@@ -122,7 +126,7 @@
             // cmbCompetencia
             // 
             cmbCompetencia.FormattingEnabled = true;
-            cmbCompetencia.Location = new Point(63, 136);
+            cmbCompetencia.Location = new Point(21, 153);
             cmbCompetencia.Margin = new Padding(3, 2, 3, 2);
             cmbCompetencia.Name = "cmbCompetencia";
             cmbCompetencia.Size = new Size(133, 23);
@@ -130,7 +134,7 @@
             // 
             // btnFiltrarPartidos
             // 
-            btnFiltrarPartidos.Location = new Point(10, 203);
+            btnFiltrarPartidos.Location = new Point(21, 210);
             btnFiltrarPartidos.Margin = new Padding(3, 4, 3, 4);
             btnFiltrarPartidos.Name = "btnFiltrarPartidos";
             btnFiltrarPartidos.Size = new Size(139, 37);
@@ -141,7 +145,7 @@
             // 
             // btnBorrarFiltros
             // 
-            btnBorrarFiltros.Location = new Point(174, 203);
+            btnBorrarFiltros.Location = new Point(21, 265);
             btnBorrarFiltros.Margin = new Padding(3, 4, 3, 4);
             btnBorrarFiltros.Name = "btnBorrarFiltros";
             btnBorrarFiltros.Size = new Size(139, 37);
@@ -150,26 +154,48 @@
             btnBorrarFiltros.UseVisualStyleBackColor = true;
             btnBorrarFiltros.Click += btnBorrarFiltros_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnBorrarFiltros);
+            groupBox1.Controls.Add(btnFiltrarPartidos);
+            groupBox1.Controls.Add(cmbCompetencia);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(cmbEquipo);
+            groupBox1.Location = new Point(7, 9);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(182, 321);
+            groupBox1.TabIndex = 12;
+            groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(lblPartidos);
+            groupBox2.Controls.Add(btnCargarPartidoCopa);
+            groupBox2.Controls.Add(btnCargarPartidoTorneo);
+            groupBox2.Location = new Point(7, 345);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(182, 165);
+            groupBox2.TabIndex = 13;
+            groupBox2.TabStop = false;
+            // 
             // frmPartidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
-            Controls.Add(btnBorrarFiltros);
-            Controls.Add(btnFiltrarPartidos);
-            Controls.Add(cmbCompetencia);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(cmbEquipo);
+            ClientSize = new Size(783, 520);
             Controls.Add(label1);
             Controls.Add(dgvPartidos);
-            Controls.Add(btnCargarPartidoTorneo);
-            Controls.Add(btnCargarPartidoCopa);
-            Controls.Add(lblPartidos);
+            Controls.Add(groupBox1);
+            Controls.Add(groupBox2);
             Name = "frmPartidos";
-            Text = "Form1";
+            Text = "Visualizador y Gestor de Partidos";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPartidos).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -187,5 +213,7 @@
         private ComboBox cmbCompetencia;
         private Button btnFiltrarPartidos;
         private Button btnBorrarFiltros;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
     }
 }
