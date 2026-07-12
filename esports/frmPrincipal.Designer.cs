@@ -33,6 +33,7 @@
             btnEquipos = new Button();
             btnPartidos = new Button();
             btnCompetencias = new Button();
+            groupBox1 = new GroupBox();
             SuspendLayout();
             // 
             // label1
@@ -48,7 +49,7 @@
             // btnJugadores
             // 
             btnJugadores.Font = new Font("Bahnschrift", 11F);
-            btnJugadores.Location = new Point(23, 70);
+            btnJugadores.Location = new Point(52, 121);
             btnJugadores.Name = "btnJugadores";
             btnJugadores.Size = new Size(114, 38);
             btnJugadores.TabIndex = 1;
@@ -59,7 +60,7 @@
             // btnEquipos
             // 
             btnEquipos.Font = new Font("Bahnschrift", 11F);
-            btnEquipos.Location = new Point(23, 114);
+            btnEquipos.Location = new Point(52, 70);
             btnEquipos.Name = "btnEquipos";
             btnEquipos.Size = new Size(114, 38);
             btnEquipos.TabIndex = 2;
@@ -70,7 +71,7 @@
             // btnPartidos
             // 
             btnPartidos.Font = new Font("Bahnschrift", 11F);
-            btnPartidos.Location = new Point(23, 158);
+            btnPartidos.Location = new Point(52, 173);
             btnPartidos.Name = "btnPartidos";
             btnPartidos.Size = new Size(114, 38);
             btnPartidos.TabIndex = 3;
@@ -81,24 +82,33 @@
             // btnCompetencias
             // 
             btnCompetencias.Font = new Font("Bahnschrift", 11F);
-            btnCompetencias.Location = new Point(23, 200);
+            btnCompetencias.Location = new Point(52, 220);
             btnCompetencias.Name = "btnCompetencias";
-            btnCompetencias.Size = new Size(114, 52);
+            btnCompetencias.Size = new Size(114, 38);
             btnCompetencias.TabIndex = 4;
             btnCompetencias.Text = "Competencias";
             btnCompetencias.UseVisualStyleBackColor = true;
             btnCompetencias.Click += btnCompetencias_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(203, 264);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(234, 301);
             Controls.Add(btnCompetencias);
             Controls.Add(btnPartidos);
             Controls.Add(btnEquipos);
             Controls.Add(btnJugadores);
             Controls.Add(label1);
+            Controls.Add(groupBox1);
             Name = "frmPrincipal";
             Text = "UAI eSports - Menú";
             Load += frmPrincipal_Load;
@@ -113,5 +123,6 @@
         private Button btnEquipos;
         private Button btnPartidos;
         private Button btnCompetencias;
+        private GroupBox groupBox1;
     }
 }
