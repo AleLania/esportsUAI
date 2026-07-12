@@ -59,7 +59,7 @@ namespace Business
                     }
                     else
                     {
-                        bracketBusiness.ActualizarBracket(partido);
+                        bracketBusiness.actualizarBracket(partido);
                     }
 
                     trx.Complete();

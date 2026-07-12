@@ -19,10 +19,5 @@ namespace Entities
             this.cantidadJugadores = cantidadJugadores;
             this.cantidadEquipos = cantidadEquipos;
         }
-
-        public override string ToString()
-        {
-            return descripcion;
-        }
     }
 }

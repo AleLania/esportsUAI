@@ -1,5 +1,7 @@
 ﻿using Data;
 using Entities;
+using Mapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,7 @@ namespace Business
                     return;
                 }
 
-                BracketsEntity? siguienteBracket = bracketDAO.ObtenerBracketPorId(bracket.idSiguienteBracket.Value);
+                BracketsEntity? siguienteBracket = bracketDAO.getBracketPorId(bracket.idSiguienteBracket.Value);
 
                 if(siguienteBracket == null)
                 {
@@ -30,7 +32,7 @@ namespace Business
                 //si el primer equipo está vacío, asigno el ganador ahí
                 if (siguienteBracket.equipo1 == null)
                 {
-                    bracketDAO.ActualizarEquipo1(siguienteBracket.id, partido.ganador.id);
+                    bracketDAO.actualizarEquipo1(siguienteBracket.id, partido.ganador.id);
 
                     //actualizo el objeto en memoria
                     siguienteBracket.equipo1 = partido.ganador;
@@ -38,7 +40,7 @@ namespace Business
                 else
                 {
                     //si no, asigno el ganador al segundo equipo
-                    bracketDAO.ActualizarEquipo2(siguienteBracket.id, partido.ganador.id);
+                    bracketDAO.actualizarEquipo2(siguienteBracket.id, partido.ganador.id);
 
                     //actualizo el objeto en memoria
                     siguienteBracket.equipo2 = partido.ganador;
@@ -58,7 +60,7 @@ namespace Business
                 BracketDAO bracketDAO = new BracketDAO();
 
                 //verifico si el partido ya tiene un bracket asignado
-                BracketsEntity? bracket = bracketDAO.ObtenerBracketPorEquipos(
+                BracketsEntity? bracket = bracketDAO.getBracketPorEquipos(
                     partido.equipo1.id,
                     partido.equipo2.id,
                     partido.disciplina.id);
@@ -70,10 +72,10 @@ namespace Business
                 }
 
                 //verifico que el equipo no este en otro bracket de cuartos
-                ValidarEquiposCuartos(partido);
+                validarEquiposCuartos(partido);
 
                 //si no existe, busco un bracket disponible
-                bracket = bracketDAO.ObtenerBracketDisponible(partido.disciplina.id);
+                bracket = bracketDAO.getBracketDisponible(partido.disciplina.id);
 
                 if (bracket == null)
                 {
@@ -81,7 +83,7 @@ namespace Business
                 }
 
                 //asigno los equipos al bracket
-                bracketDAO.AsignarEquipos(
+                bracketDAO.asignarEquipos(
                     bracket.id,
                     partido.equipo1.id,
                     partido.equipo2.id);
@@ -98,7 +100,7 @@ namespace Business
             }
         }
 
-        public void ActualizarBracket(PartidosEntity partido)
+        public void actualizarBracket(PartidosEntity partido)
         {
             try
             {
@@ -111,7 +113,7 @@ namespace Business
                     BracketsEntity bracket = ObtenerOAsignarBracket(partido);
 
                     //registro el partido en el bracket
-                    bracketDAO.AsignarPartido(bracket.id, partido.id);
+                    bracketDAO.asignarPartido(bracket.id, partido.id);
 
                     if (bracket.idSiguienteBracket != null)
                     {
@@ -128,14 +130,14 @@ namespace Business
 
         }
 
-        public void ValidarEquiposCuartos(PartidosEntity partido)
+        public void validarEquiposCuartos(PartidosEntity partido)
         {
             try
             {
                 BracketDAO bracketDAO = new BracketDAO();
 
                 //cargo los brackets
-                List<BracketsEntity> brackets = bracketDAO.ObtenerBrackets();
+                List<BracketsEntity> brackets = bracketDAO.getBrackets();
 
                 //recorro lista
                 foreach(BracketsEntity bracket in brackets)
@@ -171,5 +173,47 @@ namespace Business
                 throw;
             }
         }
+
+        public void armarBracketsCopa(int idDisciplina)
+        {
+            try
+            {
+                BracketDAO bracketDAO = new BracketDAO();
+
+                // traemos los equipos de la disciplina
+                List<EquiposEntity> equipos = EquipoDAO.getEquiposByDisciplina(idDisciplina);
+
+                // mezclamos aleatoriamente
+                Random rng = new Random();
+                equipos = equipos.OrderBy(e => rng.Next()).ToList();
+
+                // traemos los brackets de cuartos disponibles ordenados
+                List<BracketsEntity> brackets = bracketDAO.getBracketsDeCuartos(idDisciplina);
+
+                if (brackets.Count < 4)
+                    throw new Exception("No hay suficientes brackets de cuartos para la disciplina.");
+
+                // asignamos de a pares: equipo 0-1 al bracket 0, equipo 2-3 al bracket 1, etc.
+                for (int i = 0; i < 4; i++)
+                {
+                    bracketDAO.asignarEquipos(
+                        brackets[i].id,
+                        equipos[i * 2].id,
+                        equipos[i * 2 + 1].id
+                    );
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<BracketsEntity> getBracketsConEquipos(int idDisciplina)
+        {
+            BracketDAO bracketDAO = new BracketDAO();
+            return bracketDAO.getBracketsConEquipos(idDisciplina);
+        }
+
     }
 }

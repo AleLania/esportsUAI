@@ -61,5 +61,25 @@ namespace Mapper
 
             return bracket;
         }
+
+        public static BracketsEntity MapBracket(SqlDataReader reader, DisciplinasEntity disciplina)
+        {
+            BracketsEntity bracket = new BracketsEntity();
+
+            bracket.id = Convert.ToInt32(reader["ID_BRACKET"]);
+            bracket.instancia = reader["INSTANCIA"].ToString();
+
+            if (reader["ID_SIGUIENTE_BRACKET"] != DBNull.Value)
+                bracket.idSiguienteBracket = Convert.ToInt32(reader["ID_SIGUIENTE_BRACKET"]);
+
+            bracket.disciplina = disciplina;
+
+            bracket.equipo1 = EquiposMapper.mapEquipo(reader, disciplina, "1");
+            bracket.equipo2 = EquiposMapper.mapEquipo(reader, disciplina, "2");
+
+            bracket.partido = null;
+
+            return bracket;
+        }
     }
 }
