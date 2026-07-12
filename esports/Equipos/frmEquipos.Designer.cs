@@ -32,14 +32,17 @@
             btnUpdateEquipo = new Button();
             dgvEquipos = new DataGridView();
             btnVolverMenu = new Button();
+            lblJugadores = new Label();
+            groupBox1 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
             SuspendLayout();
             // 
             // btnAddEquipo
             // 
-            btnAddEquipo.Location = new Point(26, 65);
+            btnAddEquipo.Location = new Point(16, 61);
+            btnAddEquipo.Margin = new Padding(3, 2, 3, 2);
             btnAddEquipo.Name = "btnAddEquipo";
-            btnAddEquipo.Size = new Size(133, 42);
+            btnAddEquipo.Size = new Size(116, 32);
             btnAddEquipo.TabIndex = 0;
             btnAddEquipo.Text = "Agregar Equipo";
             btnAddEquipo.UseVisualStyleBackColor = true;
@@ -47,9 +50,10 @@
             // 
             // btnUpdateEquipo
             // 
-            btnUpdateEquipo.Location = new Point(26, 128);
+            btnUpdateEquipo.Location = new Point(16, 111);
+            btnUpdateEquipo.Margin = new Padding(3, 2, 3, 2);
             btnUpdateEquipo.Name = "btnUpdateEquipo";
-            btnUpdateEquipo.Size = new Size(133, 41);
+            btnUpdateEquipo.Size = new Size(116, 31);
             btnUpdateEquipo.TabIndex = 1;
             btnUpdateEquipo.Text = "Modificar Equipo";
             btnUpdateEquipo.UseVisualStyleBackColor = true;
@@ -58,37 +62,60 @@
             // dgvEquipos
             // 
             dgvEquipos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEquipos.Location = new Point(342, 10);
+            dgvEquipos.Location = new Point(150, 7);
             dgvEquipos.Margin = new Padding(2);
             dgvEquipos.Name = "dgvEquipos";
             dgvEquipos.RowHeadersWidth = 62;
-            dgvEquipos.Size = new Size(448, 430);
+            dgvEquipos.Size = new Size(406, 330);
             dgvEquipos.TabIndex = 2;
             // 
             // btnVolverMenu
             // 
-            btnVolverMenu.Location = new Point(18, 386);
+            btnVolverMenu.Location = new Point(14, 290);
+            btnVolverMenu.Margin = new Padding(3, 2, 3, 2);
             btnVolverMenu.Name = "btnVolverMenu";
-            btnVolverMenu.Size = new Size(133, 42);
+            btnVolverMenu.Size = new Size(116, 32);
             btnVolverMenu.TabIndex = 3;
             btnVolverMenu.Text = "Volver";
             btnVolverMenu.UseVisualStyleBackColor = true;
             btnVolverMenu.Click += btnVolverMenu_Click;
             // 
+            // lblJugadores
+            // 
+            lblJugadores.AutoSize = true;
+            lblJugadores.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblJugadores.Location = new Point(27, 19);
+            lblJugadores.Name = "lblJugadores";
+            lblJugadores.Size = new Size(97, 18);
+            lblJugadores.TabIndex = 4;
+            lblJugadores.Text = "ABM Equipos";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Location = new Point(11, -1);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(133, 167);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            // 
             // frmEquipos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(556, 337);
+            Controls.Add(lblJugadores);
             Controls.Add(btnVolverMenu);
             Controls.Add(dgvEquipos);
             Controls.Add(btnUpdateEquipo);
             Controls.Add(btnAddEquipo);
+            Controls.Add(groupBox1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmEquipos";
-            Text = "frmEquipos";
+            Text = "Gestión de Equipos";
             Load += frmEquipos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -97,5 +124,7 @@
         private Button btnUpdateEquipo;
         private DataGridView dgvEquipos;
         private Button btnVolverMenu;
+        private Label lblJugadores;
+        private GroupBox groupBox1;
     }
 }
