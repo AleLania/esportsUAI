@@ -10,19 +10,18 @@ using Business;
 
 namespace esports.Equipos
 {
-    public partial class frmUpdateEquipos : frmAddEquipos
+    public partial class frmUpdateEquipos : Form
     {
         frmEquipos frmEquiposs = new frmEquipos();
 
-        public frmUpdateEquipos(frmEquipos frmEquipos) : base(frmEquipos)
+
+        public frmUpdateEquipos(frmEquipos frmEquipos)
         {
             InitializeComponent();
             this.frmEquiposs = frmEquipos;
-            cmbEsport.Visible = false;
-            label2.Visible = false;
         }
 
-        protected override void btnSave_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
             try
             {

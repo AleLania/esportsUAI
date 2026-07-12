@@ -13,6 +13,7 @@ namespace esports.Equipos
     public partial class frmAddEquipos : Form
     {
         frmEquipos frmEquipos;
+
         public frmAddEquipos(frmEquipos frmEquipos)
         {
             InitializeComponent();
@@ -27,14 +28,16 @@ namespace esports.Equipos
             cmbEsport = new ComboBox();
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
+            lblAltaEquipo = new Label();
+            groupBox1 = new GroupBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(99, 334);
+            btnSave.Location = new Point(78, 186);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(218, 73);
+            btnSave.Size = new Size(132, 32);
             btnSave.TabIndex = 0;
             btnSave.Text = "Guardar";
             btnSave.UseVisualStyleBackColor = true;
@@ -42,57 +45,70 @@ namespace esports.Equipos
             // 
             // txtNombreEquipo
             // 
-            txtNombreEquipo.Location = new Point(114, 138);
+            txtNombreEquipo.Location = new Point(100, 74);
             txtNombreEquipo.Name = "txtNombreEquipo";
-            txtNombreEquipo.Size = new Size(174, 27);
+            txtNombreEquipo.Size = new Size(174, 23);
             txtNombreEquipo.TabIndex = 1;
             // 
             // cmbEsport
             // 
             cmbEsport.FormattingEnabled = true;
-            cmbEsport.Location = new Point(114, 238);
+            cmbEsport.Location = new Point(164, 125);
             cmbEsport.Name = "cmbEsport";
-            cmbEsport.Size = new Size(182, 28);
+            cmbEsport.Size = new Size(110, 23);
             cmbEsport.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(114, 91);
+            label1.Location = new Point(23, 77);
             label1.Name = "label1";
-            label1.Size = new Size(64, 20);
+            label1.Size = new Size(51, 15);
             label1.TabIndex = 3;
             label1.Text = "Nombre";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(114, 196);
+            label2.Location = new Point(23, 128);
             label2.Name = "label2";
-            label2.Size = new Size(51, 20);
+            label2.Size = new Size(40, 15);
             label2.TabIndex = 4;
             label2.Text = "Esport";
             // 
-            // label3
+            // lblAltaEquipo
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 21);
-            label3.Name = "label3";
-            label3.Size = new Size(108, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Alta de Equipo";
+            lblAltaEquipo.AutoSize = true;
+            lblAltaEquipo.Font = new Font("Bahnschrift", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAltaEquipo.Location = new Point(88, 12);
+            lblAltaEquipo.Name = "lblAltaEquipo";
+            lblAltaEquipo.Size = new Size(104, 18);
+            lblAltaEquipo.TabIndex = 22;
+            lblAltaEquipo.Text = "Alta de Equipo";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(lblAltaEquipo);
+            groupBox1.Location = new Point(12, 5);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(278, 245);
+            groupBox1.TabIndex = 23;
+            groupBox1.TabStop = false;
             // 
             // frmAddEquipos
             // 
-            ClientSize = new Size(487, 508);
-            Controls.Add(label3);
+            ClientSize = new Size(306, 262);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(cmbEsport);
             Controls.Add(txtNombreEquipo);
             Controls.Add(btnSave);
+            Controls.Add(groupBox1);
             Name = "frmAddEquipos";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += frmAddEquipos_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
 
@@ -103,7 +119,6 @@ namespace esports.Equipos
         protected ComboBox cmbEsport;
         protected Label label1;
         protected Label label2;
-        protected Label label3;
 
         protected virtual void btnSave_Click(object sender, EventArgs e)
         {
@@ -137,5 +152,8 @@ namespace esports.Equipos
                 MessageBox.Show("Error al cargar las disciplinas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private Label lblAltaEquipo;
+        private GroupBox groupBox1;
     }
 }
