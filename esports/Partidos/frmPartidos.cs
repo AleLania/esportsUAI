@@ -12,6 +12,11 @@ namespace esports.Partidos
 {
     public partial class frmPartidos : Form
     {
+        public void actualizarDgv()
+        {
+            dgvPartidos.DataSource = null;
+            dgvPartidos.DataSource = PartidoBusiness.getPartidos();
+        }
         public frmPartidos()
         {
             InitializeComponent();
@@ -43,7 +48,7 @@ namespace esports.Partidos
         {
             try
             {
-                frmPartidoCopa ventana = new frmPartidoCopa();
+                frmPartidoCopa ventana = new frmPartidoCopa(this);
                 ventana.ShowDialog();
             }
             catch (Exception ex)
@@ -73,7 +78,7 @@ namespace esports.Partidos
         {
             try
             {
-                frmPartidoTorneo ventana = new frmPartidoTorneo();
+                frmPartidoTorneo ventana = new frmPartidoTorneo(this);
                 ventana.ShowDialog();
             }
             catch (Exception ex)

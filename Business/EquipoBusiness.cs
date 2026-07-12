@@ -3,19 +3,15 @@ using Entities;
 using Mapper;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Transactions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Business
 {
     public class EquipoBusiness
     {
-
         public static List<EquiposEntity> getEquipos()
         {
             return EquipoDAO.getEquipos();
-
         }
 
         public static List<EquiposEntity.EquiposTorneoEntity> getEquiposTorneo()
@@ -23,63 +19,54 @@ namespace Business
             try
             {
                 List<EquiposEntity.EquiposTorneoEntity> listOfEquipos = new List<EquiposEntity.EquiposTorneoEntity>();
+
                 foreach (EquiposEntity equipo in EquipoDAO.getEquipos())
                 {
-                    EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(
-                        equipo);
-
+                    EquiposEntity.EquiposTorneoEntity equipoTorneo = new EquiposEntity.EquiposTorneoEntity(equipo);
                     listOfEquipos.Add(equipoTorneo);
                 }
+
                 return listOfEquipos;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
-
             }
         }
-
 
         public static List<EquiposEntity> getEquiposByDisciplina(int idDisciplina)
         {
             try
             {
-                List<EquiposEntity> listOfEquipos = EquipoDAO.getEquiposByDisciplina(idDisciplina);
-
-                return listOfEquipos;
+                return EquipoDAO.getEquiposByDisciplina(idDisciplina);
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener equipos por disciplina: " + ex.Message);
             }
         }
+
         public static void insertEquipo(string nombre, int idDisciplina)
         {
             try
             {
-                if (string.IsNullOrEmpty(nombre))
-                    throw new ArgumentException("El nombre del equipo no puede estar vacío.");
+                EquiposEntity nuevoEquipo = new EquiposEntity(
+                    nombre,
+                    DisciplinaBusiness.getDisciplinaById(idDisciplina));
 
-                if (EquipoDAO.getEquipos().Exists(e => e.nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)))
-                    throw new ArgumentException("Ya existe un equipo con ese nombre.");
+                validarEquipo(nuevoEquipo);
 
                 int cantidadActual = EquipoDAO.countEquiposByDisciplina(idDisciplina);
                 int cantidadMaxima = DisciplinaBusiness.getCantidadEquiposDisciplina(idDisciplina);
 
-                if (cantidadActual == cantidadMaxima)
-                    throw new ArgumentException("No se pueden agregar más de 8 equipos a la disciplina.");
-
                 using (var trx = new TransactionScope())
                 {
-                    EquiposEntity newEquipo = new EquiposEntity(
-                        nombre, DisciplinaBusiness.getDisciplinaById(idDisciplina));
-                    EquipoDAO.insertEquipo(newEquipo);
+                    EquipoDAO.insertEquipo(nuevoEquipo);
 
-                    // si con este equipo se completa el cupo, armamos los brackets
+                    // Si con este equipo se completa el cupo, armamos los brackets
                     if (cantidadActual + 1 == cantidadMaxima)
                     {
-                        BracketBusiness bracketBusiness = new BracketBusiness();
-                        bracketBusiness.armarBracketsCopa(idDisciplina);
+                        BracketBusiness.armarBracketsCopa(idDisciplina);
                     }
 
                     trx.Complete();
@@ -95,24 +82,45 @@ namespace Business
         {
             try
             {
-                if (string.IsNullOrEmpty(nombre))
-                {
-                    throw new ArgumentException("El nombre del equipo no puede estar vacío.");
-                }
+                EquiposEntity equipoOriginal = EquipoDAO.getEquipoById(id);
+
+                EquiposEntity equipoActualizado = new EquiposEntity(
+                    nombre,
+                    equipoOriginal.disciplina);
+
+                equipoActualizado.id = id;
+
+                validarEquipo(equipoActualizado, equipoOriginal);
+
                 using (var trx = new TransactionScope())
                 {
-                    EquiposEntity updatedEquipo = new EquiposEntity(
-                    nombre, id);
-
-                    EquipoDAO.updateEquipo(updatedEquipo);
+                    EquipoDAO.updateEquipo(equipoActualizado);
                     trx.Complete();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
+        }
 
+        public static void validarEquipo(EquiposEntity equipo, EquiposEntity equipoOriginal = null)
+        {
+            if (string.IsNullOrWhiteSpace(equipo.nombre))
+                throw new ArgumentException("El nombre del equipo no puede estar vacío.");
+
+            if (EquipoDAO.existeNombre(equipo.nombre, equipo.id))
+                throw new ArgumentException("Ya existe un equipo con ese nombre.");
+
+            // Solo validar cantidad si es un alta o cambió de disciplina
+            if (equipoOriginal == null || equipoOriginal.disciplina.id != equipo.disciplina.id)
+            {
+                int cantidadActual = EquipoDAO.countEquiposByDisciplina(equipo.disciplina.id);
+                int cantidadMaxima = DisciplinaBusiness.getCantidadEquiposDisciplina(equipo.disciplina.id);
+
+                if (cantidadActual >= cantidadMaxima)
+                    throw new ArgumentException($"No se pueden agregar más de {cantidadMaxima} equipos a la disciplina.");
+            }
         }
 
         public static EquiposEntity getEquipoById(int id)
@@ -125,7 +133,6 @@ namespace Business
             {
                 throw new Exception("Error al obtener el equipo por ID: " + ex.Message);
             }
-
         }
 
         public static void updateResultadosEquipos(PartidosEntity partido)
@@ -135,7 +142,7 @@ namespace Business
                 EquiposEntity ganador = partido.ganador;
                 EquiposEntity perdedor;
 
-                if(ganador.id == partido.equipo1.id)
+                if (ganador.id == partido.equipo1.id)
                 {
                     perdedor = partido.equipo2;
                 }
@@ -149,14 +156,12 @@ namespace Business
                 perdedor.PPTorneo++;
 
                 EquipoDAO.updateEstadisticasEquipo(ganador);
-
                 EquipoDAO.updateEstadisticasEquipo(perdedor);
             }
             catch (Exception ex)
             {
                 throw new Exception("No se pudieron actualizar los resultados", ex);
             }
-
         }
     }
 }

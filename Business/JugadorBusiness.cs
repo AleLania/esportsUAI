@@ -7,25 +7,17 @@ namespace Business
 {
     public class JugadorBusiness
     {
-        public List<JugadoresEntity> obtenerJugadores()
+        public List<JugadoresEntity> getJugadores()
         {
-            JugadorDAO jugadorDAO = new JugadorDAO();
+            try
+            {
+                return JugadorDAO.getJugadores();
 
-            return jugadorDAO.ObtenerJugadores();
-        }
-
-        public void validarJugador(JugadoresEntity jugador)
-        {
-            if (string.IsNullOrWhiteSpace(jugador.NombreApellido))
-                throw new Exception("El nombre no puede estar vacío.");
-
-            if (string.IsNullOrWhiteSpace(jugador.Nick))
-                throw new Exception("El nick no puede estar vacío.");
-
-            EquiposEntity equipoCompleto = EquipoBusiness.getEquipoById(jugador.equipo.id);
-
-            if (JugadorDAO.getCantidadJugadores(jugador.equipo.id) >= equipoCompleto.disciplina.cantidadJugadores)
-                throw new Exception("El equipo ya tiene la cantidad máxima de jugadores.");
+            }
+            catch (Exception ex) 
+            {
+                throw;
+            }
         }
 
         public void cargarJugador(JugadoresEntity jugador)
@@ -35,9 +27,7 @@ namespace Business
                 validarJugador(jugador);
                 using (var trx = new TransactionScope())
                 {
-                    JugadorDAO jugadorDAO = new JugadorDAO();
-
-                    jugadorDAO.CargarJugador(jugador);
+                    JugadorDAO.CargarJugador(jugador);
                     trx.Complete();
 
                 }
@@ -48,31 +38,53 @@ namespace Business
             }
         }
 
-        //lo hice al pedo? creo que si
-        public void borrarJugador(int idJugador)
+        public JugadoresEntity obtenerJugadorPorId(int idJugador)
         {
-            JugadorDAO jugadorDAO = new JugadorDAO();
+            try
+            {
+                return JugadorDAO.getJugadorPorId(idJugador);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener el jugador: {ex.Message}");
+            }
 
-            jugadorDAO.BorrarJugador(idJugador);
-        }
-
-        public JugadoresEntity? obtenerJugadorPorId(int idJugador)
-        {
-            JugadorDAO jugadorDAO = new JugadorDAO();
-
-            return jugadorDAO.ObtenerJugadorPorId(idJugador);
         }
 
         public void actualizarJugador(JugadoresEntity jugador)
         {
-            validarJugador(jugador);
+            JugadoresEntity jugadorOriginal = JugadorDAO.getJugadorPorId(jugador.IdJugador);
+
+            validarJugador(jugador, jugadorOriginal);
+
             using (var trx = new TransactionScope())
             {
-                JugadorDAO jugadorDAO = new JugadorDAO();
-
-                jugadorDAO.ActualizarJugador(jugador);
+                JugadorDAO.ActualizarJugador(jugador);
                 trx.Complete();
             }
+        }
+
+        public void validarJugador(JugadoresEntity jugador, JugadoresEntity jugadorOriginal = null)
+        {
+            if (string.IsNullOrWhiteSpace(jugador.NombreApellido))
+                throw new Exception("El nombre no puede estar vacío.");
+
+            if (string.IsNullOrWhiteSpace(jugador.Nick))
+                throw new Exception("El nick no puede estar vacío.");
+
+            if (jugadorOriginal == null || jugadorOriginal.equipo.id != jugador.equipo.id)
+            {
+                EquiposEntity equipoCompleto = EquipoBusiness.getEquipoById(jugador.equipo.id);
+
+                if (JugadorDAO.getCantidadJugadores(jugador.equipo.id) >= equipoCompleto.disciplina.cantidadJugadores)
+                    throw new Exception("El equipo ya tiene la cantidad máxima de jugadores.");
+            }
+
+            if (JugadorDAO.existeNick(jugador.Nick, jugador.IdJugador))
+                throw new Exception("Ya existe un jugador con ese nick.");
+
+            if (JugadorDAO.existeNombre(jugador.NombreApellido, jugador.IdJugador))
+                throw new Exception("Ya existe un jugador con ese nombre.");
         }
     }
 }

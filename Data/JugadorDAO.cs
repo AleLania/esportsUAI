@@ -9,9 +9,9 @@ using Mapper;
 
 namespace Data
 {
-    public class JugadorDAO
+    public static class JugadorDAO
     {
-        public List<JugadoresEntity> ObtenerJugadores()
+        public static List<JugadoresEntity> getJugadores()
         {
             List<JugadoresEntity> jugadores = new List<JugadoresEntity>();
 
@@ -60,7 +60,7 @@ namespace Data
             return jugadores;
         }
 
-        public void CargarJugador(JugadoresEntity jugador)
+        public static void CargarJugador(JugadoresEntity jugador)
         {
             try
             {
@@ -85,9 +85,7 @@ namespace Data
             }
         }
 
-        //posible transaction para no borrar un jugador que tiene un equipo asignado? uso transaction? habra que armar un DesasignarEquipo?
-        //lo hice al pedo
-        public void BorrarJugador(int idJugador)
+        public static void BorrarJugador(int idJugador)
         {
             try
             {
@@ -112,7 +110,7 @@ namespace Data
         }
 
         //tiene que ser un alta por baja porque no voy a borrarjugadores
-        public void ActualizarJugador(JugadoresEntity jugador)
+        public static void ActualizarJugador(JugadoresEntity jugador)
         {
             try
             {
@@ -141,7 +139,7 @@ namespace Data
             }
         }
 
-        public JugadoresEntity? ObtenerJugadorPorId(int idJugador)
+        public static JugadoresEntity getJugadorPorId(int idJugador)
         {
             JugadoresEntity? jugador = null;
 
@@ -222,6 +220,66 @@ namespace Data
                 throw;
             }
         }
+
+        public static bool existeNick(string nick, int idJugador)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    string sql = @"SELECT COUNT(*) 
+                           FROM Jugadores 
+                           WHERE NICK = @Nick
+                           AND ID_JUGADOR <> @IdJugador";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("Nick", nick);
+                        sqlCommand.Parameters.AddWithValue("IdJugador", idJugador);
+
+                        conexion.Open();
+                        int cantidad = (int)sqlCommand.ExecuteScalar();
+
+                        return cantidad > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static bool existeNombre(string nombreApellido, int idJugador)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    string sql = @"SELECT COUNT(*) 
+                           FROM Jugadores 
+                           WHERE NOMBRE_APELLIDO = @NombreApellido
+                           AND ID_JUGADOR <> @IdJugador";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sql, conexion))
+                    {
+                        sqlCommand.Parameters.AddWithValue("NombreApellido", nombreApellido);
+                        sqlCommand.Parameters.AddWithValue("IdJugador", idJugador);
+
+                        conexion.Open();
+                        int cantidad = (int)sqlCommand.ExecuteScalar();
+
+                        return cantidad > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
     }
 
 }

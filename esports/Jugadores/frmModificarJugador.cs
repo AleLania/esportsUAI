@@ -21,7 +21,7 @@ namespace esports.Jugadores
         {
             JugadorBusiness jugadorBusiness = new JugadorBusiness();
 
-            cmbJugador.DataSource = jugadorBusiness.obtenerJugadores();
+            cmbJugador.DataSource = jugadorBusiness.getJugadores();
 
             cmbJugador.DisplayMember = "NombreApellido";
             cmbJugador.ValueMember = "IdJugador";
@@ -72,6 +72,9 @@ namespace esports.Jugadores
                 jugadorBusiness.actualizarJugador(jugador);
 
                 MessageBox.Show("Jugador modificado correctamente");
+
+                txtNuevoNombre.Clear();
+                txtNick.Clear();
             }
             catch (Exception ex)
             {
