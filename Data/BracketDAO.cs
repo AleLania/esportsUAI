@@ -423,6 +423,28 @@
                     return brackets;
                 }
                 catch (Exception) { throw; }
+
+            }
+        public void limpiarEquiposDeBrackets(int idDisciplina)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                conexion.Open();
+                string sql = @"UPDATE Brackets 
+                       SET ID_EQUIPO1 = NULL, 
+                           ID_EQUIPO2 = NULL,
+                           ID_PARTIDO = NULL
+                       WHERE ID_DISCIPLINA = @idDisciplina";
+
+                using SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al limpiar los brackets.", ex);
             }
         }
+    }
     }
