@@ -163,5 +163,33 @@ namespace Business
                 throw new Exception("No se pudieron actualizar los resultados", ex);
             }
         }
+
+        public static void deleteEquipoById(int id)
+        {
+            try
+            {
+                using (var trx = new TransactionScope())
+                {
+                    EquiposEntity equipo = EquipoDAO.getEquipoById(id);
+
+                    BracketDAO bracketDAO = new BracketDAO();
+
+                    bracketDAO.limpiarEquiposDeBrackets(equipo.disciplina.id);
+                    PartidoDAO.deletePartidosByEquipo(id);
+
+
+                    JugadorDAO.deleteJugadoresByEquipo(id);
+
+                    // borramos el equipo
+                    EquipoDAO.deleteEquipoById(id);
+
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el equipo: " + ex.Message);
+            }
+        }
     }
 }

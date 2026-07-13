@@ -278,7 +278,21 @@ namespace Data
                 throw;
             }
         }
-
+        public static void deleteJugadoresByEquipo(int idEquipo)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                conexion.Open();
+                using SqlCommand cmd = new SqlCommand("DELETE FROM Jugadores WHERE ID_EQUIPO = @idEquipo", conexion);
+                cmd.Parameters.AddWithValue("@idEquipo", idEquipo);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
     }
 

@@ -61,5 +61,13 @@ namespace esports
         {
             this.Close();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            frmDeleteEquipos ventana = new frmDeleteEquipos(this);
+            ventana.ShowDialog();
+            cargarEquipos();
+        }
     }
 }

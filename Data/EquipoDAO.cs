@@ -234,5 +234,26 @@ namespace Data
                 throw;
             }
         }
+
+        public static void deleteEquipoById(int id)
+        {
+            try
+            {
+                using SqlConnection conexion = new SqlConnection(ConnectionString.connectionString);
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Equipos WHERE ID_EQUIPO = @id", conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        } 
     }
 }
